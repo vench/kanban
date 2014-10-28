@@ -10,6 +10,9 @@
     <?php echo CHtml::link(Yii::t('main', 'Update task'), array(
         '/task/update', 'id'=>$model->getPrimaryKey(),
     )); ?>
+    <?php echo CHtml::link(Yii::t('main', 'Detail task'), array(
+        '/task/view', 'id'=>$model->getPrimaryKey(),
+    )); ?>
     <?php echo CHtml::link(Yii::t('main', 'Remove task'), array(
         '/task/delete', 'id'=>$model->getPrimaryKey(),
     )); ?>

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Tasks'=>array('index'),
-	$model->id,
+	Yii::t('main', 'Detail task'),
 );
 
 $this->menu=array(
@@ -16,16 +16,31 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Task #<?php echo $model->id; ?></h1>
+<h1>View Task #<?php echo $model->description; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'project_id',
-		'task_category_id',
-		'is_ready',
-		'description',
+	'attributes'=>array(		 
+		array(
+                    'name'=>'project_id', 
+                    'type'=>'raw',
+                    'value'=>CHtml::link($model->project->name, array('/project/view', 'id'=>$model->project_id))
+                ),
+		array(
+                    'name'=>'task_category_id',
+                    'value'=>$model->taskCategory->name,
+                ),
+		'is_ready', 
 		'fulldescription',
 	),
 )); ?>
+
+<h3><?php echo Yii::t('main', 'History');?></h3>
+<?php foreach($model->taskHistories as $history) { ?> 
+    <div><?php echo Yii::t('main', 'Time insert: {date}', array(
+        '{date}'=>date('d.m.Y H:i', $history->time_insert),
+    ));?>
+    
+    <?php echo $history->newCategory->name; ?>
+    </div>
+<?php } ?>

@@ -680,3 +680,30 @@ Stack trace:
 REQUEST_URI=/index.php?r=project/view&id=4
 HTTP_REFERER=http://kanban/index.php?r=task/update&id=3
 ---
+2014/10/28 23:10:23 [error] [php] Illegal offset type in isset or empty (/var/www/kanban/www/framework/i18n/CMessageSource.php:104)
+Stack trace:
+#0 /var/www/kanban/www/protected/views/task/view.php(35): t()
+#1 /var/www/kanban/www/framework/web/CBaseController.php(126): require()
+#2 /var/www/kanban/www/framework/web/CBaseController.php(95): TaskController->renderInternal()
+#3 /var/www/kanban/www/framework/web/CController.php(869): TaskController->renderFile()
+#4 /var/www/kanban/www/framework/web/CController.php(782): TaskController->renderPartial()
+#5 /var/www/kanban/www/protected/controllers/TaskController.php(56): TaskController->render()
+#6 unknown(0): TaskController->actionView()
+#7 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#8 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#9 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams()
+#10 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): TaskController->runAction()
+#11 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /var/www/kanban/www/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#13 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): TaskController->filterAccessControl()
+#14 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#15 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#16 /var/www/kanban/www/framework/web/CController.php(265): TaskController->runActionWithFilters()
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(282): TaskController->run()
+#18 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#19 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /var/www/kanban/www/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=task/view&id=7
+in /var/www/kanban/www/protected/views/task/view.php (35)
+in /var/www/kanban/www/protected/controllers/TaskController.php (56)
+in /var/www/kanban/www/index.php (13)
