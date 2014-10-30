@@ -21,6 +21,11 @@
 
 	<?php echo $form->hiddenField($model,'project_id'); ?> 
 	 
+        <div class="row">
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'name'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'order_pos'); ?>
@@ -34,11 +39,7 @@
 		<?php echo $form->error($model,'limit_task'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

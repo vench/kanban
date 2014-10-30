@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Task #<?php echo $model->description; ?></h1>
+<h1><?php echo Yii::t('main', 'View Task');?> #<?php echo $model->description; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

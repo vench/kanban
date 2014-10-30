@@ -48,7 +48,7 @@ class Task extends CActiveRecord
 
         public function validateTaskCategory() {
             $category = TaskCategory::model()->findByPk($this->task_category_id);
-            if(!is_null($category) && $category->limit_task > 0 && $category->limit_task == sizeof($category->tasks)) {
+            if(!is_null($category) && $category->limit_task > 0 && $category->limit_task <= sizeof($category->tasks)) {
                 $this->addError('task_category_id', Yii::t('main', 'You can not select this category. Now in her high notes.'));
             }
         }

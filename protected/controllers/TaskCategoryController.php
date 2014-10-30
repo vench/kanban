@@ -96,7 +96,7 @@ class TaskCategoryController extends Controller
 		{
 			$model->attributes=$_POST['TaskCategory'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('/project/view','id'=>$model->project_id));
 		}
 
 		$this->render('update',array(
@@ -111,11 +111,12 @@ class TaskCategoryController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+                $model->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/project/view', 'id'=>$model->project_id));
 	}
 
 	/**

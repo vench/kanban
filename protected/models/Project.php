@@ -52,7 +52,7 @@ class Project extends CActiveRecord
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'tasks' => array(self::HAS_MANY, 'Task', 'project_id', 'order'=>'priority DESC'),
-			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id'),
+			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
 		);
 	}
 

@@ -20,10 +20,8 @@ $this->menu=array(
  
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
-	'attributes'=>array(
-		 
-		'user_id',
-		 
+	'attributes'=>array(		 
+		array('name'=>'user_id', 'value'=>$model->user->name),		 
 		'description',
 	),
 )); ?>
@@ -39,13 +37,23 @@ $this->menu=array(
     <tr>
 <?php foreach($model->taskCategories as $taskCategory) { ?>     
     <th>
-        <?php echo $taskCategory->name;?>
-    <?php echo CHtml::link(Yii::t('main', 'Add Task'), array(
+       <h4> <?php echo $taskCategory->name;?> </h4>
+    <?php echo CHtml::link(Yii::t('main', 'Add task'), array(
         '/task/create', 
         'categoryId'=>$taskCategory->getPrimaryKey()
         ), array(
     
 ));?>
+     <?php echo Chtml::link(Yii::t('main', 'Edit caegory'), array(
+         '/taskCategory/update', 'id'=>$taskCategory->getPrimaryKey(),
+     ), array(
+         
+     )); ?> 
+       <?php echo Chtml::link(Yii::t('main', 'Remove caegory'), array(
+         '/taskCategory/delete', 'id'=>$taskCategory->getPrimaryKey(),
+     ), array(
+         
+     )); ?> 
         
         <?php if($taskCategory->limit_task > 0)  {?> 
         <p><?php echo Yii::t('main', 'Limit task {num}', array(
@@ -62,14 +70,19 @@ $this->menu=array(
 <?php foreach($model->taskCategories as $taskCategory) { ?>     
     <td>
         <?php if(sizeof($taskCategory->tasks) > 0) { 
+            
             foreach($taskCategory->tasks as $task) {                 
-                $this->renderPartial('_view_task', array(
+              $this->renderPartial('_view_task', array(
                     'model'=>$task,
                 ));
             } 
+         
         }?> 
     </td>
 <?php }?>
     </tr> 
     </tbody>
 </table>
+
+
+<?php 

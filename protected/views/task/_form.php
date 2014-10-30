@@ -9,7 +9,7 @@ $taskCategory = TaskCategory::model()->findAll(array(
                         ':project_id'=>$model->project_id,
                     ),
                     'select'=>'id,name',
-                    'order'=>'order_pos DESC'
+                    'order'=>'order_pos'
 ));
 
 
