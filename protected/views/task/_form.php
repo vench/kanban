@@ -43,6 +43,15 @@ $taskCategory = TaskCategory::model()->findAll(array(
 	</div>
         
         
+        <div class="row">
+		<?php echo $form->labelEx($model,'color_hex'); ?>
+		<?php echo $form->dropDownList($model,'color_hex', Task::getColors(), array(
+                    'empty'=>'--- нет ---',
+                )); ?>
+		<?php echo $form->error($model,'color_hex'); ?>
+	</div>
+        
+        
         
         <div class="row">
 		<?php echo $form->labelEx($model,'priority'); ?>
@@ -75,3 +84,6 @@ $taskCategory = TaskCategory::model()->findAll(array(
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<?php
+ 

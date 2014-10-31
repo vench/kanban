@@ -2,8 +2,9 @@
 /* @var $this ProjectController */
 /* @var $model Project */
 
+
 $this->breadcrumbs=array(
-	'Projects'=>array('index'),
+	Yii::t('main','Projects')=>array('index'),
 	$model->name,
 );
 
@@ -85,4 +86,8 @@ $this->menu=array(
 </table>
 
 
+<script type="text/javascript">
+$(function(){
+    $().d
+});</script>
 <?php 

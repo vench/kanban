@@ -3,7 +3,7 @@
 /* @var $model Task */
 
 ?>
-<div class="task-box">
+<div class="task-box" <?php if($model->color_hex > 0) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> >
     <h5><?php echo $model->description;?></h5>
     
     <p>

@@ -54,11 +54,13 @@ class m141018_121129_core extends CDbMigration
                     'id'=>'pk',
                     'task_id'=>'int', 
                     'new_category_id'=>'int',
+                    'user_id'=>'int',
                     'time_insert'=>'int',
             ));
             
             $this->createIndex('tbl_task_history_task_id', 'tbl_task_history', 'task_id');             
             $this->createIndex('tbl_task_history_new_category_id', 'tbl_task_history', 'new_category_id'); 
+            $this->createIndex('tbl_task_history_user_id', 'tbl_task_history', 'user_id'); 
             
             if($this->getDbConnection()->driverName  === 'mysql') {
                 $this->addForeignKey('FK_tbl_project_user_id', 
@@ -90,6 +92,11 @@ class m141018_121129_core extends CDbMigration
                                         'tbl_task_history', 
                                         'new_category_id', 
                                         'tbl_task_category', 
+                                        'id', 'NO ACTION', 'NO ACTION');
+                $this->addForeignKey('FK_tbl_task_history_user_id', 
+                                        'tbl_task_history', 
+                                        'user_id', 
+                                        'tbl_user', 
                                         'id', 'NO ACTION', 'NO ACTION');
                 
             }

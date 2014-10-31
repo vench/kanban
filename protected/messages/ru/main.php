@@ -76,6 +76,17 @@ return array(
     'Detail task'=>'Задание подробно',
     'Remove task'=>'Удалить задание',
     'Add category task'=>'Добавить категорию',
+    'Time insert: {date}'=>'Дата записи: {date}',
+    'Description'=>'Описание',
+    'Is Ready'=>'Выполнено',
+    'Full description'=>'Польное описание',
+    'Create Task'=>'Создать задачу',
+    'Task priority'=>'Приоритет задачи',
+    'Task Category'=>'Категория задачи',
+    'History'=>'История',
+    'Changed'=>'Изменил',
+    'Projects'=>'Проекты',
+    'Project'=>'Проект',
     
     'You can not select this category. Now in her high notes.'=>'Нельзя выбрать эту категорию. Сейчас в ней максимум записей.',
     

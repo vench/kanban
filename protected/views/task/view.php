@@ -3,7 +3,8 @@
 /* @var $model Task */
 
 $this->breadcrumbs=array(
-	'Tasks'=>array('index'),
+        Yii::t('main', 'Projects')=>array('/projects'),
+	Yii::t('main', 'Project')=>array('/project/view', 'id'=>$model->project_id),
 	Yii::t('main', 'Detail task'),
 );
 
@@ -16,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo Yii::t('main', 'View Task');?> #<?php echo $model->description; ?></h1>
+<h1><?php echo Yii::t('main', 'Detail task');?> #<?php echo $model->description; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -35,12 +36,19 @@ $this->menu=array(
 	),
 )); ?>
 
-<h3><?php echo Yii::t('main', 'History');?></h3>
+<h3><?php echo Yii::t('main', 'History');?></h3> 
+<ol>
 <?php foreach($model->taskHistories as $history) { ?> 
-    <div><?php echo Yii::t('main', 'Time insert: {date}', array(
+
+    <li><?php echo Yii::t('main', 'Time insert: {date}', array(
         '{date}'=>date('d.m.Y H:i', $history->time_insert),
     ));?>
     
-    <?php echo $history->newCategory->name; ?>
-    </div>
+    <?php echo $history->newCategory->name; ?>;
+        
+    <?php if(isset($history->user)) {?>  
+        <?php echo Yii::t('main', 'Changed'); ?> <?php echo $history->user->name; ?>
+    <?php }?>    
+    </li>
 <?php } ?>
+</ol>

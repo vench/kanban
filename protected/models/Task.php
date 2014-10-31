@@ -27,8 +27,17 @@ class Task extends CActiveRecord
 	{
 		return 'tbl_task';
 	}
+        
+        /**
+         * 
+         * @return string
+         */
+        public function getColor() {
+            $data = self::getColors();
+            return isset($data[$this->color_hex]) ? $data[$this->color_hex] : '';
+        }
 
-	/**
+        /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -127,6 +136,19 @@ class Task extends CActiveRecord
         
         /**
          * 
+         * @return array
+         */
+        public static function getColors() {
+            return array(
+                hexdec('6495ED')=>'#6495ED',
+                hexdec('FFFF00')=>'#FFFF00',
+                hexdec('EE0000')=>'#EE0000',
+                hexdec('000000')=>'#000000',
+            );
+        }
+
+        /**
+         * 
          * @return type
          */
         protected function afterSave() {
@@ -145,6 +167,7 @@ class Task extends CActiveRecord
            $taskHistory->new_category_id = $this->task_category_id;
            $taskHistory->task_id = $this->getPrimaryKey();
            $taskHistory->time_insert = time();
+           $taskHistory->user_id = Yii::app()->user->getId();
            $taskHistory->save();
         }
 }

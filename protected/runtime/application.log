@@ -733,3 +733,114 @@ REQUEST_URI=/index.php?r=project/view&id=1
 in /var/www/kanban/www/protected/views/project/view.php (85)
 in /var/www/kanban/www/protected/controllers/ProjectController.php (57)
 in /var/www/kanban/www/index.php (13)
+2014/11/01 00:16:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2014/11/01 00:21:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/kanban/www/protected/controllers/TaskController.php:161
+Stack trace:
+#0 /var/www/kanban/www/protected/controllers/TaskController.php(55): TaskController->loadModel('10')
+#1 [internal function]: TaskController->actionView('10')
+#2 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#3 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#4 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/view')
+#14 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/kanban/www/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=task/view&id=10
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=2
+---
+2014/11/01 00:28:15 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_project' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `tbl_project`.
+in /var/www/kanban/www/protected/controllers/ProjectController.php (156)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (56)
+in /var/www/kanban/www/index.php (13)
+2014/11/01 00:28:15 [error] [exception.CDbException] exception 'CDbException' with message 'Таблица "tbl_project", упомянутая в записи active record класса "Project", не найдена в базе данных.' in /var/www/kanban/www/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Project))
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1485): CActiveRecord->getTableSchema()
+#3 /var/www/kanban/www/protected/controllers/ProjectController.php(156): CActiveRecord->findByPk('1')
+#4 /var/www/kanban/www/protected/controllers/ProjectController.php(56): ProjectController->loadModel('1')
+#5 [internal function]: ProjectController->actionView('1')
+#6 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#7 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#8 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('view')
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/view')
+#18 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/kanban/www/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=project/view&id=1
+HTTP_REFERER=http://kanban/index.php?r=project/create
+---
+2014/11/01 00:28:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2014/11/01 00:28:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/kanban/www/protected/controllers/ProjectController.php:158
+Stack trace:
+#0 /var/www/kanban/www/protected/controllers/ProjectController.php(56): ProjectController->loadModel('1')
+#1 [internal function]: ProjectController->actionView('1')
+#2 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#3 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#4 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/view')
+#14 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/kanban/www/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=project/view&id=1
+HTTP_REFERER=http://kanban/index.php?r=project/create
+---
+2014/11/01 00:50:23 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "Task.hex_color".' in /var/www/kanban/www/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(145): CComponent->__get('hex_color')
+#1 /var/www/kanban/www/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('hex_color')
+#2 /var/www/kanban/www/framework/web/helpers/CHtml.php(1802): CHtml::resolveValue(Object(Task), 'hex_color')
+#3 /var/www/kanban/www/framework/web/widgets/CActiveForm.php(847): CHtml::activeDropDownList(Object(Task), 'hex_color', Array, Array)
+#4 /var/www/kanban/www/protected/views/task/_form.php(50): CActiveForm->dropDownList(Object(Task), 'hex_color', Array, Array)
+#5 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#6 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#8 /var/www/kanban/www/protected/views/task/update.php(21): CController->renderPartial('_form', Array)
+#9 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#10 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#11 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#12 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#13 /var/www/kanban/www/protected/controllers/TaskController.php(106): CController->render('update', Array)
+#14 [internal function]: TaskController->actionUpdate('1')
+#15 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#16 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#17 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#20 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#21 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#22 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#24 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#26 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/update')
+#27 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#28 /var/www/kanban/www/index.php(13): CApplication->run()
+#29 {main}
+REQUEST_URI=/index.php?r=task/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---

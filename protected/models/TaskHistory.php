@@ -8,10 +8,12 @@
  * @property integer $task_id 
  * @property integer $new_category_id
  * @property integer $time_insert
+ * @property integer $user_id 
  *
  * The followings are the available model relations:
  * @property TaskCategory $newCategory 
  * @property Task $task
+ * @property User $user user make action
  */
 class TaskHistory extends CActiveRecord
 {
@@ -31,7 +33,7 @@ class TaskHistory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('task_id, new_category_id, time_insert', 'numerical', 'integerOnly'=>true),
+			array('task_id, new_category_id, time_insert, user_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, task_id,  new_category_id, time_insert', 'safe', 'on'=>'search'),
@@ -48,6 +50,7 @@ class TaskHistory extends CActiveRecord
 		return array(
 			'newCategory' => array(self::BELONGS_TO, 'TaskCategory', 'new_category_id'),
 			'task' => array(self::BELONGS_TO, 'Task', 'task_id'),
+                        'user'=> array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -61,6 +64,7 @@ class TaskHistory extends CActiveRecord
 			'task_id' => Yii::t('main', 'Task'), 
 			'new_category_id' => Yii::t('main', 'New Category'),
 			'time_insert' => Yii::t('main', 'Time Insert'),
+                        'user_id'=> Yii::t('main', 'User'),
 		);
 	}
 
@@ -95,7 +99,7 @@ class TaskHistory extends CActiveRecord
         
         protected function beforeSave() {
             if(!$this->time_insert) {
-                $this->time_insert = time();
+                $this->time_insert = time();                
             }
             return parent::beforeSave();
         }
