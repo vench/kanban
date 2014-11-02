@@ -32,7 +32,7 @@ class TaskController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete'),
+				'actions'=>array('create','update', 'delete', 'ajaxUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -121,7 +121,29 @@ class TaskController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/project/view', 'id'=>$model->project_id));
 	}
 
-	/**
+        /**
+         * 
+         * @param type $id Task
+         * @throws CHttpException
+         */
+        public function actionAjaxUpdate() {
+            $id = Yii::app()->request->getParam('id');
+            $model = $this->loadModel($id);
+            if(isset($_POST['Task']))
+            {
+			$model->attributes=$_POST['Task'];
+			if($model->save()) {
+                            echo json_encode(array('success'=>1));
+                        } else {
+                            echo json_encode(array('error'=>1, 'info'=>$model->getErrors()));
+                        }
+                        
+                        Yii::app()->end();
+            }
+            throw new CHttpException(404, "Error set params");
+        }
+
+                /**
 	 * Lists all models.
 	 */
 	public function actionIndex()

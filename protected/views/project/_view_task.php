@@ -3,7 +3,7 @@
 /* @var $model Task */
 
 ?>
-<div class="task-box" <?php if($model->color_hex > 0) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> >
+<div class="task-box drag" <?php if($model->color_hex > 0) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
     <h5><?php echo $model->description;?></h5>
     
     <p>

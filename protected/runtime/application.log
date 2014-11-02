@@ -844,3 +844,149 @@ Stack trace:
 REQUEST_URI=/index.php?r=task/update&id=1
 HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
 ---
+2014/11/02 16:09:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Необходима авторизация' in /var/www/kanban/www/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:10:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#9 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/kanban/www/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:16:36 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:16:50 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:17:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:18:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Error set params' in /var/www/kanban/www/protected/controllers/TaskController.php:141
+Stack trace:
+#0 /var/www/kanban/www/framework/web/actions/CInlineAction.php(49): TaskController->actionAjaxUpdate()
+#1 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#8 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#10 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#11 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/kanban/www/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:19:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Error set params' in /var/www/kanban/www/protected/controllers/TaskController.php:141
+Stack trace:
+#0 /var/www/kanban/www/framework/web/actions/CInlineAction.php(49): TaskController->actionAjaxUpdate()
+#1 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#8 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#10 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#11 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/kanban/www/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/02 16:19:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Error set params' in /var/www/kanban/www/protected/controllers/TaskController.php:141
+Stack trace:
+#0 /var/www/kanban/www/framework/web/actions/CInlineAction.php(49): TaskController->actionAjaxUpdate()
+#1 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#8 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#10 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#11 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/kanban/www/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---

@@ -69,7 +69,7 @@ $this->menu=array(
     <tbody>
            <tr>
 <?php foreach($model->taskCategories as $taskCategory) { ?>     
-    <td>
+               <td class="droppable" data-pk="<?php echo $taskCategory->getPrimaryKey(); ?>">
         <?php if(sizeof($taskCategory->tasks) > 0) { 
             
             foreach($taskCategory->tasks as $task) {                 
@@ -86,8 +86,39 @@ $this->menu=array(
 </table>
 
 
+<?php 
+Yii::app()->getClientScript()->registerCoreScript( 'jquery.ui' );
+Yii::app()->getClientScript()->registerCssFile(
+    Yii::app()->clientScript->getCoreScriptUrl().
+    '/jui/css/base/jquery-ui.css'
+);
+?>        
+
 <script type="text/javascript">
 $(function(){
-    $().d
+    
+    var fnInit = function() {
+        $('.task-box.drag').draggable();
+    };
+    fnInit.apply(this, []);
+    
+    $('.droppable').droppable({
+        drop: function(event, ui) {
+            var parent =  ui.draggable.parent();           
+            ui.draggable.css({'left':'0', 'top':0});
+            $(this).append(ui.draggable);
+            $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
+                 {id:ui.draggable.data('pk'), 'Task[task_category_id]':$(this).data('pk')}, function(data){
+                if(!data.success){
+                    parent.append( ui.draggable);
+                }
+            }, 'json');
+        },
+        activate: function(event, ui) {
+          //  ui.draggable.css({position:'absolute'});
+        },
+        deactivate : function() { 
+        }
+    });
 });</script>
 <?php 
