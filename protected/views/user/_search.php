@@ -26,6 +26,11 @@
 		<?php echo $form->textField($model,'login',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'is_admin'); ?>
+		<?php echo $form->textField($model,'is_admin'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

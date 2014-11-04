@@ -88,6 +88,9 @@ return array(
     'Projects'=>'Проекты',
     'Project'=>'Проект',
     
+    'User password'=>'Пароль',
+    'Task color'=>'Цвет',
+    
     'You can not select this category. Now in her high notes.'=>'Нельзя выбрать эту категорию. Сейчас в ней максимум записей.',
     
     'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'=>'Если у вас есть деловое предложение или другие вопросы, пожалуйста, заполните следующую форму, чтобы связаться с нами. Спасибо.',

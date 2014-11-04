@@ -5,7 +5,7 @@
 $this->breadcrumbs=array(
         Yii::t('main', 'Projects')=>array('/projects'),
 	Yii::t('main', 'Project')=>array('/project/view', 'id'=>$model->project_id),
-	Yii::t('main', 'Update Task'),
+	Yii::t('main', 'Update task'),
 );
 
 $this->menu=array(
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo Yii::t('main', 'Update Task');?> <?php echo $model->description; ?></h1>
+<h1><?php echo Yii::t('main', 'Update task');?> <?php echo $model->description; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

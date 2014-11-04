@@ -228,10 +228,22 @@ div.search-form
 	background: #80CFFF;
 }
 
+
+.task-table th {
+     background-color: #E5F1F4;
+}
 .task-table td, .task-table th {
     vertical-align: top;
 }
 
 .task-box {
-    border:1px solid; background: #E5F1F4; margin: 0px 0px 2px 0px;
+    border:1px solid   #336699; background: #E5F1F4; margin: 0px 0px 2px 0px; padding: 4px;
+}
+
+.m-span-5 {
+    width:auto; margin-right: 190px;
+}
+
+.span-5.right {
+    margin: 0px; float: right;
 }

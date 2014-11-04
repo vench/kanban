@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('main', 'Fields with {sim} are required.', array('{sim}'=>'<span class="required">*</span>'));?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -31,14 +31,22 @@
 		<?php echo $form->error($model,'login'); ?>
 	</div>
 
+        <?php if($model->isNewRecord) { ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
+        <?php } ?>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'is_admin'); ?>
+		<?php echo $form->checkBox($model,'is_admin'); ?>
+		<?php echo $form->error($model,'is_admin'); ?>
+	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('main','Create') :  Yii::t('main','Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
