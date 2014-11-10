@@ -9,6 +9,8 @@ return array(
     'Enter'=>'Войти',
     'Projects'=>'Проекты',
     'Diagram'=>'Диаграмма',
+    'Invited users'=>'Приглашенный пользователи',
+    'Invite'=>'Пригласить',
     'ID'=>'ИД',
     'Fields with {sim} are required.'=>'Поля с {sim} являются обязательными.',
     'Create'=>'Создать',
@@ -36,6 +38,8 @@ return array(
     'Yes'=>'Да',
     'No'=>'Нет',
     'Error'=>'Ошибка',
+    'Clean'=>'Убрать',
+    'Confirm the deletion'=>'Подтвердите удаление',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',

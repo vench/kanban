@@ -32,7 +32,7 @@ class ProjectController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'userProjectRmove'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -89,8 +89,7 @@ class ProjectController extends Controller
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 
 
 		if(isset($_POST['Project']))
 		{
@@ -98,12 +97,41 @@ class ProjectController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
+                
+                $userProject = new UserProject();
+                $userProject->project_id = $model->getPrimaryKey();
+                
+                if(isset($_POST['UserProject']))
+		{
+                    $userProject->attributes=$_POST['UserProject'];
+                    if($userProject->save()) {
+				$this->refresh ();
+                    }
+                }
 
 		$this->render('update',array(
 			'model'=>$model,
+                        'userProject'=>$userProject,
 		));
 	}
 
+        /**
+         * 
+         * @param int $uid User ID
+         * @param int $pid Project ID
+         */
+        public function actionUserProjectRmove($uid, $pid) {
+                $model = UserProject::model()->find(array(
+                    'condition'=>'project_id=:project_id AND user_id=:user_id',
+                    'params'=>array(
+                        ':project_id'=>$pid,
+                        ':user_id'=>$uid,
+                    ),
+                ));
+                $model->delete();
+                $this->redirect(array('update', 'id'=>$pid));
+        }
+        
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

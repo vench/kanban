@@ -36,6 +36,29 @@ class Task extends CActiveRecord
             $data = self::getColors();
             return isset($data[$this->color_hex]) ? $data[$this->color_hex] : '';
         }
+        
+        public function toDownPriority() {
+            $task = Task::model()->find(
+                 'id <> :id AND task_category_id = :task_category_id AND'
+                    . ' priority >= (SELECT MIN(priority) FROM {{task}} WHERE task_category_id = :task_category_id1 )', array(
+                ':task_category_id'=>$this->task_category_id,
+                ':task_category_id'=>$this->task_category_id,
+                ':id'=>$this->getPrimaryKey(),
+            ));
+            $this->toBeforePriority($task);
+        }
+        
+        /**
+         * 
+         * @param Task $task
+         * @return void
+         */
+        public function toBeforePriority(Task $task) {
+            if(is_null($task)){
+                return;
+            }
+            $this->priority = $task->priority + 1;
+        }
 
         /**
 	 * @return array validation rules for model attributes.

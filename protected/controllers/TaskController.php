@@ -126,13 +126,17 @@ class TaskController extends Controller
          * @param type $id Task
          * @throws CHttpException
          */
-        public function actionAjaxUpdate() {
+        public function actionAjaxUpdate($updatePos = true) {
             $id = Yii::app()->request->getParam('id');
             $model = $this->loadModel($id);
             if(isset($_POST['Task']))
             {
 			$model->attributes=$_POST['Task'];
+                        if($updatePos) {
+                            $model->toDownPriority();
+                        }
 			if($model->save()) {
+                           
                             echo json_encode(array('success'=>1));
                         } else {
                             echo json_encode(array('error'=>1, 'info'=>$model->getErrors()));

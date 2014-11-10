@@ -1116,3 +1116,536 @@ REQUEST_URI=/index.php?r=user/update&id=2
 in /var/www/kanban/www/protected/views/user/update.php (31)
 in /var/www/kanban/www/protected/controllers/UserController.php (103)
 in /var/www/kanban/www/index.php (13)
+2014/11/09 21:03:24 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Необходима авторизация' in /var/www/kanban/www/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/09 21:03:26 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Необходима авторизация' in /var/www/kanban/www/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/09 21:20:57 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.UserProject(project_id' in 'where clause'. Выполнявшийся SQL-запрос: SELECT `users`.`id` AS `t1_c0`, `users`.`name` AS `t1_c1`, `users`.`login` AS `t1_c2`, `users`.`password` AS `t1_c3`, `users`.`is_admin` AS `t1_c4` FROM `tbl_user` `users`  WHERE (`users`.`UserProject(project_id`=:ypl0) AND (`users`.`user_id)`=:ypl1).
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 21:20:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.UserProject(project_id' in 'where clause'. The SQL statement executed was: SELECT `users`.`id` AS `t1_c0`, `users`.`name` AS `t1_c1`, `users`.`login` AS `t1_c2`, `users`.`password` AS `t1_c3`, `users`.`is_admin` AS `t1_c4` FROM `tbl_user` `users`  WHERE (`users`.`UserProject(project_id`=:ypl0) AND (`users`.`user_id)`=:ypl1)' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(803): CDbCommand->queryAll()
+#2 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(507): CJoinElement->runQuery(Object(CJoinQuery))
+#3 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#4 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#5 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#6 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#7 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#8 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#9 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#10 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#11 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#12 [internal function]: ProjectController->actionUpdate('1')
+#13 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#14 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#15 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#18 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#22 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#24 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#25 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#26 /var/www/kanban/www/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/09 21:21:50 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.UserProject' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `UserProject`.
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 21:21:50 [error] [exception.CDbException] exception 'CDbException' with message 'Отношение "users", определенное в записи active record класса "Project" ошибочно: в базе данных нет включаемой таблицы "UserProject", упомянутой во внешнем ключе.' in /var/www/kanban/www/framework/db/ar/CActiveFinder.php:542
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(500): CJoinElement->applyLazyCondition(Object(CJoinQuery), Object(Project))
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#4 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#6 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#8 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#9 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#10 [internal function]: ProjectController->actionUpdate('1')
+#11 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#12 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#13 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#20 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#22 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#23 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /var/www/kanban/www/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/09 21:22:20 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_UserProject' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `tbl_UserProject`.
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 21:22:20 [error] [exception.CDbException] exception 'CDbException' with message 'Отношение "users", определенное в записи active record класса "Project" ошибочно: в базе данных нет включаемой таблицы "tbl_UserProject", упомянутой во внешнем ключе.' in /var/www/kanban/www/framework/db/ar/CActiveFinder.php:542
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(500): CJoinElement->applyLazyCondition(Object(CJoinQuery), Object(Project))
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#4 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#6 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#8 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#9 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#10 [internal function]: ProjectController->actionUpdate('1')
+#11 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#12 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#13 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#20 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#22 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#23 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /var/www/kanban/www/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/09 23:34:17 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.UserProject' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `UserProject`.
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 23:34:17 [error] [exception.CDbException] exception 'CDbException' with message 'Отношение "users", определенное в записи active record класса "Project" ошибочно: в базе данных нет включаемой таблицы "UserProject", упомянутой во внешнем ключе.' in /var/www/kanban/www/framework/db/ar/CActiveFinder.php:542
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(500): CJoinElement->applyLazyCondition(Object(CJoinQuery), Object(Project))
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#4 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#6 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#8 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#9 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#10 [internal function]: ProjectController->actionUpdate('1')
+#11 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#12 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#13 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#20 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#22 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#23 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /var/www/kanban/www/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/09 23:37:04 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_UserProject' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `tbl_UserProject`.
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 23:37:04 [error] [exception.CDbException] exception 'CDbException' with message 'Отношение "users", определенное в записи active record класса "Project" ошибочно: в базе данных нет включаемой таблицы "tbl_UserProject", упомянутой во внешнем ключе.' in /var/www/kanban/www/framework/db/ar/CActiveFinder.php:542
+Stack trace:
+#0 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(500): CJoinElement->applyLazyCondition(Object(CJoinQuery), Object(Project))
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#4 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#6 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#8 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#9 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#10 [internal function]: ProjectController->actionUpdate('1')
+#11 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#12 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#13 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#20 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#22 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#23 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /var/www/kanban/www/index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/09 23:38:02 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users_users. user_id' in 'on clause'. Выполнявшийся SQL-запрос: SELECT `users`.`id` AS `t1_c0`, `users`.`name` AS `t1_c1`, `users`.`login` AS `t1_c2`, `users`.`password` AS `t1_c3`, `users`.`is_admin` AS `t1_c4` FROM `tbl_user` `users`  INNER JOIN `tbl_user_project` `users_users` ON (`users_users`.` user_id`=:ypl0) AND (`users`.`id`=`users_users`.`project_id`).
+in /var/www/kanban/www/protected/views/project/update.php (23)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/09 23:38:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users_users. user_id' in 'on clause'. The SQL statement executed was: SELECT `users`.`id` AS `t1_c0`, `users`.`name` AS `t1_c1`, `users`.`login` AS `t1_c2`, `users`.`password` AS `t1_c3`, `users`.`is_admin` AS `t1_c4` FROM `tbl_user` `users`  INNER JOIN `tbl_user_project` `users_users` ON (`users_users`.` user_id`=:ypl0) AND (`users`.`id`=`users_users`.`project_id`)' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(803): CDbCommand->queryAll()
+#2 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(507): CJoinElement->runQuery(Object(CJoinQuery))
+#3 /var/www/kanban/www/framework/db/ar/CActiveFinder.php(163): CJoinElement->lazyFind(Object(Project))
+#4 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(281): CActiveFinder->lazyFind(Object(Project))
+#5 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('users')
+#6 /var/www/kanban/www/protected/views/project/update.php(23): CActiveRecord->__get('users')
+#7 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#8 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#9 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#10 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#11 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#12 [internal function]: ProjectController->actionUpdate('1')
+#13 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#14 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#15 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#18 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#22 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#24 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#25 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#26 /var/www/kanban/www/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/10 23:56:22 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CDbCriteria.parsms".' in /var/www/kanban/www/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/kanban/www/framework/db/schema/CDbCriteria.php(160): CComponent->__set('parsms', Array)
+#1 /var/www/kanban/www/framework/db/schema/CDbCommandBuilder.php(585): CDbCriteria->__construct(Array)
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1469): CDbCommandBuilder->createCriteria(Array, Array)
+#3 /var/www/kanban/www/protected/views/project/update.php(34): CActiveRecord->findAll(Array)
+#4 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#6 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#8 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#9 [internal function]: ProjectController->actionUpdate('1')
+#10 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#11 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#12 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#22 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/kanban/www/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:01:51 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM {{UserProject}} WHERE project_id='1')' at line 1. Выполнявшийся SQL-запрос: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECTuser_id FROM {{UserProject}} WHERE project_id=:pid1).
+in /var/www/kanban/www/protected/views/project/update.php (36)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/11 00:01:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM {{UserProject}} WHERE project_id='1')' at line 1. The SQL statement executed was: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECTuser_id FROM {{UserProject}} WHERE project_id=:pid1)' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /var/www/kanban/www/protected/views/project/update.php(36): CActiveRecord->findAll(Array)
+#4 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#6 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#8 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#9 [internal function]: ProjectController->actionUpdate('1')
+#10 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#11 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#12 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#22 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/kanban/www/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:02:17 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{UserProject}} WHERE project_id='1')' at line 1. Выполнявшийся SQL-запрос: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECT user_id FROM {{UserProject}} WHERE project_id=:pid1).
+in /var/www/kanban/www/protected/views/project/update.php (36)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/11 00:02:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{UserProject}} WHERE project_id='1')' at line 1. The SQL statement executed was: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECT user_id FROM {{UserProject}} WHERE project_id=:pid1)' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /var/www/kanban/www/protected/views/project/update.php(36): CActiveRecord->findAll(Array)
+#4 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#6 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#8 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#9 [internal function]: ProjectController->actionUpdate('1')
+#10 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#11 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#12 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#22 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/kanban/www/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:03:02 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{user_project}} WHERE project_id='1')' at line 1. Выполнявшийся SQL-запрос: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1).
+in /var/www/kanban/www/protected/views/project/update.php (36)
+in /var/www/kanban/www/protected/controllers/ProjectController.php (104)
+in /var/www/kanban/www/index.php (13)
+2014/11/11 00:03:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{user_project}} WHERE project_id='1')' at line 1. The SQL statement executed was: SELECT id,name FROM `tbl_user` `t` WHERE id NOT IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1)' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /var/www/kanban/www/protected/views/project/update.php(36): CActiveRecord->findAll(Array)
+#4 /var/www/kanban/www/framework/web/CBaseController.php(126): require('/var/www/kanban...')
+#5 /var/www/kanban/www/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/kanban...', Array, true)
+#6 /var/www/kanban/www/framework/web/CController.php(869): CBaseController->renderFile('/var/www/kanban...', Array, true)
+#7 /var/www/kanban/www/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#8 /var/www/kanban/www/protected/controllers/ProjectController.php(104): CController->render('update', Array)
+#9 [internal function]: ProjectController->actionUpdate('1')
+#10 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#11 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#12 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#21 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#22 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/kanban/www/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:03:45 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CDbConnection.prefix".' in /var/www/kanban/www/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/kanban/www/framework/YiiBase.php(220): CComponent->__set('prefix', 'tbl_')
+#1 /var/www/kanban/www/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /var/www/kanban/www/framework/base/CApplication.php(450): CModule->getComponent('db')
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#4 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1428): CActiveRecord->getDbConnection()
+#5 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1484): CActiveRecord->getTableAlias(true)
+#6 /var/www/kanban/www/protected/controllers/ProjectController.php(156): CActiveRecord->findByPk('1')
+#7 /var/www/kanban/www/protected/controllers/ProjectController.php(90): ProjectController->loadModel('1')
+#8 [internal function]: ProjectController->actionUpdate('1')
+#9 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#10 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#11 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#18 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#21 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /var/www/kanban/www/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:03:57 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CDbConnection.preffix".' in /var/www/kanban/www/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/kanban/www/framework/YiiBase.php(220): CComponent->__set('preffix', 'tbl_')
+#1 /var/www/kanban/www/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /var/www/kanban/www/framework/base/CApplication.php(450): CModule->getComponent('db')
+#3 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#4 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1428): CActiveRecord->getDbConnection()
+#5 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1484): CActiveRecord->getTableAlias(true)
+#6 /var/www/kanban/www/protected/controllers/ProjectController.php(156): CActiveRecord->findByPk('1')
+#7 /var/www/kanban/www/protected/controllers/ProjectController.php(90): ProjectController->loadModel('1')
+#8 [internal function]: ProjectController->actionUpdate('1')
+#9 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#10 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#11 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#18 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('update')
+#20 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/update')
+#21 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /var/www/kanban/www/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/index.php?r=project/update&id=1
+HTTP_REFERER=http://kanban/index.php?r=site/login
+---
+2014/11/11 00:15:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "userProjectRmove".' in /var/www/kanban/www/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(270): CController->missingAction('userProjectRmov...')
+#1 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#2 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#3 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/kanban/www/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---
+2014/11/11 00:18:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "userProjectRmove".' in /var/www/kanban/www/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(270): CController->missingAction('userProjectRmov...')
+#1 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#2 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#3 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/kanban/www/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---
+2014/11/11 00:22:36 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#9 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/kanban/www/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---
+2014/11/11 00:23:04 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---
+2014/11/11 00:24:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---
+2014/11/11 00:25:22 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in /var/www/kanban/www/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/kanban/www/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('userProjectRmov...')
+#9 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('project/userPro...')
+#10 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/kanban/www/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
+HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
+---

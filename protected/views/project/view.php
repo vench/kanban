@@ -27,7 +27,7 @@ $this->menu=array(
 	),
 )); ?>
 
-
+<?php echo CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())); ?> |
 <?php echo CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey()), array(
     
 ));?>
@@ -106,9 +106,9 @@ $(function(){
         drop: function(event, ui) {
             var parent =  ui.draggable.parent();           
             ui.draggable.css({'left':'0', 'top':0});
-            $(this).append(ui.draggable);
+            $(this).append(ui.draggable); 
             $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
-                 {id:ui.draggable.data('pk'), 'Task[task_category_id]':$(this).data('pk')}, function(data){
+                 {id:ui.draggable.data('pk'), 'Task[task_category_id]': $(this).data('pk')}, function(data){
                 if(!data.success){
                     parent.append( ui.draggable);
                 }

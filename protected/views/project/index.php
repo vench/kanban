@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Projects',
+	Yii::t('main', 'Projects'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Project', 'url'=>array('create')),
-	array('label'=>'Manage Project', 'url'=>array('admin')),
+	array('label'=>Yii::t('main', 'Create Project'), 'url'=>array('create')),
+	array('label'=>Yii::t('main', 'Manage Project'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Projects</h1>
+<h1><?php echo Yii::t('main', 'Projects');?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

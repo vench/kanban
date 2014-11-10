@@ -1,27 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "tbl_project".
+ * This is the model class for table "tbl_user_project".
  *
- * The followings are the available columns in table 'tbl_project':
+ * The followings are the available columns in table 'tbl_user_project':
  * @property integer $id
  * @property integer $user_id
- * @property string $name
- * @property string $description
+ * @property integer $project_id
  *
  * The followings are the available model relations:
+ * @property Project $project
  * @property User $user
- * @property Task[] $tasks
- * @property TaskCategory[] $taskCategories
  */
-class Project extends CActiveRecord
+class UserProject extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tbl_project';
+		return 'tbl_user_project';
 	}
 
 	/**
@@ -32,13 +30,11 @@ class Project extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('user_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('user_id, project_id', 'required'),
+			array('user_id, project_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, name, description', 'safe', 'on'=>'search'),
+			array('id, user_id, project_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,11 +46,8 @@ class Project extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
-                        'userProjects' => array(self::HAS_MANY, 'UserProject', 'project_id'),
-                        'users' => array(self::MANY_MANY, 'User', 'tbl_user_project(project_id, user_id)'),
-			'tasks' => array(self::HAS_MANY, 'Task', 'project_id', 'order'=>'priority DESC'),
-			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
 		);
 	}
 
@@ -64,10 +57,9 @@ class Project extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('main', 'Project ID'),
-			'user_id' => Yii::t('main','Project user'),
-			'name' => Yii::t('main','Project name'),
-			'description' => Yii::t('main','Project description'),
+			'id' => 'ID',
+			'user_id' => 'User',
+			'project_id' => 'Project',
 		);
 	}
 
@@ -91,50 +83,18 @@ class Project extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('project_id',$this->project_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
-        /**
-         * 
-         * @return type
-         */
-        protected function afterSave() {
-            if($this->isNewRecord) {
-                $this->addDefaultTaskCategory();
-            }
-            return parent::afterSave();
-        }
-        
-        /**
-         * 
-         */
-        protected function addDefaultTaskCategory() {
-            $hash = array(
-                Yii::t('main', 'Waiting'),
-                Yii::t('main', 'Performed'),
-                Yii::t('main', 'Achieved'),
-            );
-            
-            foreach($hash as $name) {
-                $model = new TaskCategory();
-                $model->project_id=$this->getPrimaryKey();
-                $model->order_pos = 0;
-                $model->limit_task = 0;
-                $model->name = $name;
-                $model->save();
-            }
-        }
-
-                /**
+	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Project the static model class
+	 * @return UserProject the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
