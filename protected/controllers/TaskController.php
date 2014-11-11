@@ -32,7 +32,7 @@ class TaskController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'ajaxUpdate'),
+				'actions'=>array('create','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -120,21 +120,35 @@ class TaskController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/project/view', 'id'=>$model->project_id));
 	}
+        
+        /**
+         * 
+         */
+        public function actionAjaxUpdateOrder() {
+            $tasks = Yii::app()->request->getPost('tasks', array());
+            if(sizeof($tasks) > 0) {
+                foreach($tasks as $priority=>$pk) {
+                    Task::model()->updateAll(array(
+                        'priority'=>$priority,
+                    ), 'id=:id', array(
+                        ':id'=>$pk,
+                    ));
+                }
+            }
+            Yii::app()->end();
+        }
 
         /**
          * 
          * @param type $id Task
          * @throws CHttpException
          */
-        public function actionAjaxUpdate($updatePos = true) {
+        public function actionAjaxUpdate() {
             $id = Yii::app()->request->getParam('id');
             $model = $this->loadModel($id);
             if(isset($_POST['Task']))
             {
-			$model->attributes=$_POST['Task'];
-                        if($updatePos) {
-                            $model->toDownPriority();
-                        }
+			$model->attributes=$_POST['Task'];                       
 			if($model->save()) {
                            
                             echo json_encode(array('success'=>1));

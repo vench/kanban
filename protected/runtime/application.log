@@ -1649,3 +1649,161 @@ Stack trace:
 REQUEST_URI=/index.php?r=project/userProjectRmove&uid=2
 HTTP_REFERER=http://kanban/index.php?r=project/update&id=1
 ---
+2014/11/12 00:04:58 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetch(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. Выполнявшийся SQL-запрос: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1.
+in /var/www/kanban/www/protected/models/Task.php (47)
+in /var/www/kanban/www/protected/controllers/TaskController.php (136)
+in /var/www/kanban/www/index.php (13)
+2014/11/12 00:04:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/kanban/www/protected/models/Task.php(47): CActiveRecord->find('id <> :id AND t...', Array)
+#4 /var/www/kanban/www/protected/controllers/TaskController.php(136): Task->toDownPriority()
+#5 [internal function]: TaskController->actionAjaxUpdate(true)
+#6 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#7 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#8 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#18 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/kanban/www/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/12 00:05:06 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetch(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. Выполнявшийся SQL-запрос: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1.
+in /var/www/kanban/www/protected/models/Task.php (47)
+in /var/www/kanban/www/protected/controllers/TaskController.php (136)
+in /var/www/kanban/www/index.php (13)
+2014/11/12 00:05:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/kanban/www/protected/models/Task.php(47): CActiveRecord->find('id <> :id AND t...', Array)
+#4 /var/www/kanban/www/protected/controllers/TaskController.php(136): Task->toDownPriority()
+#5 [internal function]: TaskController->actionAjaxUpdate(true)
+#6 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#7 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#8 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#18 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/kanban/www/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/12 00:05:08 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetch(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. Выполнявшийся SQL-запрос: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1.
+in /var/www/kanban/www/protected/models/Task.php (47)
+in /var/www/kanban/www/protected/controllers/TaskController.php (136)
+in /var/www/kanban/www/index.php (13)
+2014/11/12 00:05:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/kanban/www/protected/models/Task.php(47): CActiveRecord->find('id <> :id AND t...', Array)
+#4 /var/www/kanban/www/protected/controllers/TaskController.php(136): Task->toDownPriority()
+#5 [internal function]: TaskController->actionAjaxUpdate(true)
+#6 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#7 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#8 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#18 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/kanban/www/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/12 00:09:26 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetch(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. Выполнявшийся SQL-запрос: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1.
+in /var/www/kanban/www/protected/models/Task.php (47)
+in /var/www/kanban/www/protected/controllers/TaskController.php (136)
+in /var/www/kanban/www/index.php (13)
+2014/11/12 00:09:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens. The SQL statement executed was: SELECT * FROM `tbl_task` `t` WHERE id <> :id AND task_category_id = :task_category_id AND priority >= (SELECT MIN(priority) FROM tbl_task WHERE task_category_id = :task_category_id1 ) LIMIT 1' in /var/www/kanban/www/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/kanban/www/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /var/www/kanban/www/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /var/www/kanban/www/protected/models/Task.php(47): CActiveRecord->find('id <> :id AND t...', Array)
+#4 /var/www/kanban/www/protected/controllers/TaskController.php(136): Task->toDownPriority()
+#5 [internal function]: TaskController->actionAjaxUpdate(true)
+#6 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#7 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#8 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#17 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#18 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/kanban/www/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---
+2014/11/12 00:10:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/kanban/www/protected/controllers/TaskController.php:187
+Stack trace:
+#0 /var/www/kanban/www/protected/controllers/TaskController.php(131): TaskController->loadModel(NULL)
+#1 [internal function]: TaskController->actionAjaxUpdate(true)
+#2 /var/www/kanban/www/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#3 /var/www/kanban/www/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#4 /var/www/kanban/www/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/kanban/www/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/kanban/www/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdate')
+#13 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate')
+#14 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/kanban/www/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdate
+---
+2014/11/12 00:27:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/kanban/www/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 /var/www/kanban/www/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/kanban/www/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/kanban/www/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/kanban/www/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/kanban/www/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/kanban/www/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/kanban/www/framework/web/CWebApplication.php(282): CController->run('ajaxUpdateOrder')
+#8 /var/www/kanban/www/framework/web/CWebApplication.php(141): CWebApplication->runController('task/ajaxUpdate...')
+#9 /var/www/kanban/www/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/kanban/www/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=task/ajaxUpdateOrder
+HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
+---

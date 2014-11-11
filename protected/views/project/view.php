@@ -97,20 +97,36 @@ Yii::app()->getClientScript()->registerCssFile(
 <script type="text/javascript">
 $(function(){
     
-    var fnInit = function() {
-        $('.task-box.drag').draggable();
+    var 
+    fnInit = function() {
+        $('.task-box.drag').draggable({
+            connectToSortable:'td.droppable',
+        });
+    },
+    fnUpdateOrder = function() {
+        var list = $(this).find('>div.task-box.drag'),
+            stack = {};
+        list.each(function(index, item){
+            stack[list.length - index] = $(item).data('pk');
+        });   
+            
+        $.post('<?php echo $this->createUrl('/task/ajaxUpdateOrder')?>', {tasks:stack}, function(data){
+           // console.log(data);
+        });
     };
-    fnInit.apply(this, []);
+    //fnInit.apply(this, []);
     
-    $('.droppable').droppable({
-        drop: function(event, ui) {
-            var parent =  ui.draggable.parent();           
-            ui.draggable.css({'left':'0', 'top':0});
-            $(this).append(ui.draggable); 
+    $('td.droppable').sortable({
+       revert: true,
+       connectWith: "td",
+       /* drop: function(event, ui) {           
+          
             $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
                  {id:ui.draggable.data('pk'), 'Task[task_category_id]': $(this).data('pk')}, function(data){
                 if(!data.success){
                     parent.append( ui.draggable);
+                } else {
+                    fnUpdateOrder.apply(ui.draggable.parent(), [ui.draggable]);
                 }
             }, 'json');
         },
@@ -118,7 +134,26 @@ $(function(){
           //  ui.draggable.css({position:'absolute'});
         },
         deactivate : function() { 
-        }
+        }*/
+        update:function(event, ui) { 
+            
+            
+            if( ui.sender === null) {
+                fnUpdateOrder.apply(ui.item.parent(), [ui.item]);
+            } else {
+                $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
+                 {id:ui.item.data('pk'), 'Task[task_category_id]': $(this).data('pk')}, function(data){
+                if(!data.success){
+                    ui.sender.append( ui.draggable);
+                } else {
+                    fnUpdateOrder.apply(ui.item.parent(), [ui.item]);
+                }
+            }, 'json');
+            }     
+        },
+        stop: function(event, ui) {
+            //console.log('stop-', ui.item, ui);
+        }       
     });
 });</script>
 <?php 
