@@ -51,8 +51,20 @@ class TaskController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		
+		$taskComment = new TaskComment();
+		$taskComment->task_id = $model->getPrimaryKey();
+		if(isset($_POST['TaskComment'])) {
+			$taskComment->attributes=$_POST['TaskComment'];
+			if($taskComment->save()) {
+				$this->refresh();
+            }
+		}
+	
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'taskComment'=>$taskComment,
 		));
 	}
 
@@ -100,9 +112,10 @@ class TaskController extends Controller
 			if($model->save())
 				$this->redirect(array('/project/view','id'=>$model->project_id));
 		}
+		
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 
 		));
 	}
 

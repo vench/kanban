@@ -1807,3 +1807,128 @@ Stack trace:
 REQUEST_URI=/index.php?r=task/ajaxUpdateOrder
 HTTP_REFERER=http://kanban/index.php?r=project/view&id=1
 ---
+2014/11/12 10:41:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'test'' in Z:\home\kanban\www\kanban\framework\db\CDbConnection.php:382
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 Z:\home\kanban\www\kanban\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 Z:\home\kanban\www\kanban\framework\base\CModule.php(387): CDbConnection->init()
+#3 Z:\home\kanban\www\kanban\framework\base\CApplication.php(450): CModule->getComponent('db')
+#4 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 Z:\home\kanban\www\kanban\protected\components\UserIdentity.php(28): CActiveRecord->find('login = :login', Array)
+#8 Z:\home\kanban\www\kanban\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#9 Z:\home\kanban\www\kanban\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#10 Z:\home\kanban\www\kanban\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#11 Z:\home\kanban\www\kanban\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#12 Z:\home\kanban\www\kanban\protected\controllers\SiteController.php(94): CModel->validate()
+#13 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#14 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 Z:\home\kanban\www\kanban\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#16 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('login')
+#18 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#19 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#21 {main}
+REQUEST_URI=/kanban/index.php?r=site/login
+HTTP_REFERER=http://kanban/kanban/index.php?r=site/login
+---
+2014/11/12 10:41:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'test'' in Z:\home\kanban\www\kanban\framework\db\CDbConnection.php:382
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 Z:\home\kanban\www\kanban\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 Z:\home\kanban\www\kanban\framework\base\CModule.php(387): CDbConnection->init()
+#3 Z:\home\kanban\www\kanban\framework\cli\commands\MigrateCommand.php(442): CModule->getComponent('db')
+#4 Z:\home\kanban\www\kanban\framework\cli\commands\MigrateCommand.php(451): MigrateCommand->getDbConnection()
+#5 Z:\home\kanban\www\kanban\framework\cli\commands\MigrateCommand.php(482): MigrateCommand->getMigrationHistory(-1)
+#6 Z:\home\kanban\www\kanban\framework\cli\commands\MigrateCommand.php(84): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 Z:\home\kanban\www\kanban\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 Z:\home\kanban\www\kanban\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#10 Z:\home\kanban\www\kanban\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#12 Z:\home\kanban\www\kanban\framework\yiic.php(33): CApplication->run()
+#13 Z:\home\kanban\www\kanban\protected\yiic.php(7): require_once('Z:\home\kanban\...')
+#14 {main}
+---
+2014/11/12 10:42:41 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_user' doesn't exist. Выполнявшийся SQL-запрос: SHOW FULL COLUMNS FROM `tbl_user`.
+in Z:\home\kanban\www\kanban\protected\components\UserIdentity.php (28)
+in Z:\home\kanban\www\kanban\protected\models\LoginForm.php (54)
+in Z:\home\kanban\www\kanban\protected\controllers\SiteController.php (94)
+2014/11/12 10:42:41 [error] [exception.CDbException] exception 'CDbException' with message 'Таблица "tbl_user", упомянутая в записи active record класса "User", не найдена в базе данных.' in Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#4 Z:\home\kanban\www\kanban\protected\components\UserIdentity.php(28): CActiveRecord->find('login = :login', Array)
+#5 Z:\home\kanban\www\kanban\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#6 Z:\home\kanban\www\kanban\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#7 Z:\home\kanban\www\kanban\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#8 Z:\home\kanban\www\kanban\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#9 Z:\home\kanban\www\kanban\protected\controllers\SiteController.php(94): CModel->validate()
+#10 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#11 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('login')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=site/login
+HTTP_REFERER=http://kanban/kanban/index.php?r=site/login
+---
+2014/11/12 10:42:44 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2014/11/12 11:48:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "пшш".' in Z:\home\kanban\www\kanban\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('??????')
+#1 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/kanban/index.php?r=%D0%BF%D1%88%D1%88
+---
+2014/11/12 12:09:06 [error] [php] Missing argument 2 for YiiBase::t(), called in Z:\home\kanban\www\kanban\protected\views\task\update.php on line 13 and defined (Z:\home\kanban\www\kanban\framework\YiiBase.php:577)
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CBaseController.php(95): TaskController->renderInternal()
+#1 Z:\home\kanban\www\kanban\framework\web\CController.php(869): TaskController->renderFile()
+#2 Z:\home\kanban\www\kanban\framework\web\CController.php(782): TaskController->renderPartial()
+#3 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(106): TaskController->render()
+#4 unknown(0): TaskController->actionUpdate()
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#6 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): TaskController->runAction()
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): TaskController->filterAccessControl()
+#12 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#14 Z:\home\kanban\www\kanban\framework\web\CController.php(265): TaskController->runActionWithFilters()
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): TaskController->run()
+#16 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#17 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 Z:\home\kanban\www\kanban\index.php(14): CWebApplication->run()
+REQUEST_URI=/kanban/index.php?r=task/update&id=2
+in Z:\home\kanban\www\kanban\protected\views\task\update.php (13)
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (106)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/12 12:15:19 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Некорректный запрос.' in Z:\home\kanban\www\kanban\framework\web\CController.php:336
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('create')
+#9 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/create')
+#10 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/kanban/index.php?r=task/create
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=2
+---

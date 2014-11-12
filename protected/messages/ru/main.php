@@ -65,8 +65,16 @@ return array(
     'Delete User'=>'Удалить пользователя',
     'Manage Users'=>'Управление пользовтелями',
     'Password changed'=>'Пароль был изменен',
+	'Update Task'=>'Редактировать задачу',
+	'Delete Task'=>'Удалить задачу',
+	'Add'=>'Добавить',
     
     'Full screen'=>'Полный экран',
+	'Date'=>'Дата',
+	'Status'=>'Статус',
+	'History of status changes'=>'История смены статусов',
+	'View Task'=>'Просмотр задачи',
+	'Comments to the task'=>'Комментарии к задаче',
     
     'Waiting'=>'Ожидает',
     'Performed'=>'Выполняется',
@@ -76,7 +84,7 @@ return array(
     'Limit task {num}'=>'Лимит заданий {num}',
     'Edit caegory'=>'Изменить категорию',
     'Remove caegory'=>'Удалить категорию',
-    'Update task'=>'Обновить задание',
+    'Update task'=>'Изменить задание',
     'Detail task'=>'Задание подробно',
     'Remove task'=>'Удалить задание',
     'Add category task'=>'Добавить категорию',
@@ -91,9 +99,15 @@ return array(
     'Changed'=>'Изменил',
     'Projects'=>'Проекты',
     'Project'=>'Проект',
+	'Update TaskCategory'=>'Редактировать категорию',
     
     'User password'=>'Пароль',
     'Task color'=>'Цвет',
+	'Name'=>'Название',
+	'Order Pos'=>'Порядок',
+	'Limit Task'=>'Количество заданий',
+	'The maximum number of simultaneously running tasks.'=>'Максимальное количество одновременно выполняемых задач.',
+	'If there is a 0, the number of tasks unlimited.'=>'Если стоит 0, то количество задач неограниченно.',
     
     'You can not select this category. Now in her high notes.'=>'Нельзя выбрать эту категорию. Сейчас в ней максимум записей.',
     
@@ -105,4 +119,7 @@ return array(
     'Contact body'=>'Текст',
     'Letters are not case-sensitive.'=>'Буквы не чувствительны к регистру',
     'Please enter the letters as they are shown in the image above.'=>'Пожалуйста, введите буквы, изображенные на картинке выше.',
+	'Users'=>'Пользователи',
+	'User'=>'Пользователь',
+	
 );

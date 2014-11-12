@@ -3,16 +3,16 @@
 /* @var $model Task */
 
 $this->breadcrumbs=array(
-        Yii::t('main', 'Projects')=>array('/projects'),
+    Yii::t('main', 'Projects')=>array('/projects'),
 	Yii::t('main', 'Project')=>array('/project/view', 'id'=>$model->project_id),
 	Yii::t('main', 'Update task'),
 );
 
 $this->menu=array(
-	array('label'=>'List Task', 'url'=>array('index')),
-	array('label'=>'Create Task', 'url'=>array('create')),
-	array('label'=>'View Task', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Task', 'url'=>array('admin')),
+	//array('label'=>'List Task', 'url'=>array('index')),
+	array('label'=>Yii::t('main','Create Task'), 'url'=>array('create', 'categoryId'=>$model->task_category_id)),
+	array('label'=>Yii::t('main','View Task'), 'url'=>array('view', 'id'=>$model->id)),
+	//array('label'=>'Manage Task', 'url'=>array('admin')),
 );
 ?>
 

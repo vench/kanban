@@ -17,6 +17,7 @@
  * @property TaskCategory $taskCategory
  * @property Project $project
  * @property TaskHistory[] $taskHistories
+ * @property TaskComment[] $taskComments
  */
 class Task extends CActiveRecord
 {
@@ -75,6 +76,7 @@ class Task extends CActiveRecord
 			'taskCategory' => array(self::BELONGS_TO, 'TaskCategory', 'task_category_id'),
 			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'taskHistories' => array(self::HAS_MANY, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
+			'taskComments' => array(self::HAS_MANY, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
 		);
 	}
 
@@ -90,8 +92,8 @@ class Task extends CActiveRecord
 			'is_ready' => Yii::t('main','Is Ready'),
 			'description' => Yii::t('main','Description'),
 			'fulldescription' => Yii::t('main','Full description'),
-                        'priority' => Yii::t('main','Task priority'),
-                        'color_hex' => Yii::t('main','Task color'),                    
+            'priority' => Yii::t('main','Task priority'),
+            'color_hex' => Yii::t('main','Task color'),                    
 		);
 	}
 

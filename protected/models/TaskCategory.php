@@ -65,10 +65,10 @@ class TaskCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'project_id' => 'Project',
-			'order_pos' => 'Order Pos',
-			'limit_task' => 'Limit Task',
-			'name' => 'Name',
+			'project_id' => Yii::t('main','Project'),
+			'order_pos' => Yii::t('main','Order Pos'),
+			'limit_task' => Yii::t('main','Limit Task'),
+			'name' => Yii::t('main','Name'),
 		);
 	}
 

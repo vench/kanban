@@ -24,9 +24,7 @@ $this->menu=array(
 
 <h3><?php echo Yii::t('main', 'Invited users');?></h3>
 
-<?php 
-
-
+<?php   
 $users = Chtml::listData(User::model()->findAll(array(
     'select'=>'id,name',
     'condition'=>'id <> :uid1 AND id NOT IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1)',
@@ -39,11 +37,7 @@ $users = Chtml::listData(User::model()->findAll(array(
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'user-project-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
+	'id'=>'user-project-form', 
 	'enableAjaxValidation'=>false,
 )); ?>
     
