@@ -28,7 +28,8 @@ $this->menu=array(
 		'name'=>Yii::t('main', 'Actions'), 
 		'type'=>'raw',
 		'value'=>CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())) .' | '.
-			     CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey())),
+			     CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey())) .' | '.
+				 CHtml::link(Yii::t('main', 'Completed tasks', array('/task/completed', 'id'=>$model->getPrimaryKey()))),
 		),
 	),
 )); ?>

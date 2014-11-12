@@ -1932,3 +1932,111 @@ Stack trace:
 REQUEST_URI=/kanban/index.php?r=task/create
 HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=2
 ---
+2014/11/12 15:47:19 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=18.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (130)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/12 15:47:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=18' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('18')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(130): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('18')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=18
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=1
+---
+2014/11/12 15:47:50 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=19.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (130)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/12 15:47:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=19' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('19')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(130): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('19')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=19
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=1
+---
+2014/11/12 15:47:57 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=10.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (130)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/12 15:47:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=10' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('10')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(130): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('10')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=10
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=1
+---
+2014/11/12 15:48:07 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=13.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (130)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/12 15:48:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=13' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('13')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(130): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('13')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=13
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=1
+---

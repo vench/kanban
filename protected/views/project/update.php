@@ -13,7 +13,7 @@ $this->menu=array(
 	array('label'=>Yii::t('main','List Project'), 'url'=>array('index')),
 	array('label'=>Yii::t('main','Create Project'), 'url'=>array('create')),
 	array('label'=>Yii::t('main','View Project'), 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>Yii::t('main','Manage Project'), 'url'=>array('admin')),
+	//array('label'=>Yii::t('main','Manage Project'), 'url'=>array('admin')),
 );
 ?>
 

@@ -20,14 +20,26 @@ class TaskFile extends CActiveRecord
 	{
 		return '{{task_file}}';
 	}
+	
+	/**
+    *
+    * @return array 
+    */
+    public function behaviors() {
+        return array_merge(parent::behaviors(),array(
+            'fileUploadCActiveRecordBehavior'=>array(
+                'class'=>'FileUploadCActiveRecordBehavior',
+                'fileFields'=>array('patch'), 
+				'extensions' => array( 'jpg', 'png', 'jpeg', 'gif', 'doc', 'docx', 'txt', 'pdf', 'xls', 'xlsx', ),
+            ),
+        ));
+    }
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
+	{ 
 		return array(
 			array('patch', 'required'),
 			array('task_id', 'numerical', 'integerOnly'=>true),

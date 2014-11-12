@@ -230,7 +230,7 @@ div.search-form
 
 
 .task-table th {
-     background-color: #E5F1F4;
+     background-color: #E5F1F4; border-right:1px solid;
 }
 .task-table td, .task-table th {
     vertical-align: top;
