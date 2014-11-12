@@ -15,14 +15,14 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'comment'); ?>
+		 
 		<?php echo $form->textArea($model,'comment', array('rosw'=>'10', 'cols'=>'70',)); ?>
 		<?php echo $form->error($model,'comment'); ?>
 	</div> 
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton(Yii::t('main','Add')); ?>
+		<?php echo CHtml::submitButton(Yii::t('main','Add Comment')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

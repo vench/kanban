@@ -77,8 +77,16 @@ $this->menu=array(
  $this->renderPartial('_comment_form',array('model'=>$taskComment));
  ?>
 <?php foreach($model->taskComments as $taskComment) { ?> 
-	<div>
-		<?php echo $taskComment->comment;?>
+	<div class="portlet">
+		<div class="portlet-decoration">
+			<div class="portlet-title">
+				<?php echo date('d.m.Y H:i',$taskComment->time_insert);?>
+				<?php if(isset($taskComment->user)) { echo $taskComment->user->name;}?>	
+			</div>
+		</div>
+		<div class="portlet-content">
+			<?php echo $taskComment->comment;?>
+		</div>
 	</div>
 <?php } ?>
 

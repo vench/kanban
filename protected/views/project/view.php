@@ -23,21 +23,26 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(		 
 		array('name'=>'user_id', 'value'=>$model->user->name),		 
-		'description',
+		array('name'=>'description',),
+		array(
+		'name'=>Yii::t('main', 'Actions'), 
+		'type'=>'raw',
+		'value'=>CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())) .' | '.
+			     CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey())),
+		),
 	),
 )); ?>
 
-<?php echo CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())); ?> |
-<?php echo CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey()), array(
-    
-));?>
+ 
 
 
 <table class="task-table">
     <thead>
     <tr>
-<?php foreach($model->taskCategories as $taskCategory) { ?>     
-    <th>
+<?php 
+$size = (int)(100 / sizeof($model->taskCategories));
+foreach($model->taskCategories as $taskCategory) { ?>     
+    <th style="width:<?php echo $size?>%;">
        <h4> <?php echo $taskCategory->name;?> </h4>
     <?php echo CHtml::link(Yii::t('main', 'Add task'), array(
         '/task/create', 
@@ -76,8 +81,7 @@ $this->menu=array(
               $this->renderPartial('_view_task', array(
                     'model'=>$task,
                 ));
-            } 
-         
+            }          
         }?> 
     </td>
 <?php }?>
@@ -95,65 +99,35 @@ Yii::app()->getClientScript()->registerCssFile(
 ?>        
 
 <script type="text/javascript">
-$(function(){
-    
-    var 
-    fnInit = function() {
-        $('.task-box.drag').draggable({
-            connectToSortable:'td.droppable',
-        });
-    },
+$(function(){    
+    var  
     fnUpdateOrder = function() {
         var list = $(this).find('>div.task-box.drag'),
             stack = {};
         list.each(function(index, item){
             stack[list.length - index] = $(item).data('pk');
-        });   
-            
-        $.post('<?php echo $this->createUrl('/task/ajaxUpdateOrder')?>', {tasks:stack}, function(data){
-           // console.log(data);
-        });
-    };
-    //fnInit.apply(this, []);
+        });               
+        $.post('<?php echo $this->createUrl('/task/ajaxUpdateOrder')?>', {tasks:stack}, function(data){});
+    };    
     
     $('td.droppable').sortable({
        revert: true,
-       connectWith: "td",
-       /* drop: function(event, ui) {           
-          
-            $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
-                 {id:ui.draggable.data('pk'), 'Task[task_category_id]': $(this).data('pk')}, function(data){
-                if(!data.success){
-                    parent.append( ui.draggable);
-                } else {
-                    fnUpdateOrder.apply(ui.draggable.parent(), [ui.draggable]);
-                }
-            }, 'json');
-        },
-        activate: function(event, ui) {
-          //  ui.draggable.css({position:'absolute'});
-        },
-        deactivate : function() { 
-        }*/
-        update:function(event, ui) { 
-            
-            
+       connectWith: "td", 
+        update:function(event, ui) {   
             if( ui.sender === null) {
                 fnUpdateOrder.apply(ui.item.parent(), [ui.item]);
             } else {
                 $.post('<?php echo $this->createUrl('/task/ajaxUpdate')?>', 
                  {id:ui.item.data('pk'), 'Task[task_category_id]': $(this).data('pk')}, function(data){
-                if(!data.success){
-                    ui.sender.append( ui.draggable);
+                if(!data.success){  
+                    ui.sender.append( ui.item);
                 } else {
                     fnUpdateOrder.apply(ui.item.parent(), [ui.item]);
                 }
             }, 'json');
             }     
         },
-        stop: function(event, ui) {
-            //console.log('stop-', ui.item, ui);
-        }       
+        stop: function(event, ui) { }       
     });
 });</script>
 <?php 
