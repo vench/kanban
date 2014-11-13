@@ -58,8 +58,8 @@ class UserProject extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'project_id' => 'Project',
+			'user_id' => Yii::t('main','User'),
+			'project_id' => Yii::t('main','Project'),
 		);
 	}
 

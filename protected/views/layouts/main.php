@@ -32,9 +32,9 @@
 				array('label'=>Yii::t('main','Home'), 'url'=>array('/site/index')),
                                 array('label'=>Yii::t('main','Projects'), 'url'=>array('/project/index')),
 				array('label'=>Yii::t('main','About'), 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>Yii::t('main','Users'), 'url'=>array('/user')),
+				array('label'=>Yii::t('main','Users'), 'url'=>array('/user'), 'visible'=>ProjectHelper::currentUserIsAdmin()),
 				array('label'=>Yii::t('main','Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>Yii::t('main','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>Yii::t('main','Logout ({name})', array( '{name}'=>Yii::app()->user->name)), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->

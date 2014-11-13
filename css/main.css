@@ -230,7 +230,7 @@ div.search-form
 
 
 .task-table th {
-     background-color: #E5F1F4;
+     background-color: #E5F1F4; border-right:1px solid;
 }
 .task-table td, .task-table th {
     vertical-align: top;
@@ -239,7 +239,12 @@ div.search-form
 .task-box {
     border:1px solid   #336699; background: #E5F1F4; margin: 0px 0px 2px 0px; padding: 4px;
 }
-
+.task-box .task-box-content {
+	padding: 4px; background-color:#ffffff; overflow:hidden;
+}
+.task-box .task-box-content > h5 {
+	word-break: break-word;
+}
 .m-span-5 {
     width:auto; margin-right: 190px;
 }

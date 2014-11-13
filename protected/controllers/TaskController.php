@@ -7,6 +7,19 @@ class TaskController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	
+	/**
+    *
+    * @return array 
+    */
+    public function behaviors() {
+		return array_merge(array(
+			'fileUploadCControllerBehavior'=>array(
+				'class'=>'FileUploadCControllerBehavior',
+			),
+		), parent::behaviors());
+    }
+	
 
 	/**
 	 * @return array action filters
@@ -32,7 +45,7 @@ class TaskController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate'),
+				'actions'=>array('create','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate', 'UploadFile',),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -51,8 +64,20 @@ class TaskController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		
+		$taskComment = new TaskComment();
+		$taskComment->task_id = $model->getPrimaryKey();
+		if(isset($_POST['TaskComment'])) {
+			$taskComment->attributes=$_POST['TaskComment'];
+			if($taskComment->save()) {
+				$this->refresh();
+            }
+		}
+	
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'taskComment'=>$taskComment,
 		));
 	}
 
@@ -89,10 +114,7 @@ class TaskController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$model=$this->loadModel($id); 
 
 		if(isset($_POST['Task']))
 		{
@@ -100,10 +122,24 @@ class TaskController extends Controller
 			if($model->save())
 				$this->redirect(array('/project/view','id'=>$model->project_id));
 		}
+		
+		$taskFile = new TaskFile();
+		$taskFile->task_id = $model->getPrimaryKey();
+		if(isset($_POST['TaskFile'])) {
+			$taskFile->attributes=$_POST['TaskFile'];
+			if($taskFile->save(true)) {
+				$this->refresh();
+			}
+		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 
+			'taskFile'=>$taskFile,
 		));
+	}
+	
+	public function actionUploadFile($id) {
+		$this->fileUpload($id);
 	}
 
 	/**

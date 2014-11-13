@@ -35,14 +35,18 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'limit_task'); ?>
+		
 		<?php echo $form->textField($model,'limit_task'); ?>
+		<p class="note"><?php echo Yii::t('main', 'The maximum number of simultaneously running tasks.');?>
+			<?php echo Yii::t('main', 'If there is a 0, the number of tasks unlimited.');?>
+		</p>
 		<?php echo $form->error($model,'limit_task'); ?>
 	</div>
 
 	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('main','Create') : Yii::t('main','Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

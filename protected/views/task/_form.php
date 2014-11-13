@@ -19,11 +19,7 @@ $taskCategory = TaskCategory::model()->findAll(array(
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'task-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
+	'id'=>'task-form', 
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -38,16 +34,19 @@ $taskCategory = TaskCategory::model()->findAll(array(
 		<?php echo $form->labelEx($model,'task_category_id'); ?>
 		<?php echo $form->dropDownList($model,'task_category_id', CHtml::listData($taskCategory, 'id', 'name'), array(
                     'empty'=>'--- нет ---',
-                )); ?>
+                )); ?> 
 		<?php echo $form->error($model,'task_category_id'); ?>
 	</div>
         
         
         <div class="row">
-		<?php echo $form->labelEx($model,'color_hex'); ?>
-		<?php echo $form->dropDownList($model,'color_hex', Task::getColors(), array(
-                    'empty'=>'--- нет ---',
-                )); ?>
+		<?php echo $form->labelEx($model,'color_hex'); ?> 
+				<select name="Task[color_hex]">
+			<option value="">--- нет ---</option>
+			<?php foreach(Task::getColors() as $key=>$color) {?> 
+				<option style="background:<?php echo $color; ?>;color:<?php echo $color; ?>;" <?php if($key == $model->color_hex):?> selected="select" <?php endif;?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
+			<?php }?>
+		</select>
 		<?php echo $form->error($model,'color_hex'); ?>
 	</div>
         

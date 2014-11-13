@@ -101,6 +101,13 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	*
+	*/
+	public function getViewName() {
+		return empty($this->name) ? $this->login : $this->name;
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -111,6 +118,13 @@ class User extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+	
+	protected function beforeSave() {
+		if($this->isNewRecord) {
+			$this->password = self::passwordHash($this->password);
+		}
+		return parent::beforeSave();
 	}
         
         /**

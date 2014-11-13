@@ -97,12 +97,12 @@ class TaskHistory extends CActiveRecord
 		));
 	}
         
-        protected function beforeSave() {
+    protected function beforeSave() {
             if(!$this->time_insert) {
                 $this->time_insert = time();                
             }
             return parent::beforeSave();
-        }
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

@@ -4,18 +4,29 @@
 
 ?>
 <div class="task-box drag" <?php if($model->color_hex > 0) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
-    <h5><?php echo $model->description;?></h5>
-    
-    <p>
-    <?php echo CHtml::link(Yii::t('main', 'Update task'), array(
-        '/task/update', 'id'=>$model->getPrimaryKey(),
-    )); ?>
-    <?php echo CHtml::link(Yii::t('main', 'Detail task'), array(
-        '/task/view', 'id'=>$model->getPrimaryKey(),
-    )); ?>
-    <?php echo CHtml::link(Yii::t('main', 'Remove task'), array(
-        '/task/delete', 'id'=>$model->getPrimaryKey(),
-    )); ?>
-    </p>    
+	
+	<div class="task-box-content">
+	   <h5><?php echo $model->description;?></h5>
+		
+		<p>
+		<?php $this->widget('application.widgets.BoxButton', array(
+			'updateButtonUrl'=>array(
+				'/task/update', 'id'=>$model->getPrimaryKey(),
+			),
+			'updateButtonLabel'=>Yii::t('main', 'Update task'),
+			
+			'viewButtonUrl'=>array(
+				'/task/view', 'id'=>$model->getPrimaryKey(),
+			),
+			'viewButtonLabel'=>Yii::t('main', 'Detail task'),
+			
+			'deleteButtonUrl'=>array(
+				'/task/delete', 'id'=>$model->getPrimaryKey(),
+			),
+			'deleteButtonLabel'=>Yii::t('main', 'Remove task'),
+			'createButtonVisible'=>false,
+		));?> 
+		</p>    
+	</div>
 </div>
 
