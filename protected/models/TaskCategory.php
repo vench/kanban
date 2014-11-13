@@ -18,6 +18,12 @@
  */
 class TaskCategory extends CActiveRecord
 {
+
+	/**
+	* @var integer
+	*/
+	public $limit_task = 0;
+
 	/**
 	 * @return string the associated database table name
 	 */

@@ -40,6 +40,8 @@ return array(
     'Error'=>'Ошибка',
     'Clean'=>'Убрать',
     'Confirm the deletion'=>'Подтвердите удаление',
+	'Task files'=>'Файлы задания',
+	'Add file'=>'Добавить файл',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',

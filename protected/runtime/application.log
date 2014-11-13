@@ -2040,3 +2040,157 @@ Stack trace:
 REQUEST_URI=/kanban/index.php?r=task/delete&id=13
 HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=1
 ---
+2014/11/13 12:14:25 [error] [php] include(FileUploadCActiveRecordBehavior.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\kanban\www\kanban\framework\YiiBase.php:427)
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\YiiBase.php(196): import()
+#1 Z:\home\kanban\www\kanban\framework\base\CComponent.php(329): createComponent()
+#2 Z:\home\kanban\www\kanban\framework\base\CComponent.php(298): TaskFile->attachBehavior()
+#3 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(83): TaskFile->attachBehaviors()
+#4 Z:\home\kanban\www\kanban\framework\gii\generators\form\FormCode.php(91): TaskFile->__construct()
+#5 Z:\home\kanban\www\kanban\framework\gii\generators\form\templates\default\form.php(29): FormCode->getModelAttributes()
+#6 Z:\home\kanban\www\kanban\framework\gii\CCodeModel.php(321): require()
+#7 Z:\home\kanban\www\kanban\framework\gii\generators\form\FormCode.php(80): FormCode->render()
+#8 Z:\home\kanban\www\kanban\framework\gii\CCodeGenerator.php(162): FormCode->prepare()
+#9 Z:\home\kanban\www\kanban\framework\gii\CCodeGenerator.php(63): FormGenerator->prepare()
+#10 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(49): FormGenerator->actionIndex()
+#11 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams()
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(286): FormGenerator->runAction()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): FormGenerator->runActionWithFilters()
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): FormGenerator->run()
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CWebApplication->run()
+REQUEST_URI=/kanban/index.php?r=gii/form/index
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/13 12:43:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "uploadFile".' in Z:\home\kanban\www\kanban\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CController.php(270): CController->missingAction('uploadFile')
+#1 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#2 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#3 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/update&id=14
+---
+2014/11/13 12:44:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "uploadFile".' in Z:\home\kanban\www\kanban\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CController.php(270): CController->missingAction('uploadFile')
+#1 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#2 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#3 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
+---
+2014/11/13 13:30:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "uploadFile".' in Z:\home\kanban\www\kanban\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CController.php(270): CController->missingAction('uploadFile')
+#1 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#2 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#3 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
+---
+2014/11/13 13:32:38 [error] [exception.CException] exception 'CException' with message 'В классе TaskController и его поведениях не найден метод или замыкание с именем "fileUpload".' in Z:\home\kanban\www\kanban\framework\base\CComponent.php:266
+Stack trace:
+#0 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(129): CComponent->__call('fileUpload', Array)
+#1 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(129): TaskController->fileUpload('5')
+#2 [internal function]: TaskController->actionUploadFile('5')
+#3 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#15 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
+---
+2014/11/13 13:33:25 [error] [php] include(File.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\kanban\www\kanban\framework\YiiBase.php:427)
+Stack trace:
+#0 Z:\home\kanban\www\kanban\protected\behaviors\FileUploadCControllerBehavior.php(21): spl_autoload_call()
+#1 unknown(0): FileUploadCControllerBehavior->fileUpload()
+#2 Z:\home\kanban\www\kanban\framework\base\CComponent.php(261): call_user_func_array()
+#3 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): TaskController->__call()
+#4 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): TaskController->fileUpload()
+#5 unknown(0): TaskController->actionUploadFile()
+#6 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#7 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): TaskController->runAction()
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): TaskController->filterAccessControl()
+#13 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#15 Z:\home\kanban\www\kanban\framework\web\CController.php(265): TaskController->runActionWithFilters()
+#16 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): TaskController->run()
+#17 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 Z:\home\kanban\www\kanban\index.php(14): CWebApplication->run()
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+in Z:\home\kanban\www\kanban\protected\behaviors\FileUploadCControllerBehavior.php (21)
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (142)
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (142)
+2014/11/13 13:34:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Файл не существует' in Z:\home\kanban\www\kanban\protected\behaviors\FileUploadCControllerBehavior.php:23
+Stack trace:
+#0 [internal function]: FileUploadCControllerBehavior->fileUpload('5')
+#1 Z:\home\kanban\www\kanban\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): CComponent->__call('fileUpload', Array)
+#3 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): TaskController->fileUpload('5')
+#4 [internal function]: TaskController->actionUploadFile('5')
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#14 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#16 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#17 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
+---
+2014/11/13 13:34:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Файл не существует' in Z:\home\kanban\www\kanban\protected\behaviors\FileUploadCControllerBehavior.php:23
+Stack trace:
+#0 [internal function]: FileUploadCControllerBehavior->fileUpload('5')
+#1 Z:\home\kanban\www\kanban\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): CComponent->__call('fileUpload', Array)
+#3 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(142): TaskController->fileUpload('5')
+#4 [internal function]: TaskController->actionUploadFile('5')
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#14 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('uploadFile')
+#16 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/uploadFile')
+#17 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
+---

@@ -18,20 +18,20 @@ class FileUploadCControllerBehavior extends CBehavior {
      * @param type $id  ID File
      */
     public function fileUpload($id) {
-        $file = File::model()->findByPk($id);
-        if(is_null($file) || !$file->fileExists('Path')) {
+        $file = TaskFile::model()->findByPk($id);
+        if(is_null($file) || !$file->fileExists('patch')) {
             throw new CHttpException(404, "Файл не существует");
         }
      
-        $data = pathinfo($file->Path);
-		
-		if(in_array(strtolower($data['extension']), explode(', ', Yii::app()->params['extensions']['images']))) {
+        $data = pathinfo($file->patch);
+		          
+		if(in_array(strtolower($data['extension']), array('jpg','jpeg','png','gif',))) {
             header("Content-type: image/{$data['extension']}");
-            echo file_get_contents($file->Path);
+            echo file_get_contents($file->patch);
         } else {
-           header("Content-disposition: attachment; filename=document.{$data['extension']}"); 
+           header("Content-disposition: attachment; filename={$data['filename']}.{$data['extension']}"); 
            header("Content-type: application/{$data['extension']}"); 
-           readfile($file->Path);
+           readfile($file->patch);
         }
 		
         Yii::app()->end();

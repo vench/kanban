@@ -18,6 +18,7 @@
  * @property Project $project
  * @property TaskHistory[] $taskHistories
  * @property TaskComment[] $taskComments
+ * @property TaskFile[] $taskFiles
  */
 class Task extends CActiveRecord
 {
@@ -29,14 +30,14 @@ class Task extends CActiveRecord
 		return 'tbl_task';
 	}
         
-        /**
-         * 
-         * @return string
-         */
-        public function getColor() {
+    /**
+     * 
+     * @return string
+     */
+     public function getColor() {
             $data = self::getColors();
             return isset($data[$this->color_hex]) ? $data[$this->color_hex] : '';
-        }
+     }
         
          
 
@@ -48,7 +49,8 @@ class Task extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('description', 'required'),
+            array('description', 'required'),
+			array('description', 'length', 'max'=>1000),
 			array('project_id, task_category_id, is_ready, priority, color_hex', 'numerical', 'integerOnly'=>true),
 			array('fulldescription', 'safe'),
                         array('task_category_id', 'validateTaskCategory'),
@@ -58,12 +60,12 @@ class Task extends CActiveRecord
 		);
 	}
 
-        public function validateTaskCategory() {
+    public function validateTaskCategory() {
             $category = TaskCategory::model()->findByPk($this->task_category_id);
             if(!is_null($category) && $category->limit_task > 0 && $category->limit_task <= sizeof($category->tasks)) {
                 $this->addError('task_category_id', Yii::t('main', 'You can not select this category. Now in her high notes.'));
             }
-        }
+    }
 
         /**
 	 * @return array relational rules.
@@ -77,6 +79,7 @@ class Task extends CActiveRecord
 			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'taskHistories' => array(self::HAS_MANY, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
 			'taskComments' => array(self::HAS_MANY, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
+			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id'),
 		);
 	}
 
@@ -146,8 +149,7 @@ class Task extends CActiveRecord
             return array(
                 hexdec('6495ED')=>'#6495ED',
                 hexdec('FFFF00')=>'#FFFF00',
-                hexdec('EE0000')=>'#EE0000',
-                hexdec('000000')=>'#000000',
+                hexdec('EE0000')=>'#EE0000', 
             );
         }
 

@@ -1,6 +1,8 @@
 <?php
 /* @var $this TaskController */
 /* @var $model Task */
+/* @var $taskFile TaskFile */
+ 
 
 $this->breadcrumbs=array(
     Yii::t('main', 'Projects')=>array('/projects'),
@@ -19,3 +21,7 @@ $this->menu=array(
 <h1><?php echo Yii::t('main', 'Update task');?> <?php echo $model->description; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<h4><?php echo Yii::t('main', 'Task files');?></h4>
+<?php $this->renderPartial('_file_form',array('model'=>$taskFile));  ?>
+<?php $this->renderPartial('_files',array('model'=>$model));  ?>

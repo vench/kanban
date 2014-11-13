@@ -52,7 +52,7 @@ class FileUploadCActiveRecordBehavior extends CActiveRecordBehavior {
     
     public function beforeValidate($event) {
          foreach($this->fileFields as $field) {
-             $uploadedFile = CUploadedFile::getInstance($this->owner, $field);
+             $uploadedFile = CUploadedFile::getInstance($this->owner, $field); 
              if(!is_null($uploadedFile)) { 
                  
                  if($uploadedFile->getHasError()) { 
@@ -76,8 +76,8 @@ class FileUploadCActiveRecordBehavior extends CActiveRecordBehavior {
                  
                  $this->oldPaths[$field] =  $this->owner->{$field}; 
                  
-                 $this->owner->{$field} = Yii::getPathOfAlias('webroot.uploads').DIRECTORY_SEPARATOR.Utill::getRandomText(2); 
-                 $this->owner->{$field} .= DIRECTORY_SEPARATOR.Utill::getRandomText(12).'.'.$uploadedFile->extensionName;
+                 $this->owner->{$field} = Yii::getPathOfAlias('webroot.uploads').DIRECTORY_SEPARATOR.$this->getRandomText(2); 
+                 $this->owner->{$field} .= DIRECTORY_SEPARATOR.$this->getRandomText(12).'.'.$uploadedFile->extensionName;
                  
                  if(isset($this->fileNameAs[$field]) && empty($this->owner->{$this->fileNameAs[$field]})) {
                      $this->owner->{$this->fileNameAs[$field]} = $uploadedFile->name;
@@ -124,9 +124,25 @@ class FileUploadCActiveRecordBehavior extends CActiveRecordBehavior {
      * @param string $field
      * @return boolean 
      */
-    protected function fileExists($field) {
+    public function fileExists($field) {
         return isset($this->owner->{$field}) && file_exists($this->owner->{$field});
     }
+	
+	/**
+	* @param int $size
+	* @param string $hash
+	* @return string
+	*/
+	protected function getRandomText($size, $hash = NULL) {
+        if(is_null($hash)) {
+                $hash = join('',range('a', 'b')).join('',range('1', '9'));
+            }
+            $str = '';  
+            while($size -- > 0) { 
+			$str .= substr($hash, mt_rand(1, strlen($hash) -1), 1);			
+	    }
+        return $str;
+	}
 }
 
  

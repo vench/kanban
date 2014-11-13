@@ -43,6 +43,9 @@ $this->menu=array(
 		)
 	),
 )); ?>
+<br/><br/>
+<h3><?php echo Yii::t('main', 'Task files');?></h3> 
+<?php $this->renderPartial('_files',array('model'=>$model));  ?>
 
 <br/><br/>
 <h3><?php echo Yii::t('main', 'History of status changes');?></h3> 
