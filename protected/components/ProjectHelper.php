@@ -10,66 +10,51 @@
 class ProjectHelper {
     
     /**
-     * Текущей пользователь  получает право на просмотр если:
-     * Администратор, создатель проекта, учавствует хотя бы  в одном задании
+     * 
      * @param type $projectID
      * @return boolean
      */
-    public static function accessViewProject($projectID) {
-         if(self::currentUserIsAdmin()) {
+    public function accessUserInProject($projectID) {
+        if(self::accessCreaterProject($projectID)) {
             return true;
         }
-         if(!is_null(Project::model()->find(array(
-            'select'=>'id',
-            'condition'=>'id=:id AND user_id=:user_id',
-            'params'=>array(
-                ':id'=>$projectID,
-                ':user_id'=>Yii::app()->user->getId(),
-        ))))) {
+        if(UserProject::model()->find('project_id=:project_id AND user_id=:user_id', array(
+            ':project_id'=>$projectID,
+            ':user_id'=>Yii::app()->user->getId(),
+        ))) {
             return true;
         }
-          if(!is_null(Task::model()->find(array(
-            'select'=>'id',
-            'condition'=>' project_id=:project_id AND executor=:user_id',
-            'params'=>array( 
-                ':project_id'=>$projectID,
-                ':user_id'=>Yii::app()->user->getId(),
-             )    
-        )))) {
-            return true;
-        }
-        return false;
+        return FALSE;
     }
-    
+
     /**
-     * Получает доступ к редактированию проекту если:
-     * Администратор, содатель проекта, участник конкретного действия.
-     * @param type $projectID
+     * 
+     * @param Project $project
      * @return boolean
      */
-    public static function accessEditProject($projectID, $taskId = NULL) {
+    public static function  currentUserCreater(Project $project) {
+        return Yii::app()->user->getId() == $project->user_id;
+    }
+
+    /**
+     * Пользователь создатель проекта 
+     * @param int $projectID
+     * @return boolean
+     */
+    public static function accessCreaterProject($projectID) {
         if(self::currentUserIsAdmin()) {
             return true;
         }
+         
         if(!is_null(Project::model()->find(array(
-            'select'=>'id',
             'condition'=>'id=:id AND user_id=:user_id',
             'params'=>array(
                 ':id'=>$projectID,
                 ':user_id'=>Yii::app()->user->getId(),
-        ))))) {
-            return true;
-        }
-        if(!is_null($taskId) && !is_null(Task::model()->find(array(
-            'select'=>'id',
-            'condition'=>'id=:id  AND project_id=:project_id AND executor=:user_id',
-            'params'=>array(
-                ':id'=>$taskId,
-                ':project_id'=>$projectID,
-                ':user_id'=>Yii::app()->user->getId(),
-             )    
-        )))) {
-            return true;
+             ),
+             'select'=>'id',
+            )))) {
+           return true; 
         }
         return false;
     } 
@@ -91,4 +76,6 @@ class ProjectHelper {
         ));
         return !is_null($model) && $model->is_admin == 1;
     }
+    
+    
 }

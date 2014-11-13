@@ -13,7 +13,7 @@ $this->menu=array(
 	array('label'=>'Create Project', 'url'=>array('create')),
 	array('label'=>'Update Project', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Project', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Project', 'url'=>array('admin')),
+	///array('label'=>'Manage Project', 'url'=>array('admin')),
 );
 ?>
 
@@ -27,6 +27,7 @@ $this->menu=array(
 		array(
 		'name'=>Yii::t('main', 'Actions'), 
 		'type'=>'raw',
+                'visible'=>  ProjectHelper::currentUserCreater($model),    
 		'value'=>CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())) .' | '.
 			     CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey())) .' | '.
 				 CHtml::link(Yii::t('main', 'Completed tasks', array('/task/completed', 'id'=>$model->getPrimaryKey()))),
@@ -63,6 +64,8 @@ foreach($model->taskCategories as $taskCategory) { ?>
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove caegory'),
 			'viewButtonVisible'=>false,
+                        'deleteButtonVisible'=>ProjectHelper::currentUserCreater($model),
+                        'updateButtonVisible'=>ProjectHelper::currentUserCreater($model),
 		));?>  
         
         <?php if($taskCategory->limit_task > 0)  {?> 

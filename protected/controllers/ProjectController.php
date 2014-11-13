@@ -28,24 +28,41 @@ class ProjectController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'view', 'userProjectRmove'),
+				'actions'=>array('index', 'create'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('update', 'userProjectRmove' ,'delete'),
+				'expression' => array($this,'allowProjectRulesEdit'),
 			),
+                        array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('view'),
+				'expression' => array($this,'allowProjectRulesView'),
+			),
+			 
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}
+        
+        /**
+         * @return boolean
+         */
+        public function allowProjectRulesView() {
+            $projectID  = Yii::app()->request->getParam('id');
+            return ProjectHelper::accessUserInProject($projectID);
+        }
 
-	/**
+         /**
+         * @return boolean
+         */
+        public function allowProjectRulesEdit() {
+            $projectID  = Yii::app()->request->getParam('id');
+            return ProjectHelper::accessCreaterProject($projectID);
+        }
+        
+        /**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
