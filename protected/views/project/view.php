@@ -45,29 +45,32 @@ $size = (int)(100 / sizeof($model->taskCategories));
 foreach($model->taskCategories as $taskCategory) { ?>     
     <th style="width:<?php echo $size?>%;">
        <h4> <?php echo $taskCategory->name;?> </h4>
-    <?php echo CHtml::link(Yii::t('main', 'Add task'), array(
-        '/task/create', 
-        'categoryId'=>$taskCategory->getPrimaryKey()
-        ), array(
-    
-));?>
-     <?php echo Chtml::link(Yii::t('main', 'Edit caegory'), array(
-         '/taskCategory/update', 'id'=>$taskCategory->getPrimaryKey(),
-     ), array(
-         
-     )); ?> 
-       <?php echo Chtml::link(Yii::t('main', 'Remove caegory'), array(
-         '/taskCategory/delete', 'id'=>$taskCategory->getPrimaryKey(),
-     ), array(
-         
-     )); ?> 
+	   
+	   <p>
+	   	<?php $this->widget('application.widgets.BoxButton', array(
+			'updateButtonUrl'=>array(
+				'/taskCategory/update', 'id'=>$taskCategory->getPrimaryKey(),
+			),
+			'updateButtonLabel'=>Yii::t('main', 'Edit caegory'),
+			
+			'createButtonUrl'=>array(
+				'/task/create', 'categoryId'=>$taskCategory->getPrimaryKey(),
+			),
+			'createButtonLabel'=>Yii::t('main', 'Add task'),
+			
+			'deleteButtonUrl'=>array(
+				'/taskCategory/delete', 'id'=>$taskCategory->getPrimaryKey(),
+			),
+			'deleteButtonLabel'=>Yii::t('main', 'Remove caegory'),
+			'viewButtonVisible'=>false,
+		));?>  
         
         <?php if($taskCategory->limit_task > 0)  {?> 
-        <p><?php echo Yii::t('main', 'Limit task {num}', array(
-            '{num}'=>$taskCategory->limit_task,
-        ));?></p>    
+			<?php echo Yii::t('main', 'Limit task {num}', array(
+				'{num}'=>$taskCategory->limit_task,
+			));?>    
         <?php }?>
-    
+		</p>
     </th>
 <?php }?>
     </tr>

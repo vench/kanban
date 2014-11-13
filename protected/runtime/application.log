@@ -2194,3 +2194,224 @@ Stack trace:
 REQUEST_URI=/kanban/index.php?r=task/uploadFile&id=5
 HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=14
 ---
+2014/11/13 14:54:46 [error] [exception.CException] exception 'CException' with message 'В классе UserController и его поведениях не найден метод или замыкание с именем "allowOnlyAdmin".' in Z:\home\kanban\www\kanban\framework\base\CComponent.php:266
+Stack trace:
+#0 [internal function]: CComponent->__call('allowOnlyAdmin', Array)
+#1 [internal function]: UserController->allowOnlyAdmin(Object(CWebUser), Object(CAccessRule))
+#2 Z:\home\kanban\www\kanban\framework\base\CComponent.php(617): call_user_func_array(Array, Array)
+#3 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(392): CComponent->evaluateExpression(Array, Array)
+#4 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(288): CAccessRule->isExpressionMatched(Object(CWebUser))
+#5 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(138): CAccessRule->isUserAllowed(Object(CWebUser), Object(UserController), Object(CInlineAction), '127.0.0.1', 'GET')
+#6 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('admin')
+#13 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#14 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/kanban/index.php?r=user/admin
+HTTP_REFERER=http://kanban/kanban/index.php?r=user
+---
+2014/11/13 14:57:07 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#9 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/kanban/index.php?r=user/admin
+HTTP_REFERER=http://kanban/kanban/index.php?r=user
+---
+2014/11/13 14:58:02 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#9 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/kanban/index.php?r=user/admin
+HTTP_REFERER=http://kanban/kanban/index.php?r=user
+---
+2014/11/13 14:58:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '?? ?????? ?????...')
+#1 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#9 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/kanban/index.php?r=user/admin
+HTTP_REFERER=http://kanban/kanban/index.php?r=user
+---
+2014/11/13 15:32:06 [error] [exception.CException] exception 'CException' with message 'Необходимый для отображения asset "Z:\home\kanban\www\kanban\protected\widgets\assets" не существует.' in Z:\home\kanban\www\kanban\framework\web\CAssetManager.php:257
+Stack trace:
+#0 Z:\home\kanban\www\kanban\protected\widgets\BoxButton.php(105): CAssetManager->publish('Z:\home\kanban\...')
+#1 Z:\home\kanban\www\kanban\protected\widgets\BoxButton.php(101): BoxButton->registerClientScript()
+#2 Z:\home\kanban\www\kanban\framework\web\CBaseController.php(147): BoxButton->init()
+#3 Z:\home\kanban\www\kanban\framework\web\CBaseController.php(172): CBaseController->createWidget('application.wid...', Array)
+#4 Z:\home\kanban\www\kanban\protected\views\project\view.php(70): CBaseController->widget('application.wid...', Array)
+#5 Z:\home\kanban\www\kanban\framework\web\CBaseController.php(126): require('Z:\home\kanban\...')
+#6 Z:\home\kanban\www\kanban\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\kanban\...', Array, true)
+#7 Z:\home\kanban\www\kanban\framework\web\CController.php(869): CBaseController->renderFile('Z:\home\kanban\...', Array, true)
+#8 Z:\home\kanban\www\kanban\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#9 Z:\home\kanban\www\kanban\protected\controllers\ProjectController.php(57): CController->render('view', Array)
+#10 [internal function]: ProjectController->actionView('1')
+#11 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProjectController), Array)
+#12 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProjectController), Object(ReflectionMethod), Array)
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#20 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('view')
+#22 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('project/view')
+#23 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/kanban/index.php?r=project/view&id=1
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/index
+---
+2014/11/13 15:34:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "projects".' in Z:\home\kanban\www\kanban\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('projects')
+#1 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/kanban/index.php?r=projects
+HTTP_REFERER=http://kanban/kanban/index.php?r=task/view&id=6
+---
+2014/11/13 15:48:11 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=22.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (153)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/13 15:48:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=22' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('22')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(153): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('22')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=22
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=2
+---
+2014/11/13 15:49:12 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (153)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/13 15:49:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('21')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(153): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('21')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=21
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=2
+---
+2014/11/13 15:49:27 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (153)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/13 15:49:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('21')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(153): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('21')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=21
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=2
+---
+2014/11/13 15:49:36 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). Выполнявшийся SQL-запрос: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21.
+in Z:\home\kanban\www\kanban\protected\controllers\TaskController.php (153)
+in Z:\home\kanban\www\kanban\index.php (14)
+2014/11/13 15:49:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`test`.`tbl_task_history`, CONSTRAINT `FK_tbl_task_history_task_id` FOREIGN KEY (`task_id`) REFERENCES `tbl_task` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: DELETE FROM `tbl_task` WHERE `tbl_task`.`id`=21' in Z:\home\kanban\www\kanban\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1802): CDbCommand->execute()
+#1 Z:\home\kanban\www\kanban\framework\db\ar\CActiveRecord.php(1222): CActiveRecord->deleteByPk('21')
+#2 Z:\home\kanban\www\kanban\protected\controllers\TaskController.php(153): CActiveRecord->delete()
+#3 [internal function]: TaskController->actionDelete('21')
+#4 Z:\home\kanban\www\kanban\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(TaskController), Array)
+#5 Z:\home\kanban\www\kanban\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(TaskController), Object(ReflectionMethod), Array)
+#6 Z:\home\kanban\www\kanban\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 Z:\home\kanban\www\kanban\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\kanban\www\kanban\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 Z:\home\kanban\www\kanban\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 Z:\home\kanban\www\kanban\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 Z:\home\kanban\www\kanban\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\kanban\www\kanban\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 Z:\home\kanban\www\kanban\framework\web\CWebApplication.php(141): CWebApplication->runController('task/delete')
+#16 Z:\home\kanban\www\kanban\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\kanban\www\kanban\index.php(14): CApplication->run()
+#18 {main}
+REQUEST_URI=/kanban/index.php?r=task/delete&id=21
+HTTP_REFERER=http://kanban/kanban/index.php?r=project/view&id=2
+---
