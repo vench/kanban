@@ -77,5 +77,13 @@ class ProjectHelper {
         return !is_null($model) && $model->is_admin == 1;
     }
     
+	 /**
+     * 
+     * @param Task $model
+     * @return boolean
+     */
+	public static function ownerTask(Task $model) {
+		return Yii::app()->user->getId() == $model->user_id;
+	}
     
 }

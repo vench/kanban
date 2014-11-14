@@ -42,6 +42,8 @@ return array(
     'Confirm the deletion'=>'Подтвердите удаление',
 	'Task files'=>'Файлы задания',
 	'Add file'=>'Добавить файл',
+	'Create TaskCategory'=>'Создание категории',
+	'Tasks without category'=>'Задания без категории',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',

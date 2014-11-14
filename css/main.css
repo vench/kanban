@@ -252,3 +252,13 @@ div.search-form
 .span-5.right {
     margin: 0px; float: right;
 }
+
+.in-page {
+	overflow:hidden;
+}
+.in-page .content {
+	padding:0 10px 0 0;
+}
+.in-page .sidebar {
+	padding:0 0 0 10px;
+}

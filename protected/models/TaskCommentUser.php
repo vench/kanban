@@ -100,4 +100,15 @@ class TaskCommentUser extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	* @return TaskCommentUser
+	*/
+	public static function create($user_id, $task_id) {
+		$model = new TaskCommentUser();
+		$model->user_id = $user_id;
+		$model->task_id = $task_id;
+		$model->save();
+		return $model;
+	}
 }

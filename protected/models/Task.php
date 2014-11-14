@@ -12,6 +12,7 @@
  * @property integer $color_hex
  * @property string $description
  * @property string $fulldescription
+ * @property integer user_id
  *
  * The followings are the available model relations:
  * @property TaskCategory $taskCategory
@@ -51,12 +52,12 @@ class Task extends CActiveRecord
 		return array(
             array('description', 'required'),
 			array('description', 'length', 'max'=>1000),
-			array('project_id, task_category_id, is_ready, priority, color_hex', 'numerical', 'integerOnly'=>true),
+			array('project_id, task_category_id, is_ready, priority, color_hex, user_id', 'numerical', 'integerOnly'=>true),
 			array('fulldescription', 'safe'),
                         array('task_category_id', 'validateTaskCategory'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, project_id, task_category_id, is_ready, description, fulldescription', 'safe', 'on'=>'search'),
+			array('id, project_id, task_category_id, is_ready, description, fulldescription, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -152,6 +153,16 @@ class Task extends CActiveRecord
                 hexdec('EE0000')=>'#EE0000', 
             );
         }
+		
+	/**
+	*
+	*/	
+	protected function beforeSave() {
+		if($this->isNewRecord) {
+			$this->user_id = Yii::app()->user->getId(); 
+		}
+		return parent::beforeSave();
+	}
 
         /**
          * 

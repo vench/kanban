@@ -51,8 +51,8 @@ class Project extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
-                        'userProjects' => array(self::HAS_MANY, 'UserProject', 'project_id'),
-                        'users' => array(self::MANY_MANY, 'User', 'tbl_user_project(project_id, user_id)'),
+            'userProjects' => array(self::HAS_MANY, 'UserProject', 'project_id'),
+            'users' => array(self::MANY_MANY, 'User', 'tbl_user_project(project_id, user_id)'),
 			'tasks' => array(self::HAS_MANY, 'Task', 'project_id', 'order'=>'priority DESC'),
 			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
 		);

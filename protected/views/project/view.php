@@ -7,36 +7,65 @@ $this->breadcrumbs=array(
 	Yii::t('main','Projects')=>array('index'),
 	$model->name,
 );
-
+  
 $this->menu=array(
-	array('label'=>'List Project', 'url'=>array('index')),
-	array('label'=>'Create Project', 'url'=>array('create')),
-	array('label'=>'Update Project', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Project', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	//array('label'=>Yii::t('main','List Project'), 'url'=>array('index')),
+	//array('label'=>Yii::t('main','Create Project'), 'url'=>array('create')),
+	array(
+		'label'=>Yii::t('main','Update Project'), 
+		'url'=>array('update', 'id'=>$model->id),
+		'visible'=>ProjectHelper::currentUserCreater($model),
+	),
+	array(
+		'label'=>Yii::t('main','Delete Project'), 
+		'url'=>'#', 
+		'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),
+		'visible'=>ProjectHelper::currentUserCreater($model),
+		),
 	///array('label'=>'Manage Project', 'url'=>array('admin')),
+	
+	array('_'),
+	array(
+		'label'=>Yii::t('main','Add category task'), 
+		'url'=>array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey()),
+		'visible'=>ProjectHelper::currentUserCreater($model),
+		),
+	array('label'=>Yii::t('main','Completed tasks'), 'url'=>array('/task/completed', 'id'=>$model->getPrimaryKey())),
+	array('label'=>Yii::t('main','Tasks without category'), 'url'=>array('/task/withoutCategory', 'id'=>$model->getPrimaryKey())),
 );
 ?>
 
 <h1><?php echo Yii::t('main', 'View Project');?> #<?php echo $model->name; ?></h1>
  
+ <div class="in-page">
+ <div class="span-5 right">
+		<div class="sidebar">
+<?php
+$this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>Yii::t('main','Operations'),
+));
+$this->widget('zii.widgets.CMenu', array(
+			'items'=>$this->menu,
+			'htmlOptions'=>array('class'=>'operations'),
+));
+$this->endWidget();
+	?>
+		
+		</div>
+ </div>
+ <div class="m-span-5">
+	 <div class="content">
+
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(		 
 		array('name'=>'user_id', 'value'=>$model->user->name),		 
-		array('name'=>'description',),
-		array(
-		'name'=>Yii::t('main', 'Actions'), 
-		'type'=>'raw',
-                'visible'=>  ProjectHelper::currentUserCreater($model),    
-		'value'=>CHtml::link(Yii::t('main', 'Update Project'), array('update', 'id'=>$model->getPrimaryKey())) .' | '.
-			     CHtml::link(Yii::t('main', 'Add category task'), array('/taskCategory/create', 'projectId'=>$model->getPrimaryKey())) .' | '.
-				 CHtml::link(Yii::t('main', 'Completed tasks', array('/task/completed', 'id'=>$model->getPrimaryKey()))),
-		),
+		array('name'=>'description',), 
 	),
 )); ?>
-
+</div></div>
  
-
+</div>
 
 <table class="task-table">
     <thead>

@@ -101,10 +101,27 @@ class TaskComment extends CActiveRecord
 		if($this->isNewRecord) {
 			$this->user_id = Yii::app()->user->getId();
 			$this->time_insert = time();
+			$this->sendNotifications();
 		}
 		return parent::beforeSave();
 	}
 
+	protected function sendNotifications() {
+		$users = $this->task->project->userProjects;
+		foreach($users as $user) {
+			if($user->user_id != $this->user_id) {
+				$this->sendNotification($user->user_id);
+			}			
+		}
+		if($this->task->project->user_id != $this->user_id) {
+			$this->sendNotification($this->task->project->user_id);
+		}
+	}
+	
+	protected function sendNotification($user_id) {
+		TaskCommentUser::create($user_id, $this->task_id);
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

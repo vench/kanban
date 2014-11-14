@@ -14,8 +14,7 @@ class TaskCategoryController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'accessControl', // perform access control for CRUD operations 
 		);
 	}
 

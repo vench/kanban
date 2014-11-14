@@ -25,6 +25,9 @@
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove task'),
 			'createButtonVisible'=>false,
+			
+			'deleteButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
+			'updateButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
 		));?> 
 		</p>    
 	</div>

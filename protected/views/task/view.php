@@ -12,9 +12,19 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 //	array('label'=>'List Task', 'url'=>array('index')),
-	array('label'=>Yii::t('main','Create Task'), 'url'=>array('create', 'categoryId'=>$model->task_category_id)),
-	array('label'=>Yii::t('main','Update Task'), 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>Yii::t('main','Delete Task'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array(
+		'label'=>Yii::t('main','Create Task'), 
+		'url'=>array('create', 'categoryId'=>$model->task_category_id)),
+	array(
+		'label'=>Yii::t('main','Update Task'), 
+		'url'=>array('update', 'id'=>$model->id),
+		'visible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
+		),
+	array(
+		'label'=>Yii::t('main','Delete Task'), 
+		'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),
+		'visible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
+	),
 	//array('label'=>'Manage Task', 'url'=>array('admin')),
 );/**/
 ?>

@@ -5,29 +5,41 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('project_id')); ?>:</b>
-	<?php echo CHtml::encode($data->project_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('task_category_id')); ?>:</b>
-	<?php echo CHtml::encode($data->task_category_id); ?>
-	<br />
-
+	<h4><?php echo CHtml::encode($data->description); ?></h4>
+ 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('is_ready')); ?>:</b>
-	<?php echo CHtml::encode($data->is_ready); ?>
-	<br />
+	<?php echo $data->is_ready == 1 ? Yii::t('main', 'Yes') : Yii::t('main', 'No'); ?>
+	<br /><br />
+	<p>
+	 
+ 	<?php $this->widget('application.widgets.BoxButton', array(
+			'updateButtonUrl'=>array(
+				'/task/update', 'id'=>$data->getPrimaryKey(),
+			),
+			'updateButtonLabel'=>Yii::t('main', 'Update task'),
+			
+			'viewButtonUrl'=>array(
+				'/task/view', 'id'=>$data->getPrimaryKey(),
+			),
+			'viewButtonLabel'=>Yii::t('main', 'Detail task'),
+			
+			'deleteButtonUrl'=>array(
+				'/task/delete', 'id'=>$data->getPrimaryKey(),
+			),
+			'deleteButtonLabel'=>Yii::t('main', 'Remove task'),
+			'createButtonVisible'=>false,
+			
+			'deleteButtonVisible'=>ProjectHelper::ownerTask($data) || ProjectHelper::currentUserCreater($data->project),
+			'updateButtonVisible'=>ProjectHelper::ownerTask($data) || ProjectHelper::currentUserCreater($data->project),
+	));?> 
+	</p>
+ 
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
+	
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('fulldescription')); ?>:</b>
-	<?php echo CHtml::encode($data->fulldescription); ?>
-	<br />
+	 
+
+	 
 
 
 </div>

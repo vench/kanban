@@ -41,7 +41,7 @@ class TaskController extends Controller
 	{
 		return array( 
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'view','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate', 'UploadFile',),
+				'actions'=>array('create', 'view','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate', 'completed', 'uploadFile', 'WithoutCategory',),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -76,6 +76,47 @@ class TaskController extends Controller
 			'taskComment'=>$taskComment,
 		));
 	}
+	
+	/**
+	*  @param integer $id ID Project
+	*/
+	public function actionCompleted($id) {
+		$model=Task::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		$models = Task::model()->findAll(array(
+			'condition'=>'project_id = :project_id AND is_ready =1',
+			'params'=>array(
+				':project_id'=>$id,
+			),
+		));
+		
+		$this->render('completed',array(
+			'models'=>$models, 
+			'model'=>$model,
+		)); 
+	}
+	
+	/**
+	*  @param integer $id ID Project
+	*/
+	public function actionWithoutCategory($id) {
+		$model=Task::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+			
+		$models = Task::model()->findAll(array(
+			'condition'=>'project_id = :project_id AND task_category_id IS NULL',
+			'params'=>array(
+				':project_id'=>$id,
+			),
+		));
+		
+		$this->render('withoutCategory',array(
+			'models'=>$models, 
+			'model'=>$model,
+		)); 
+	}
 
 	/**
 	 * Creates a new model.
@@ -95,7 +136,7 @@ class TaskController extends Controller
 			$model->attributes=$_POST['Task'];
 			if($model->save()) {
 				$this->redirect(array('/project/view','id'=>$model->project_id));
-                        }
+            }
 		}
 
 		$this->render('create',array(
