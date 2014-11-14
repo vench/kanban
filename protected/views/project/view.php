@@ -60,7 +60,7 @@ $this->endWidget();
 	'data'=>$model,
 	'attributes'=>array(		 
 		array('name'=>'user_id', 'value'=>$model->user->name),		 
-		array('name'=>'description',), 
+		array('name'=>'description','type'=>'raw',), 
 	),
 )); ?>
 </div></div>
