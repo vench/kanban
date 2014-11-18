@@ -132,5 +132,7 @@ return array(
 	'Completed tasks'=>'Выполненные задачи',
 	'New posts'=>'Новые сообщения',
 	
+	'Last change {datetime}, {username}'=>'Последнее изменение {datetime}, {username}',
+	
 	
 );

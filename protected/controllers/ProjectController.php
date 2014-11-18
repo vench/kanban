@@ -72,17 +72,35 @@ class ProjectController extends Controller
 			'with'=>array(
 				'taskCategories'=>array(),
 				'user'=>array(), 
-				'tasks'=>array(),
+				//'tasks'=>array(),
 			), 
 		));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.'); 
 	 
+		 
+		$tasks = Task::model()->findAll(array(
+			'condition'=>'project_id=:project_id AND is_ready = 0 AND task_category_id IS NOT NULL',
+			'params'=>array(
+				':project_id'=>$model->getPrimaryKey(),
+			),
+			'with'=>array(
+				'lastTaskHistory'=>array(
+					'with'=>array('user'=>array('select'=>'name',))
+				),
+				'project'=>array(
+				
+				),
+			),
+			'order'=>'t.priority DESC',
+			'select'=>'id,task_category_id,description,color_hex,project_id',
+		));	
 			
 		$this->layout = 'column1';
 		
 		$this->render('view',array(
 			'model'=>$model, 
+			'tasks'=>$tasks,
 		));
 	}
 

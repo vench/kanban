@@ -14,7 +14,7 @@
 	   <?php echo $model->description;?></h5>
 	   
 		
-		<p>
+		<div>
 		<?php $this->widget('application.widgets.BoxButton', array(
 			'updateButtonUrl'=>array(
 				'/task/update', 'id'=>$model->getPrimaryKey(),
@@ -35,7 +35,13 @@
 			'deleteButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
 			'updateButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
 		));?> 
-		</p>    
+		<small>
+		<?php echo Yii::t('main', 'Last change {datetime}, {username}', array(
+			'{datetime}'=>date('d-m-Y H:i', $model->lastTaskHistory->time_insert),
+			'{username}'=>$model->lastTaskHistory->user->name,
+		));?>
+		</small>		
+		</div>    
 	</div>
 </div>
 

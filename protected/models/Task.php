@@ -20,6 +20,8 @@
  * @property TaskHistory[] $taskHistories
  * @property TaskComment[] $taskComments
  * @property TaskFile[] $taskFiles
+ * @property TaskComment $lastTaskComment
+ * @property TaskHistory $lastTaskHistory
  
  */
 class Task extends CActiveRecord
@@ -81,6 +83,8 @@ class Task extends CActiveRecord
 			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'taskHistories' => array(self::HAS_MANY, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
 			'taskComments' => array(self::HAS_MANY, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
+			'lastTaskComments' => array(self::HAS_ONE, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
+			'lastTaskHistory' => array(self::HAS_ONE, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
 			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id'),
 			'taskCommentUsers' => array(self::HAS_MANY, 'TaskCommentUser', 'task_id'), 
 		);
