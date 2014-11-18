@@ -37,7 +37,7 @@ class m141018_121129_core extends CDbMigration
                     'priority'=>'int',
 					'user_id'=>'int',
                     'color_hex'=>'int',
-                    'is_ready'=>'bool',
+                    'is_ready'=>'boolean',
                     'description'=>'text',
                     'fulldescription'=>'text', 
             ));
