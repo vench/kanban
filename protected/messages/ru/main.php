@@ -4,7 +4,7 @@
 
 return array(
     'Login'=>'Вход в систему',
-    'Logout ({name})'=>'Выйдти ({name})', 
+    'Logout ({name})'=>'Выйти ({name})', 
     'Remember me next time'=>'Запомнить меня',
     'Enter'=>'Войти',
     'Projects'=>'Проекты',
