@@ -130,6 +130,7 @@ return array(
 	'User'=>'Пользователь',
 	
 	'Completed tasks'=>'Выполненные задачи',
+	'New posts'=>'Новые сообщения',
 	
 	
 );

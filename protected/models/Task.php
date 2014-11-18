@@ -20,6 +20,7 @@
  * @property TaskHistory[] $taskHistories
  * @property TaskComment[] $taskComments
  * @property TaskFile[] $taskFiles
+ 
  */
 class Task extends CActiveRecord
 {
@@ -54,7 +55,7 @@ class Task extends CActiveRecord
 			array('description', 'length', 'max'=>1000),
 			array('project_id, task_category_id, is_ready, priority, color_hex, user_id', 'numerical', 'integerOnly'=>true),
 			array('fulldescription', 'safe'),
-                        array('task_category_id', 'validateTaskCategory'),
+            array('task_category_id', 'validateTaskCategory'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, project_id, task_category_id, is_ready, description, fulldescription, user_id', 'safe', 'on'=>'search'),
@@ -81,6 +82,7 @@ class Task extends CActiveRecord
 			'taskHistories' => array(self::HAS_MANY, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
 			'taskComments' => array(self::HAS_MANY, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
 			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id'),
+			'taskCommentUsers' => array(self::HAS_MANY, 'TaskCommentUser', 'task_id'), 
 		);
 	}
 
@@ -99,6 +101,22 @@ class Task extends CActiveRecord
             'priority' => Yii::t('main','Task priority'),
             'color_hex' => Yii::t('main','Task color'),                    
 		);
+	}
+	
+	/**
+	*	@param int $user_id
+	*	@return boolean 
+	*/
+	public function hasNewComment($user_id = NULL) {
+		if(is_null($user_id)) {
+			$user_id = Yii::app()->user->getId();
+		}
+		foreach($this->taskCommentUsers as $item) {
+			if($item->user_id == $user_id) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

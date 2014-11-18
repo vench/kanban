@@ -1,6 +1,8 @@
 <?php
 /* @var $this ProjectController */
 /* @var $model Project */
+ 
+
 
 
 $this->breadcrumbs=array(
@@ -111,12 +113,14 @@ foreach($model->taskCategories as $taskCategory) { ?>
            <tr>
 <?php foreach($model->taskCategories as $taskCategory) { ?>     
                <td class="droppable" data-pk="<?php echo $taskCategory->getPrimaryKey(); ?>">
-        <?php if(sizeof($taskCategory->tasks) > 0) { 
+        <?php if(sizeof($model->viewTasks) > 0) { 
             
-            foreach($taskCategory->tasks as $task) {                 
-              $this->renderPartial('_view_task', array(
+            foreach($model->viewTasks as $task) {  
+			  if($task->task_category_id == $taskCategory->getPrimaryKey()) {
+				$this->renderPartial('_view_task', array(
                     'model'=>$task,
                 ));
+			  }	 
             }          
         }?> 
     </td>

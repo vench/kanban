@@ -12,6 +12,7 @@
  * The followings are the available model relations:
  * @property User $user
  * @property Task[] $tasks
+ * @property Task[] $viewTasks
  * @property TaskCategory[] $taskCategories
  */
 class Project extends CActiveRecord
@@ -54,6 +55,14 @@ class Project extends CActiveRecord
             'userProjects' => array(self::HAS_MANY, 'UserProject', 'project_id'),
             'users' => array(self::MANY_MANY, 'User', 'tbl_user_project(project_id, user_id)'),
 			'tasks' => array(self::HAS_MANY, 'Task', 'project_id', 'order'=>'priority DESC'),
+			'viewTasks' => array(
+				self::HAS_MANY, 
+				'Task', 
+				'project_id', 
+				'order'=>'priority DESC', 
+				'condition'=>'is_ready = 0 AND task_category_id IS NOT NULL',  
+				'with'=>array('taskCommentUsers'=>array('select'=>'user_id',)),
+			),
 			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
 		);
 	}

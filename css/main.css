@@ -11,8 +11,7 @@ body
 {
 	margin-top: 5px;
 	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
+	background: white; 
 }
 
 #header
@@ -261,4 +260,8 @@ div.search-form
 }
 .in-page .sidebar {
 	padding:0 0 0 10px;
+}
+
+.comment-new {
+	font-width:700; color:red;
 }

@@ -70,6 +70,11 @@ class TaskController extends Controller
 				$this->refresh();
             }
 		}
+		
+		TaskCommentUser::model()->deleteAll('task_id=:task_id AND user_id=:user_id', array(
+			':task_id'=>$model->getPrimaryKey(),
+			':user_id'=>Yii::app()->user->getId(),
+		));
 	
 		$this->render('view',array(
 			'model'=>$model,

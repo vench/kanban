@@ -68,9 +68,21 @@ class ProjectController extends Controller
 	 */
 	public function actionView($id)
 	{
-                $this->layout = 'column1';
+        $model=Project::model()->findByPk($id, array(
+			'with'=>array(
+				'taskCategories'=>array(),
+				'user'=>array(), 
+				'tasks'=>array(),
+			), 
+		));
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.'); 
+	 
+			
+		$this->layout = 'column1';
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model, 
 		));
 	}
 

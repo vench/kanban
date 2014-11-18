@@ -15,8 +15,8 @@
 
 	 
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b><br />
+	<?php echo substr(($data->description), 0, 128); ?>...
 	<br />
 
 
