@@ -41,12 +41,13 @@ $taskCategory = TaskCategory::model()->findAll(array(
         
         <div class="row">
 		<?php echo $form->labelEx($model,'color_hex'); ?> 
-				<select name="Task[color_hex]">
-			<option value="">--- нет ---</option>
-			<?php foreach(Task::getColors() as $key=>$color) {?> 
-				<option style="background:<?php echo $color; ?>;color:<?php echo $color; ?>;" <?php if($key == $model->color_hex):?> selected="select" <?php endif;?> value="<?php echo $key; ?>"><?php echo $color; ?></option>
-			<?php }?>
-		</select>
+		<?php $this->widget('ext.colorpicker.ColorPicker', array(
+                    'model' => $model,
+                    'attribute' => 'color_hex',
+                    'options' => array( // Optional
+                        'pickerDefault' => "ffffff", // Configuration Object for JS
+                    ),
+         )); ?>	 
 		<?php echo $form->error($model,'color_hex'); ?>
 	</div>
         

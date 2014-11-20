@@ -3,7 +3,7 @@
 /* @var $model Task */
 
 ?>
-<div class="task-box drag" <?php if($model->color_hex > 0) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
+<div class="task-box drag" <?php if($model->hasColor()) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
 	
 	<div class="task-box-content">
 	   <h5>
@@ -11,7 +11,7 @@
 	   <span class="comment-new" title="<?php echo Yii::t('main', 'New posts');?>">!</span>
 	   <?php } ?>
 	   
-	   <?php echo $model->description;?></h5>
+	   <?php echo  $model->description;?></h5>
 	   
 		
 		<div>

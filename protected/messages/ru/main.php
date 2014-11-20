@@ -98,7 +98,7 @@ return array(
     'Time insert: {date}'=>'Дата записи: {date}',
     'Description'=>'Описание',
     'Is Ready'=>'Выполнено',
-    'Full description'=>'Польное описание',
+    'Full description'=>'Полное описание',
     'Create Task'=>'Создать задачу',
     'Task priority'=>'Приоритет задачи',
     'Task Category'=>'Категория задачи',

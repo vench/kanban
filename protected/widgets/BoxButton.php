@@ -9,6 +9,14 @@ class BoxButton extends CWidget {
 	public $createButtonUrl='Yii::app()->controller->createUrl("create",array("id"=>$data->primaryKey))';
 	
 	public $createButtonOptions=array('class'=>'create');
+	
+	public $emailButtonLabel;
+	
+	public $emailButtonImageUrl;
+	
+	public $emailButtonUrl='Yii::app()->controller->createUrl("email",array("id"=>$data->primaryKey))';
+	
+	public $emailButtonOptions=array('class'=>'email');
 
 	public $viewButtonLabel;
 	/**
@@ -118,6 +126,11 @@ class BoxButton extends CWidget {
 	*/
 	public $createButtonVisible = true;
 	
+	/**
+	* boolean
+	*/
+	public $emailButtonVisible = false;
+	
 	public function run() {
 		if($this->createButtonVisible) {
 			 if(!isset($this->createButtonOptions['title'])) 
@@ -145,6 +158,11 @@ class BoxButton extends CWidget {
 				$this->deleteButtonOptions['title'] = $this->deleteButtonLabel;
 			echo  CHtml::link(CHtml::image($this->deleteButtonImageUrl, $this->deleteButtonLabel),$this->deleteButtonUrl,$this->deleteButtonOptions);
 		}
+		if($this->emailButtonVisible) {  
+			 if(!isset($this->emailButtonOptions['title'])) 
+					$this->emailButtonOptions['title'] = $this->emailButtonLabel;
+			echo  CHtml::link(CHtml::image($this->emailButtonImageUrl, $this->emailButtonLabel),$this->emailButtonUrl,$this->emailButtonOptions);		 
+		}
 	}
 
 	public function init() {
@@ -171,6 +189,8 @@ class BoxButton extends CWidget {
 			$this->deleteConfirmation=Yii::t('zii','Are you sure you want to delete this item?');
 		if($this->createButtonImageUrl===null)
 			$this->createButtonImageUrl=$baseScriptUrl.'/add.png';
+		if($this->emailButtonImageUrl===null)
+			$this->emailButtonImageUrl=$baseScriptUrl.'/mail.png';
 			
 		$cssFile=$baseScriptUrl.'/styles.css';
 			Yii::app()->getClientScript()->registerCssFile($cssFile);

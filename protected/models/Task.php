@@ -38,14 +38,22 @@ class Task extends CActiveRecord
      * 
      * @return string
      */
-     public function getColor() {
-            $data = self::getColors();
-            return isset($data[$this->color_hex]) ? $data[$this->color_hex] : '';
+     public function getColor() { 
+		if(strpos($this->color_hex, '#') === false) {
+			$this->color_hex = '#'.dechex($this->color_hex );
+		}		
+		return  $this->color_hex;
      }
-        
+     
+	 /**
+	 * @return boolean
+	 */
+	 public function hasColor() { 	
+		return  !is_null($this->color_hex);
+	 }
          
 
-        /**
+    /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -164,17 +172,14 @@ class Task extends CActiveRecord
 		return parent::model($className);
 	}
         
-        /**
-         * 
-         * @return array
-         */
-        public static function getColors() {
-            return array(
-                hexdec('6495ED')=>'#6495ED',
-                hexdec('FFFF00')=>'#FFFF00',
-                hexdec('EE0000')=>'#EE0000', 
-            );
-        }
+   
+		
+	protected function beforeValidate() {
+		if(strpos($this->color_hex, '#') !== false) {
+			$this->color_hex = hexdec(substr($this->color_hex, 1));
+		}  
+		return parent::beforeValidate();
+	}	
 		
 	/**
 	*
@@ -183,22 +188,29 @@ class Task extends CActiveRecord
 		if($this->isNewRecord) {
 			$this->user_id = Yii::app()->user->getId(); 
 		}
+		$this->description = Utill::safetext($this->description);
+		$this->fulldescription = Utill::safetext($this->fulldescription);
 		return parent::beforeSave();
 	}
 
-        /**
-         * 
-         * @return type
-         */
-        protected function afterSave() {
+	protected function afterFind() {
+		$this->color_hex = $this->getColor();
+		return parent::afterFind();
+	}
+	
+   /**
+    * 
+    * @return type
+    */
+    protected function afterSave() {
             $this->detectedUpdateCategory();
             return parent::afterSave();
-        }
+    }
         
-        /**
-         * Проверяем была ли изменена категория
-         */
-        protected function detectedUpdateCategory() {
+    /**
+     * Проверяем была ли изменена категория
+     */
+    protected function detectedUpdateCategory() {
            if(isset( $this->taskHistories[0]) && $this->taskHistories[0]->new_category_id == $this->task_category_id) {
                  return;
            }
@@ -208,5 +220,5 @@ class Task extends CActiveRecord
            $taskHistory->time_insert = time();
            $taskHistory->user_id = Yii::app()->user->getId();
            $taskHistory->save();
-        }
+    }
 }
