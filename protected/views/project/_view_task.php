@@ -32,8 +32,8 @@
 			'deleteButtonLabel'=>Yii::t('main', 'Remove task'),
 			'createButtonVisible'=>false,
 			
-			'deleteButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
-			'updateButtonVisible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
+			'deleteButtonVisible'=>ProjectHelper::accessEditTask($model),
+			'updateButtonVisible'=>ProjectHelper::accessEditTask($model),
 		));?> 
 		<small>
 		<?php echo Yii::t('main', 'Last change {datetime}, {username}', array(

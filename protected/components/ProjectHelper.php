@@ -3,18 +3,36 @@
  
 
 /**
- * Description of ProjectHelper
+ * Class ProjectHelper
  *
  * @author vench
  */
 class ProjectHelper {
-    
     /**
-     * 
+	* Возможность редактировать задание (только владелец или автор)
+	* @param Task $task
+	* @return boolean
+	*/
+	public static function accessEditTask(Task $task) {
+		return self::ownerTask($task) || self::currentUserCreater($task->project);
+	}
+	
+	
+	/**
+	* Возможность просматривать задание
+	* @param Task $task
+	* @return boolean
+	*/
+	 public static function accessViewTask(Task $task) {
+		return self::accessUserInProject($task->project_id);
+	 }
+	
+    /**
+     * Пользователь может смотреть проект
      * @param type $projectID
      * @return boolean
      */
-    public function accessUserInProject($projectID) {
+    public static function accessUserInProject($projectID) {
         if(self::accessCreaterProject($projectID)) {
             return true;
         }
@@ -28,7 +46,7 @@ class ProjectHelper {
     }
 
     /**
-     * 
+     * Пользователь автор проекта
      * @param Project $project
      * @return boolean
      */

@@ -49,18 +49,18 @@ class ProjectController extends Controller
         /**
          * @return boolean
          */
-        public function allowProjectRulesView() {
+    public function allowProjectRulesView() {
             $projectID  = Yii::app()->request->getParam('id');
             return ProjectHelper::accessUserInProject($projectID);
-        }
+    }
 
-         /**
-         * @return boolean
-         */
-        public function allowProjectRulesEdit() {
+    /**
+    * @return boolean
+    */
+    public function allowProjectRulesEdit() {
             $projectID  = Yii::app()->request->getParam('id');
             return ProjectHelper::accessCreaterProject($projectID);
-        }
+    }
         
         /**
 	 * Displays a particular model.
@@ -93,7 +93,7 @@ class ProjectController extends Controller
 				),
 			),
 			'order'=>'t.priority DESC',
-			'select'=>'id,task_category_id,description,color_hex,project_id',
+			'select'=>'id,task_category_id,description,color_hex,project_id,user_id',
 		));	
 			
 		$this->layout = 'column1';

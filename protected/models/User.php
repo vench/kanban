@@ -9,6 +9,7 @@
  * @property string $login
  * @property string $password
  * @property boolean $is_admin Description
+ * @property string $email
  *
  * The followings are the available model relations:
  * @property Project[] $projects
@@ -32,8 +33,10 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, login, password', 'required'),
-			array('name, login, password', 'length', 'max'=>255),
-                        array('is_admin', 'boolean'),
+			array('name, login, password,email', 'length', 'max'=>255),
+            array('is_admin', 'boolean'),
+			array('login,email', 'unique'),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, login, password', 'safe', 'on'=>'search'),
@@ -43,10 +46,10 @@ class User extends CActiveRecord
         /**
          * 
          * @return string
-         */
-        public function isAdminStr() {
+    */
+    public function isAdminStr() {
             return $this->is_admin == 1 ? Yii::t('main', 'Yes') : Yii::t('main', 'No');
-        }
+    }
 
 	/**
 	 * @return array relational rules.
@@ -70,7 +73,8 @@ class User extends CActiveRecord
 			'name' => Yii::t('main','User name'),
 			'login' => Yii::t('main','User login'),
 			'password' => Yii::t('main','User password'),
-                        'is_admin'=>Yii::t('main','User is admin'),
+            'is_admin'=>Yii::t('main','User is admin'),
+			'email'=>Yii::t('main','User email'),
 		);
 	}
 

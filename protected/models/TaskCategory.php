@@ -63,6 +63,18 @@ class TaskCategory extends CActiveRecord
 			'taskHistories1' => array(self::HAS_MANY, 'TaskHistory', 'old_category_id'),
 		);
 	}
+	
+	/**
+	*  @return boolean
+	*/
+	public function isTask($task_id) {
+		foreach($this->tasks as $task) {
+			if($task->getPrimaryKey() == $task_id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)

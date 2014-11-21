@@ -12,7 +12,8 @@
  * @property integer $color_hex
  * @property string $description
  * @property string $fulldescription
- * @property integer user_id
+ * @property integer $user_id
+ * @property integer $parent_id
  *
  * The followings are the available model relations:
  * @property TaskCategory $taskCategory
@@ -22,7 +23,7 @@
  * @property TaskFile[] $taskFiles
  * @property TaskComment $lastTaskComment
  * @property TaskHistory $lastTaskHistory
- 
+ * @property User $user 
  */
 class Task extends CActiveRecord
 {
@@ -51,6 +52,12 @@ class Task extends CActiveRecord
 	 public function hasColor() { 	
 		return  !is_null($this->color_hex);
 	 }
+	 /**
+	 * @return string
+	 */
+	 public function getShortName() {
+		return substr(strip_tags($this->description), 0, 64).'...';
+	 }
          
 
     /**
@@ -63,18 +70,18 @@ class Task extends CActiveRecord
 		return array(
             array('description', 'required'),
 			array('description', 'length', 'max'=>1000),
-			array('project_id, task_category_id, is_ready, priority, color_hex, user_id', 'numerical', 'integerOnly'=>true),
+			array('project_id, task_category_id, is_ready, priority, color_hex, user_id,parent_id', 'numerical', 'integerOnly'=>true),
 			array('fulldescription', 'safe'),
             array('task_category_id', 'validateTaskCategory'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, project_id, task_category_id, is_ready, description, fulldescription, user_id', 'safe', 'on'=>'search'),
+			array('id, project_id, task_category_id, is_ready, description, fulldescription, user_id,parent_id', 'safe', 'on'=>'search'),
 		);
 	}
 
     public function validateTaskCategory() {
             $category = TaskCategory::model()->findByPk($this->task_category_id);
-            if(!is_null($category) && $category->limit_task > 0 && $category->limit_task <= sizeof($category->tasks)) {
+            if(!is_null($category) && $category->limit_task > 0 && $category->limit_task <= sizeof($category->tasks) - ($category->isTask($this->getPrimaryKey()) ? 1 : 0)) {
                 $this->addError('task_category_id', Yii::t('main', 'You can not select this category. Now in her high notes.'));
             }
     }
@@ -95,6 +102,8 @@ class Task extends CActiveRecord
 			'lastTaskHistory' => array(self::HAS_ONE, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
 			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id'),
 			'taskCommentUsers' => array(self::HAS_MANY, 'TaskCommentUser', 'task_id'), 
+			'user'=> array(self::BELONGS_TO, 'User', 'user_id'), 
+			'parent'=> array(self::BELONGS_TO, 'Task', 'parent_id'), 
 		);
 	}
 
@@ -111,7 +120,9 @@ class Task extends CActiveRecord
 			'description' => Yii::t('main','Description'),
 			'fulldescription' => Yii::t('main','Full description'),
             'priority' => Yii::t('main','Task priority'),
-            'color_hex' => Yii::t('main','Task color'),                    
+            'color_hex' => Yii::t('main','Task color'),   
+			'user_id' => Yii::t('main','Task creator'),
+			'parent_id' => Yii::t('main','Task parent'),
 		);
 	}
 	

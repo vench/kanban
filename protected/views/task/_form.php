@@ -76,6 +76,18 @@ $taskCategory = TaskCategory::model()->findAll(array(
 		<?php echo $form->textArea($model,'fulldescription',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'fulldescription'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'parent_id'); ?>
+		<?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Task::model()->findAll(array(
+			'select'=>'id,description',
+			'condition'=>'id<>:id',
+			'params'=>array(
+				':id'=>$model->getPrimaryKey(),
+			)
+		)), 'id', 'ShortName')); ?>
+		<?php echo $form->error($model,'parent_id'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('main','Create') : Yii::t('main','Save') ); ?>

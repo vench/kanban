@@ -88,15 +88,15 @@ class UserController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
                 
-                if(isset($_POST['ChangeUserPassword'])) {
-                    $modelPassword->attributes = $_POST['ChangeUserPassword'];
-                    if ($modelPassword->validate()) {
+        if(isset($_POST['ChangeUserPassword'])) {
+            $modelPassword->attributes = $_POST['ChangeUserPassword'];
+            if ($modelPassword->validate()) {
                         $model->password = User::passwordHash($modelPassword->password);
                         $model->save();
-                        Yii::app()->user->setFlash('passwordChange','Password changed.');				
+                        Yii::app()->user->setFlash('passwordChange', Yii::t('main','Password changed.'));				
                         $this->refresh();
-                    }
-                }
+            }
+        }
 
 		$this->render('update',array(
 			'model'=>$model,

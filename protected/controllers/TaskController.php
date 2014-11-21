@@ -40,18 +40,80 @@ class TaskController extends Controller
 	public function accessRules()
 	{
 		return array( 
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create', 'view','update', 'delete', 'ajaxUpdateOrder', 'ajaxUpdate', 'completed', 'uploadFile', 'WithoutCategory',),
-				'users'=>array('@'),
+			array('allow', 
+				'actions'=>array(  'ajaxUpdateOrder',  'completed',  'WithoutCategory',),
+				'expression' => array($this,'allowTaskViewByProject'),
+			),
+			array('allow', 
+				'actions'=>array( 'view', 'ajaxUpdate', ),
+				'expression' => array($this,'allowTaskView'),
+			), 
+			array('allow', 
+				'actions'=>array( 'removeFile', ),
+				'expression' => array($this,'allowTaskFileRemove'),
+			),
+			array('allow', 
+				'actions'=>array('update', 'delete','uploadFile', ),
+				'expression' => array($this,'allowTaskEdit'),
+			),
+			array('allow',  
+				'actions'=>array('create'),
+				'expression' => array($this,'allowTaskCreate'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin'),
-				'users'=>array('admin'),
+				'expression' => array($this,'allowOnlyAdmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
+	}
+	
+	public function allowTaskFileRemove() {
+		return true;
+	}
+	
+	/**
+     * @return boolean
+    */	
+	public function allowTaskViewByProject() { 
+		return ProjectHelper::accessUserInProject(Yii::app()->request->getParam('id'));
+	}
+	
+	/**
+     * @return boolean
+    */
+	public function allowTaskView() {
+		$model = $this->loadModel(Yii::app()->request->getParam('id'));
+		return ProjectHelper::accessViewTask($model);
+	}
+	
+	/**
+     * @return boolean
+    */
+	public function allowTaskCreate() {
+		$model = $this->loadCategory(Yii::app()->request->getParam('categoryId'));
+		return ProjectHelper::accessUserInProject($model->project_id);
+	}
+	
+	/**
+     * @return boolean
+    */
+	public function allowTaskEdit() {
+		$model = $this->loadModel(Yii::app()->request->getParam('id')); 
+		return ProjectHelper::accessEditTask($model);
+	}
+	
+	/**
+	* @param integer $id TaskFile
+	*/
+	public function actionRemoveFile($id) {
+		$model = TaskFile::model()->findByPk($id);
+		if($model===null && ProjectHelper::accessEditTask($model->task))
+			throw new CHttpException(404,'The requested page does not exist.');
+		$model->delete();
+		$this->redirect(array('view','id'=>$model->task_id));
 	}
 
 	/**
@@ -130,9 +192,9 @@ class TaskController extends Controller
 	public function actionCreate($categoryId)
 	{
 		$category = $this->loadCategory($categoryId);
-                $model=new Task;
-                $model->task_category_id = $category->getPrimaryKey();
-                $model->project_id = $category->project_id;
+        $model=new Task;
+        $model->task_category_id = $category->getPrimaryKey();
+        $model->project_id = $category->project_id;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -158,8 +220,7 @@ class TaskController extends Controller
 	{
 		$model=$this->loadModel($id); 
 
-		if(isset($_POST['Task']))
-		{
+		if(isset($_POST['Task'])) {
 			$model->attributes=$_POST['Task'];
 			if($model->save())
 				$this->redirect(array('/project/view','id'=>$model->project_id));
@@ -180,6 +241,9 @@ class TaskController extends Controller
 		));
 	}
 	
+	/**
+	* @param integer $id ID
+	*/
 	public function actionUploadFile($id) {
 		$this->fileUpload($id);
 	}
@@ -199,10 +263,10 @@ class TaskController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/project/view', 'id'=>$model->project_id));
 	}
         
-        /**
-         * 
-         */
-        public function actionAjaxUpdateOrder() {
+    /**
+    * 
+    */
+    public function actionAjaxUpdateOrder() {
             $tasks = Yii::app()->request->getPost('tasks', array());
             if(sizeof($tasks) > 0) {
                 foreach($tasks as $priority=>$pk) {
@@ -214,32 +278,29 @@ class TaskController extends Controller
                 }
             }
             Yii::app()->end();
-        }
+    }
 
-        /**
-         * 
-         * @param type $id Task
-         * @throws CHttpException
-         */
-        public function actionAjaxUpdate() {
-            $id = Yii::app()->request->getParam('id');
-            $model = $this->loadModel($id);
-            if(isset($_POST['Task']))
-            {
+    /**
+    * 
+    * @param type $id Task
+    * @throws CHttpException
+    */
+    public function actionAjaxUpdate() {
+        $id = Yii::app()->request->getParam('id');
+        $model = $this->loadModel($id);
+        if(isset($_POST['Task'])) {
 			$model->attributes=$_POST['Task'];                       
-			if($model->save()) {
-                           
-                            echo json_encode(array('success'=>1));
-                        } else {
-                            echo json_encode(array('error'=>1, 'info'=>$model->getErrors()));
-                        }
-                        
-                        Yii::app()->end();
-            }
-            throw new CHttpException(404, "Error set params");
+			if($model->save(true, ProjectHelper::accessEditTask($model) ? null : array('task_category_id') )) {
+                echo json_encode(array('success'=>1));
+            } else {
+                 echo json_encode(array('error'=>1, 'info'=>$model->getErrors()));
+            }         
+            Yii::app()->end();
         }
+        throw new CHttpException(404, "Error set params");
+     }
 
-                /**
+    /**
 	 * Lists all models.
 	 */
 	public function actionIndex()
@@ -280,20 +341,20 @@ class TaskController extends Controller
 		return $model;
 	}
         
-        /**
-         * 
-         * @param integer $id
-         * @return TaskCategory
-         * @throws CHttpException
-         */
-        public function loadCategory($id) {
-                $model = TaskCategory::model()->findByPk($id);
-                if($model===null)
+    /**
+     * 
+     * @param integer $id
+     * @return TaskCategory
+     * @throws CHttpException
+    */
+    public function loadCategory($id) {
+        $model = TaskCategory::model()->findByPk($id);
+        if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-        }
+    }
 
-        /**
+    /**
 	 * Performs the AJAX validation.
 	 * @param Task $model the model to be validated
 	 */

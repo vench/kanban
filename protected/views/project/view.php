@@ -145,7 +145,7 @@ $(function(){
         list.each(function(index, item){
             stack[list.length - index] = $(item).data('pk');
         });               
-        $.post('<?php echo $this->createUrl('/task/ajaxUpdateOrder')?>', {tasks:stack}, function(data){});
+        $.post('<?php echo $this->createUrl('/task/ajaxUpdateOrder', array('id'=>$model->id))?>', {tasks:stack}, function(data){});
     };    
     
     $('td.droppable').sortable({

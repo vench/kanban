@@ -24,6 +24,7 @@ $this->menu=array(
 		'id',
 		'name',
 		'login', 
+		array('name'=>'email', 'value'=>CHtml::mailto($model->email, $model->email), 'type'=>'raw',),
 		array('name'=>'is_admin', 'value'=>$model->isAdminStr()),
 	),
 )); ?>
