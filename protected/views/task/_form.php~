@@ -82,9 +82,7 @@ $taskCategory = TaskCategory::model()->findAll(array(
 		<?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Task::model()->findAll(array(
 			'select'=>'id,description',
 			'condition'=>$model->isNewRecord ? 'project_id = :project_id' : 'project_id = :project_id AND id <> :id',
-			'params'=>$model->isNewRecord ? array(
-				':project_id'=>$model->project_id,
-			) : array(
+			'params'=>array(
 				':id'=>$model->getPrimaryKey(),
 				':project_id'=>$model->project_id,
 			)
