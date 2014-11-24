@@ -112,6 +112,8 @@ return array(
     'Projects'=>'Проекты',
     'Project'=>'Проект',
 	'Update TaskCategory'=>'Редактировать категорию',
+	'Notification of new job status {site}.'=>'Уведомление о новом статусе задания {site}.',
+	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'Задание {taskname} было установлено в статус: {status} {date} {username}.',
     
     'User password'=>'Пароль',
     'Task color'=>'Цвет',
@@ -136,6 +138,7 @@ return array(
 	
 	'Completed tasks'=>'Выполненные задачи',
 	'New posts'=>'Новые сообщения',
+	'Notify new stage by Email'=>'Уведомить о новом этапе по Email',
 	
 	'Last change {datetime}, {username}'=>'Последнее изменение {datetime}, {username}',
 	

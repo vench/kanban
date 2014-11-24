@@ -30,8 +30,13 @@
 				'/task/delete', 'id'=>$model->getPrimaryKey(),
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove task'),
+			'emailButtonUrl'=>array(
+				'/task/email', 'id'=>$model->getPrimaryKey(),
+			),
+			'emailButtonLabel'=>Yii::t('main', 'Notify new stage by Email'),
+
 			'createButtonVisible'=>false,
-			
+			'emailButtonVisible'=>true,
 			'deleteButtonVisible'=>ProjectHelper::accessEditTask($model),
 			'updateButtonVisible'=>ProjectHelper::accessEditTask($model),
 		));?> 

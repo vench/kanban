@@ -38,6 +38,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'mail'=>array(
+                    'class'=>'application.extensions.yii-mail.YiiMail'
+                ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(

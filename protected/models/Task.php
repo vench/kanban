@@ -52,11 +52,13 @@ class Task extends CActiveRecord
 	 public function hasColor() { 	
 		return  !is_null($this->color_hex);
 	 }
-	 /**
-	 * @return string
-	 */
+
+    /**
+     * 
+     * @return string
+     */
 	 public function getShortName() {
-		return substr(strip_tags($this->description), 0, 64).'...';
+		return (function_exists('mb_substr')) ? mb_substr(strip_tags($this->description), 0, 64, Yii::app()->charset).'...' : substr(strip_tags($this->description), 0, 64).'...';
 	 }
          
 

@@ -62,7 +62,7 @@ class TaskController extends Controller
 				'expression' => array($this,'allowOnlyAdmin'),
 			),
 			array('allow',
-				'actions'=>array('deleteTaskComment', 'create'),
+				'actions'=>array('deleteTaskComment', 'create', 'email'),
 				'users'=>array('@'),				
 			),
 			array('deny',  // deny all users
@@ -111,6 +111,37 @@ class TaskController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		$model->delete();
 		$this->redirect(array('view','id'=>$model->task_id));
+	}
+
+	/**
+	* @param integer $id ID Task
+	*/
+	public function actionEmail($id) {
+	      $model = $this->loadModel($id);
+	      if($model->user->email){
+		 	$user = User::model()->findByPk(Yii::app()->user->getId());
+			
+		      //send mail
+		      $url = Yii::app()->createAbsoluteUrl('site/index'); 
+		      Yii::import('application.extensions.yii-mail.*');
+		      $msg= '<p>'.Yii::t('main','Specifying {taskname} was established in status: {status} {date} {username}.', array(
+				'{taskname}'=>$model->description,
+				'{status}'=>$model->lastTaskHistory->newCategory->name,
+				'{date}'=>date('d-m-Y H:i',$model->lastTaskHistory->time_insert),
+				'{username}'=>$model->lastTaskHistory->user->name,
+			)).'</p>'; 
+		
+		      $message = new YiiMailMessage;
+		      $message->setBody($msg, 'text/html');
+		      $message->subject = Yii::t('main','Notification of new job status {site}.', array(
+				'{site}'=>Yii::app()->name,
+			));
+		      $message->addTo($model->user->email);
+		      $message->from = $user->email;
+		      Yii::app()->mail->send($message);
+ 
+		}
+		$this->redirect(array('/project/view', 'id'=>$model->project_id));
 	}
 
 	/**
