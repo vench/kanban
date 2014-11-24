@@ -21,7 +21,6 @@
 			'createButtonVisible'=>false,			
 			'deleteButtonVisible'=>  true,
 			'updateButtonVisible'=>false,
-			'viewButtonVisible'=>false,
 	));?> 
 
 		 

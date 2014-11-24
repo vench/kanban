@@ -62,7 +62,7 @@ class TaskController extends Controller
 				'expression' => array($this,'allowOnlyAdmin'),
 			),
 			array('allow',
-				'actions'=>array('deleteTaskComment', 'create'),
+				'actions'=>array('DeleteTaskComment', 'create'),
 				'users'=>array('@'),				
 			),
 			array('deny',  // deny all users

@@ -84,7 +84,7 @@ $this->menu=array(
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove comment'),
 			'createButtonVisible'=>false,			
-			'deleteButtonVisible'=>  (ProjectHelper::currentUserCreater($model->project) || $taskComment->user_id == Yii::app()->user->getId()),
+			'deleteButtonVisible'=>  ($taskComment->user_id == Yii::app()->user->getId()),
 			'updateButtonVisible'=>false,
 			'viewButtonVisible'=>false,
 	));?> 

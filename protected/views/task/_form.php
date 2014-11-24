@@ -88,7 +88,9 @@ $taskCategory = TaskCategory::model()->findAll(array(
 				':id'=>$model->getPrimaryKey(),
 				':project_id'=>$model->project_id,
 			)
-		)), 'id', 'ShortName')); ?>
+		)), 'id', 'ShortName'), array(
+			'empty'=>'',
+		)); ?>
 		<?php echo $form->error($model,'parent_id'); ?>
 	</div>
 
