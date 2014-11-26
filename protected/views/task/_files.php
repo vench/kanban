@@ -15,7 +15,7 @@
 
  	<?php $this->widget('application.widgets.BoxButton', array(			
 			'deleteButtonUrl'=>array(
-				'/task/delete', 'id'=>$file->getPrimaryKey(),
+				'/task/removeFile', 'id'=>$file->getPrimaryKey(),
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove file'),
 			'createButtonVisible'=>false,			

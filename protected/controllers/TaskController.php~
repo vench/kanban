@@ -124,7 +124,7 @@ class TaskController extends Controller
 		      //send mail
 		      $url = Yii::app()->createAbsoluteUrl('site/index'); 
 		      Yii::import('application.extensions.yii-mail.*');
-		      $msg= '<p>'.Yii::t('Specifying {taskname} was established in status: {status} {date} {username}.', array(
+		      $msg= '<p>'.Yii::t('main','Specifying {taskname} was established in status: {status} {date} {username}.', array(
 				'{taskname}'=>$model->description,
 				'{status}'=>$model->lastTaskHistory->newCategory->name,
 				'{date}'=>date('d-m-Y H:i',$model->lastTaskHistory->time_insert),
@@ -133,7 +133,7 @@ class TaskController extends Controller
 		
 		      $message = new YiiMailMessage;
 		      $message->setBody($msg, 'text/html');
-		      $message->subject = Yii::t('Notification of new job status {site}.', array(
+		      $message->subject = Yii::t('main','Notification of new job status {site}.', array(
 				'{site}'=>Yii::app()->name,
 			));
 		      $message->addTo($model->user->email);
