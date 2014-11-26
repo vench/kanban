@@ -45,7 +45,7 @@ class TaskController extends Controller
 				'expression' => array($this,'allowTaskViewByProject'),
 			),
 			array('allow', 
-				'actions'=>array( 'view', 'ajaxUpdate', ),
+				'actions'=>array( 'view', 'ajaxUpdate', 'uploadFile',),
 				'expression' => array($this,'allowTaskView'),
 			), 
 			array('allow', 
@@ -53,7 +53,7 @@ class TaskController extends Controller
 				'expression' => array($this,'allowTaskFileRemove'),
 			),
 			array('allow', 
-				'actions'=>array('update', 'delete','uploadFile', ),
+				'actions'=>array('update', 'delete', ),
 				'expression' => array($this,'allowTaskEdit'),
 			),
 			 
