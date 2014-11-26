@@ -102,7 +102,7 @@ class Task extends CActiveRecord
 			'taskComments' => array(self::HAS_MANY, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
 			'lastTaskComments' => array(self::HAS_ONE, 'TaskComment', 'task_id', 'order'=>'time_insert DESC'),
 			'lastTaskHistory' => array(self::HAS_ONE, 'TaskHistory', 'task_id', 'order'=>'time_insert DESC'),
-			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id'),
+			'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'task_id', 'order'=>'time_insert DESC'),
 			'taskCommentUsers' => array(self::HAS_MANY, 'TaskCommentUser', 'task_id'), 
 			'user'=> array(self::BELONGS_TO, 'User', 'user_id'), 
 			'parent'=> array(self::BELONGS_TO, 'Task', 'parent_id'), 

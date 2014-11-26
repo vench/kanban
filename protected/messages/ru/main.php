@@ -4,6 +4,7 @@
 
 return array(
     'Login'=>'Вход в систему',
+    'File name'=>'Имя файла',	
     'Logout ({name})'=>'Выйти ({name})', 
     'Remember me next time'=>'Запомнить меня',
     'Enter'=>'Войти',

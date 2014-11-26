@@ -14,7 +14,7 @@
 	),
 )); ?>
 
- <fieldset>
+ 
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -35,7 +35,7 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton(Yii::t('main','Add file')); ?>
 	</div>
-</fieldset>
+
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

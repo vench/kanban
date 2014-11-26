@@ -8,9 +8,9 @@
 		continue;
 	}
 ?>
-	<li><?php echo CHtml::link(basename($file->patch), array('uploadFile', 'id'=>$file->getPrimaryKey()), array('target'=>'_blank',));?>
+	<li><?php echo CHtml::link($file->getFileNameStr(), array('uploadFile', 'id'=>$file->getPrimaryKey()), array('target'=>'_blank',));?>
 
-
+	<small><?php echo date('d-m-Y H:i', $file->time_insert);?></small>
 
 
  	<?php $this->widget('application.widgets.BoxButton', array(			

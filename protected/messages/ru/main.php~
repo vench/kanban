@@ -113,7 +113,7 @@ return array(
     'Project'=>'Проект',
 	'Update TaskCategory'=>'Редактировать категорию',
 	'Notification of new job status {site}.'=>'Уведомление о новом статусе задания {site}.',
-	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'',
+	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'Задание {taskname} было установлено в статус: {status} {date} {username}.',
     
     'User password'=>'Пароль',
     'Task color'=>'Цвет',
