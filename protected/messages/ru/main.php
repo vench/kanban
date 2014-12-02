@@ -115,7 +115,7 @@ return array(
 	'Update TaskCategory'=>'Редактировать категорию',
 	'Notification of new job status {site}.'=>'Уведомление о новом статусе задания {site}.',
 	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'Задание {taskname} было установлено в статус: {status} {date} {username}.',
-    
+    'Without Category'=>'Без категории',
     'User password'=>'Пароль',
     'Task color'=>'Цвет',
 	'Name'=>'Название',
@@ -136,6 +136,10 @@ return array(
     'Please enter the letters as they are shown in the image above.'=>'Пожалуйста, введите буквы, изображенные на картинке выше.',
 	'Users'=>'Пользователи',
 	'User'=>'Пользователь',
+	'Time'=>'Время',
+	'Count'=>'Количество',
+	'Statistics on users'=>'Статистика по пользователям',
+	'General statistics'=>'Общая статистика',
 	
 	'Completed tasks'=>'Выполненные задачи',
 	'New posts'=>'Новые сообщения',

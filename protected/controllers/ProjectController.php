@@ -221,9 +221,16 @@ class ProjectController extends Controller
 	
 	public function actionStatistics($id) {
 		$model = $this->loadModel($id);
-		$taskHistores = TaskHistory::model()->finadAll(array(
+		$taskHistores = TaskHistory::model()->findAll(array(
+			'order'=>'t.task_id,t.time_insert',
 			'with'=>array(
-				'task'=>array(),
+				'task'=>array(
+					'select'=>false
+				),
+			),
+			'condition'=>'task.project_id = :project_id',
+			'params'=>array(
+				':project_id'=>$model->id,
 			),
 		));
 

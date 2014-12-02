@@ -22,7 +22,7 @@ class Project extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_project';
+		return '{{project}}';
 	}
 
 	/**
@@ -106,6 +106,18 @@ class Project extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/**
+	* @return TaskCategory
+	*/
+	public function getCategoryById($id) {
+		foreach($this->taskCategories as $taskCategorie) {
+			if($taskCategorie->getPrimaryKey() == $id) {
+				return $taskCategorie;
+			}
+		}
+		return NULL;
 	}
 
         /**
