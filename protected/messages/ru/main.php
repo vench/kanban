@@ -142,6 +142,7 @@ return array(
 	'Notify new stage by Email'=>'Уведомить о новом этапе по Email',
 	
 	'Last change {datetime}, {username}'=>'Последнее изменение {datetime}, {username}',
+	'Statistics'=>'Статистика',
 	
 	
 );

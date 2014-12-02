@@ -35,8 +35,8 @@ class ProjectController extends Controller
 				'actions'=>array('update', 'userProjectRmove' ,'delete'),
 				'expression' => array($this,'allowProjectRulesEdit'),
 			),
-                        array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view'),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('view', 'statistics',),
 				'expression' => array($this,'allowProjectRulesView'),
 			),
 			 
@@ -216,6 +216,21 @@ class ProjectController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+	public function actionStatistics($id) {
+		$model = $this->loadModel($id);
+		$taskHistores = TaskHistory::model()->finadAll(array(
+			'with'=>array(
+				'task'=>array(),
+			),
+		));
+
+		$this->render('statistics',array(
+			'model'=>$model,
+			'rows'=>$rows,
+			'taskHistores'=>$taskHistores,
 		));
 	}
 

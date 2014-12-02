@@ -35,6 +35,11 @@ $this->menu=array(
 		),
 	array('label'=>Yii::t('main','Completed tasks'), 'url'=>array('/task/completed', 'id'=>$model->getPrimaryKey())),
 	array('label'=>Yii::t('main','Tasks without category'), 'url'=>array('/task/withoutCategory', 'id'=>$model->getPrimaryKey())),
+	
+	array(
+		'label'=>Yii::t('main','Statistics'), 
+		'url'=>array('statistics', 'id'=>$model->id), 
+	),
 );
 ?>
 
