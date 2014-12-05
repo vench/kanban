@@ -34,7 +34,7 @@ class TaskComment extends CActiveRecord
 		return array(
 			array('comment', 'required'),
 			array('task_id, user_id, time_insert', 'numerical', 'integerOnly'=>true),
-			array('comment', 'length', 'max'=>255),
+			array('comment', 'length', 'max'=>1024),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, task_id, user_id, time_insert, comment', 'safe', 'on'=>'search'),
