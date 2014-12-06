@@ -49,7 +49,7 @@ $this->menu=array(
 		),	
 		array( 
 			'name'=>'user_id',
-			'value'=>$model->user->getViewName(),	
+			'value'=>isset($model->user) ? $model->user->getViewName() : Yii::t('main', 'No'),	
 		),	
 		array( 
 			'name'=>'parent_id',
@@ -80,12 +80,15 @@ $this->menu=array(
 			<div class="portlet-title">
  	<?php $this->widget('application.widgets.BoxButton', array(			
 			'deleteButtonUrl'=>array(
-				'/task/deleteTaskComment', 'id'=>$taskComment->getPrimaryKey(),
+				'/taskComment/delete', 'id'=>$taskComment->getPrimaryKey(),
+			),
+                        'updateButtonUrl'=>array(
+				'/taskComment/update', 'id'=>$taskComment->getPrimaryKey(),
 			),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove comment'),
 			'createButtonVisible'=>false,			
 			'deleteButtonVisible'=>  (ProjectHelper::currentUserCreater($model->project) || $taskComment->user_id == Yii::app()->user->getId()),
-			'updateButtonVisible'=>false,
+			'updateButtonVisible'=> (ProjectHelper::currentUserCreater($model->project) || $taskComment->user_id == Yii::app()->user->getId()),
 			'viewButtonVisible'=>false,
 	));?> 
 				<?php echo date('d.m.Y H:i',$taskComment->time_insert);?>

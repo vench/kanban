@@ -103,7 +103,7 @@ class m141018_121129_core extends CDbMigration
 			
 			//FK
             
-            if($this->getDbConnection()->driverName  === 'mysql') {
+            if($this->getDbConnection()->driverName  !== 'sqlite') {
                 $this->addForeignKey('FK_tbl_project_user_id', 
                                         'tbl_project', 
                                         'user_id', 

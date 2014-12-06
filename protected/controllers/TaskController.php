@@ -62,7 +62,7 @@ class TaskController extends Controller
 				'expression' => array($this,'allowOnlyAdmin'),
 			),
 			array('allow',
-				'actions'=>array('deleteTaskComment', 'create', 'email'),
+				'actions'=>array('create', 'email'),
 				'users'=>array('@'),				
 			),
 			array('deny',  // deny all users
@@ -144,16 +144,7 @@ class TaskController extends Controller
 		$this->redirect(array('/project/view', 'id'=>$model->project_id));
 	}
 
-	/**
-	* @param integer $id ID TaskComment
-	*/
-	public function actionDeleteTaskComment($id) {
-		$model = TaskComment::model()->findByPK($id);
-		if($model===null || $model->user_id != Yii::app()->user->getID() || !ProjectHelper::currentUserCreater($model->task->project))
-			throw new CHttpException(404,'The requested page does not exist.');
-		$model->delete();
-		$this->redirect(array('view', 'id'=>$model->task_id));
-	}
+ 
 
 	/**
 	 * Displays a particular model.
