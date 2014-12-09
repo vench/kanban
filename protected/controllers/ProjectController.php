@@ -235,8 +235,7 @@ class ProjectController extends Controller
 		));
 
 		$this->render('statistics',array(
-			'model'=>$model,
-			'rows'=>$rows,
+			'model'=>$model,			 
 			'taskHistores'=>$taskHistores,
 		));
 	}

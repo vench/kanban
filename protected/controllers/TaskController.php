@@ -430,7 +430,8 @@ class TaskController extends Controller
 		if(sizeof($users) == 0 || !is_array($users)) {
 			return;
 		}		 
-		$models=User::model()->findAllByAttributes(array('id'=>$users), 'email  IS NOT NULL', array(
+		$models=User::model()->findAll(array(
+			'condition'=>'t.email  IS NOT NULL AND id IN ('.join(',',$users).')',
 			'select'=>'email,id',
 		));
 		$list = CHtml::listData($models, 'id', 'email');  
