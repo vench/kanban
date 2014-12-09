@@ -25,7 +25,7 @@ class FileUploadCControllerBehavior extends CBehavior {
      
         $data = pathinfo($file->patch);
 		          
-		if(in_array(strtolower($data['extension']), array('jpg','jpeg','png','gif',))) {
+		if(in_array(strtolower($data['extension']), array('jpg','jpeg','png','gif','txt',))) {
             header("Content-type: image/{$data['extension']}");
             echo file_get_contents($file->patch);
         } else {
