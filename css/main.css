@@ -268,3 +268,7 @@ div.search-form
 .comment-new {
 	font-width:700; color:red;
 }
+ 
+div.row.list-checked label {
+	display:inline-block;
+}

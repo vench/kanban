@@ -130,6 +130,10 @@ class TaskController extends Controller
 				'{date}'=>date('d-m-Y H:i',$model->lastTaskHistory->time_insert),
 				'{username}'=>$model->lastTaskHistory->user->name,
 			)).'</p>'; 
+			$url = Yii::app()->createAbsoluteUrl('/task/view', array('id'=>$task->id)); 	
+			$msg .= '<p>'.Yii::t('main', 'View task: {link}', array(
+				'{link}'=>CHtml::link($url, $url),
+			)).'</p>';	
 		
 		      $message = new YiiMailMessage;
 		      $message->setBody($msg, 'text/html');
@@ -137,6 +141,7 @@ class TaskController extends Controller
 				'{site}'=>Yii::app()->name,
 			));
 		      $message->addTo($model->user->email);
+			  $message->addTo($model->project->user->email);
 		      $message->from = $user->email;
 		      Yii::app()->mail->send($message);
  
@@ -214,6 +219,8 @@ class TaskController extends Controller
 			'model'=>$model,
 		)); 
 	}
+	
+ 
 
 	/**
 	 * Creates a new model.
@@ -242,6 +249,9 @@ class TaskController extends Controller
 		if(isset($_POST['Task'])) {
 			$model->attributes=$_POST['Task'];
 			if($model->save()) {
+				if(isset($_POST['notifyUsers'])) {
+					$this->notifyUsers($_POST['notifyUsers'], $model, true);
+				}
 				$this->redirect(array('/project/view','id'=>$model->project_id));
             }
 		}
@@ -262,8 +272,12 @@ class TaskController extends Controller
 
 		if(isset($_POST['Task'])) {
 			$model->attributes=$_POST['Task'];
-			if($model->save())
+			if($model->save()) {
+				if(isset($_POST['notifyUsers'])) {
+					$this->notifyUsers($_POST['notifyUsers'], $model, false);
+				}
 				$this->redirect(array('/project/view','id'=>$model->project_id));
+			}
 		}
 		
 		$taskFile = new TaskFile();
@@ -405,5 +419,53 @@ class TaskController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	/**
+	* @param array $users
+	* @param Task $task
+	* @param boolean $isNew
+	*/
+	protected function notifyUsers($users, Task $task, $isNew = false) {
+		if(sizeof($users) == 0 || !is_array($users)) {
+			return;
+		}		 
+		$models=User::model()->findAllByAttributes(array('id'=>$users), 'email  IS NOT NULL', array(
+			'select'=>'email,id',
+		));
+		$list = CHtml::listData($models, 'id', 'email');  
+		
+		$user = User::model()->findByPk(Yii::app()->user->getId());
+		//send mail		
+		Yii::import('application.extensions.yii-mail.*');
+		//new
+		if($isNew) {
+			$msg= '<p>'.Yii::t('main','Create a new task {taskname} by user:  {username} {date}.', array(
+					'{taskname}'=>$task->description, 
+					'{date}'=>date('d-m-Y H:i',$task->lastTaskHistory->time_insert),
+					'{username}'=>$task->lastTaskHistory->user->name,
+				)).'</p>'; 
+		} else {
+			$msg= '<p>'.Yii::t('main','Update task {taskname} by user:  {username} {date}.', array(
+					'{taskname}'=>$task->description, 
+					'{date}'=>date('d-m-Y H:i',$task->lastTaskHistory->time_insert),
+					'{username}'=>$task->lastTaskHistory->user->name,
+				)).'</p>'; 
+		}	
+		$url = Yii::app()->createAbsoluteUrl('/task/view', array('id'=>$task->id)); 	
+		$msg .= '<p>'.Yii::t('main', 'View task: {link}', array(
+			'{link}'=>CHtml::link($url, $url),
+		)).'</p>';	
+		
+		$message = new YiiMailMessage;
+		$message->setBody($msg, 'text/html');
+		$message->subject = Yii::t('main', (($isNew) ? 'Notification of update task {site}.' : 'Notification of new task {site}.'), array(
+				'{site}'=>Yii::app()->name,
+		));
+		foreach($list as $mail) {
+			$message->addTo($mail);
+		}	
+		$message->from = $user->email;
+		Yii::app()->mail->send($message);
 	}
 }

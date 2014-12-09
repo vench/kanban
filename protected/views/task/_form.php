@@ -29,7 +29,9 @@ $taskCategory = TaskCategory::model()->findAll(array(
 	
         <?php echo $form->hiddenField($model,'project_id'); ?> 
         
-
+	<fieldset>
+		<legend><?php echo Yii::t('main','Overall');?></legend>
+	
         <div class="row">
 		<?php echo $form->labelEx($model,'task_category_id'); ?>
 		<?php echo $form->dropDownList($model,'task_category_id', CHtml::listData($taskCategory, 'id', 'name'), array(
@@ -93,6 +95,26 @@ $taskCategory = TaskCategory::model()->findAll(array(
 		)); ?>
 		<?php echo $form->error($model,'parent_id'); ?>
 	</div>
+	</fieldset>
+	<fieldset>
+		<legend><?php echo Yii::t('main','Notify of change');?></legend>
+		<div class="row list-checked">
+			<?php
+			$users = Chtml::listData(User::model()->findAll(array(
+				'select'=>'id,name',
+				'condition'=>'id = :uid1 OR id IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1)',
+				'params'=>array(
+					':pid1'=>$model->project_id,
+					':uid1'=>$model->user_id,
+				),
+			)), 'id', 'name');
+			echo CHtml::checkBoxList('notifyUsers', null, $users, array(
+				'template'=>'{input} {label}',
+			));
+			?>
+		
+		</div>
+	</fieldset>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('main','Create') : Yii::t('main','Save') ); ?>

@@ -82,11 +82,15 @@ $this->menu=array(
 			'deleteButtonUrl'=>array(
 				'/taskComment/delete', 'id'=>$taskComment->getPrimaryKey(),
 			),
-                        'updateButtonUrl'=>array(
+            'updateButtonUrl'=>array(
 				'/taskComment/update', 'id'=>$taskComment->getPrimaryKey(),
 			),
+			'createButtonUrl'=>array(
+				'/taskComment/createTask', 'id'=>$taskComment->getPrimaryKey(),
+			),
+			'createButtonLabel'=>Yii::t('main', 'Create new task'),
 			'deleteButtonLabel'=>Yii::t('main', 'Remove comment'),
-			'createButtonVisible'=>false,			
+			'createButtonVisible'=>true,			
 			'deleteButtonVisible'=>  (ProjectHelper::currentUserCreater($model->project) || $taskComment->user_id == Yii::app()->user->getId()),
 			'updateButtonVisible'=> (ProjectHelper::currentUserCreater($model->project) || $taskComment->user_id == Yii::app()->user->getId()),
 			'viewButtonVisible'=>false,

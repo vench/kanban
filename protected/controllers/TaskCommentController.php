@@ -23,7 +23,7 @@ class TaskCommentController extends Controller
 	{
 		return array( 			 
 			array('allow',
-				'actions'=>array('delete', 'update'),
+				'actions'=>array('delete', 'update', 'createTask'),
 				'users'=>array('@'),				
 			),
 			array('deny',  // deny all users
@@ -68,6 +68,27 @@ class TaskCommentController extends Controller
             $model->delete();
             $this->redirect(array('/task/view', 'id'=>$model->task_id));
         }
+		
+		 /**
+         * 
+         * @param type $id ID TaskComment
+         */
+		public function actionCreateTask($id) {
+			 $model = $this->loadModel($id);
+			 
+			 if(!ProjectHelper::accessUserInProject($model->task->project_id)) {
+				throw new CHttpException(404,'The requested page does not exist.');
+			 }
+			 $task = new Task();
+			 $task->project_id = $model->task->project_id;
+			 $task->user_id = Yii::app()->user->getId();
+			 $task->task_category_id = NULL;
+			 $task->parent_id = $model->task_id;
+			 $task->description = $model->comment;
+			 $task->save(); 
+			 
+			 $this->redirect(array('/task/update', 'id'=>$task->getPrimaryKey()));
+		}
         
         /**
          * 
@@ -79,17 +100,20 @@ class TaskCommentController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
             }
         }
+		
+		
+		
 
-                /**
+         /**
          * 
          * @param int $id
          * @return TaskComment
          * @throws CHttpException
          */
         public function loadModel($id) {
-		$model=  TaskComment::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
+			$model=  TaskComment::model()->findByPk($id);
+			if($model===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+			return $model;
+		}
 }

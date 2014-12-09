@@ -124,6 +124,13 @@ return array(
 	'Limit Task'=>'Количество заданий',
 	'The maximum number of simultaneously running tasks.'=>'Максимальное количество одновременно выполняемых задач.',
 	'If there is a 0, the number of tasks unlimited.'=>'Если стоит 0, то количество задач неограниченно.',
+	'Overall'=>'Общее',
+	'Notify of change'=>'Сообщить об изменениях',
+	'View task: {link}'=>'Просмотр задания: {link}',
+	'Create a new task {taskname} by user:  {username} {date}.'=>'Создана новая задача {taskname} пользователем:  {username} {date}.',
+	'Notification of new task {site}.'=>'Уведомление о новой задаче {site}.',
+	'Notification of update task {site}.'=>'Уведомление об обновлении задачи {site}.',
+	'Update task {taskname} by user:  {username} {date}.'=>'Задание изменено {taskname} пользователем:  {username} {date}.',
     
     'You can not select this category. Now in her high notes.'=>'Нельзя выбрать эту категорию. Сейчас в ней максимум записей.',
     
@@ -148,6 +155,7 @@ return array(
 	
 	'Last change {datetime}, {username}'=>'Последнее изменение {datetime}, {username}',
 	'Statistics'=>'Статистика',
+	'Create new task'=>'Создать новое задание',
 	
 	
     
