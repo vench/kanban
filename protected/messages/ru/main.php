@@ -45,6 +45,7 @@ return array(
 	'Add file'=>'Добавить файл',
 	'Create TaskCategory'=>'Создание категории',
 	'Tasks without category'=>'Задания без категории',
+	'Send'=>'Послать',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',

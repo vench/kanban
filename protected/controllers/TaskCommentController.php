@@ -85,6 +85,7 @@ class TaskCommentController extends Controller
 			 $task->task_category_id = NULL;
 			 $task->parent_id = $model->task_id;
 			 $task->description = $model->comment;
+			 $task->color_hex = $model->color_hex;
 			 $task->save(); 
 			 
 			 $this->redirect(array('/task/update', 'id'=>$task->getPrimaryKey()));

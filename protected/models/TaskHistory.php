@@ -87,8 +87,7 @@ class TaskHistory extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('task_id',$this->task_id);
-		$criteria->compare('old_category_id',$this->old_category_id);
+		$criteria->compare('task_id',$this->task_id); 
 		$criteria->compare('new_category_id',$this->new_category_id);
 		$criteria->compare('time_insert',$this->time_insert);
 

@@ -173,6 +173,22 @@ class Task extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function searchHistories() {
+		$model = new TaskHistory('search');
+		$model->task_id = $this->id;
+		$dp = $model->search();
+		$dp->sort->defaultOrder = 't.time_insert DESC';
+		$dp->criteria->with = array(
+			'user'=>array(),
+			'newCategory'=>array(),
+		);
+		return $dp;
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.

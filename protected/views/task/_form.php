@@ -105,7 +105,7 @@ $taskCategory = TaskCategory::model()->findAll(array(
 				'condition'=>'id = :uid1 OR id IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1)',
 				'params'=>array(
 					':pid1'=>$model->project_id,
-					':uid1'=>$model->user_id,
+					':uid1'=>$model->project->user_id,
 				),
 			)), 'id', 'name');
 			echo CHtml::checkBoxList('notifyUsers', null, $users, array(

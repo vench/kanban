@@ -8,7 +8,7 @@
 	<div class="task-box-content">
 	   <h5>
 	   <?php if($model->hasNewComment()) {?> 
-	   <span class="comment-new" title="<?php echo Yii::t('main', 'New posts');?>">!</span>
+	   <span class="comment-new" title="<?php echo Yii::t('main', 'New posts');?>"></span>
 	   <?php } ?>
 	   
 	   <?php echo  $model->description;?></h5>

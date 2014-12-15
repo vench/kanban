@@ -118,8 +118,17 @@ class TaskController extends Controller
 	*/
 	public function actionEmail($id) {
 	      $model = $this->loadModel($id);
-	      if($model->user->email){
-		 	$user = User::model()->findByPk(Yii::app()->user->getId());
+		  $users = User::model()->findAll(array(
+				'select'=>'id,name,email',
+				'condition'=>'id = :uid1 OR id IN (SELECT user_id FROM {{user_project}} WHERE project_id=:pid1)',
+				'params'=>array(
+					':pid1'=>$model->project_id,
+					':uid1'=>$model->project->user_id,
+				),
+			));
+			
+		if(isset($_POST['notifyUsers'])) {
+			 $user = User::model()->findByPk(Yii::app()->user->getId());
 			
 		      //send mail
 		      $url = Yii::app()->createAbsoluteUrl('site/index'); 
@@ -130,7 +139,7 @@ class TaskController extends Controller
 				'{date}'=>date('d-m-Y H:i',$model->lastTaskHistory->time_insert),
 				'{username}'=>$model->lastTaskHistory->user->name,
 			)).'</p>'; 
-			$url = Yii::app()->createAbsoluteUrl('/task/view', array('id'=>$task->id)); 	
+			$url = Yii::app()->createAbsoluteUrl('/task/view', array('id'=>$model->id)); 	
 			$msg .= '<p>'.Yii::t('main', 'View task: {link}', array(
 				'{link}'=>CHtml::link($url, $url),
 			)).'</p>';	
@@ -140,13 +149,25 @@ class TaskController extends Controller
 		      $message->subject = Yii::t('main','Notification of new job status {site}.', array(
 				'{site}'=>Yii::app()->name,
 			));
-		      $message->addTo($model->user->email);
-			  $message->addTo($model->project->user->email);
+			
+			  foreach($users as $user)	{
+				if(isset($_POST['notifyUsers'][$user->id])) {
+					$message->addTo($user->email);
+				}
+			  } 
+			 
 		      $message->from = $user->email;
-		      Yii::app()->mail->send($message);
- 
+		      if($message->to && sizeof($message->to) > 0) {
+				Yii::app()->mail->send($message);
+			  }
+			  $this->redirect(array('/project/view', 'id'=>$model->project_id));
 		}
-		$this->redirect(array('/project/view', 'id'=>$model->project_id));
+		  
+		 
+		$this->render('email', array(
+			'model'=>$model,
+			'users'=>$users,
+		));
 	}
 
  

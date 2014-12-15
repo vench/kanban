@@ -266,7 +266,7 @@ div.search-form
 }
 
 .comment-new {
-	font-width:700; color:red;
+	background: url('comment-new.jpg') no-repeat center; width: 10px;height: 30px;display: inline-block;float: left;margin: 0 3px 3px 0px;
 }
  
 div.row.list-checked label {

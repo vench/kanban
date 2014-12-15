@@ -6,7 +6,7 @@
 
 $this->breadcrumbs=array(
         Yii::t('main', 'Projects')=>array('/projects'),
-	Yii::t('main', 'Project')=>array('/project/view', 'id'=>$model->project_id),
+	Yii::t('main', 'Project').': '.$model->project->name=>array('/project/view', 'id'=>$model->project_id),
 	Yii::t('main', 'Detail task'),
 );
 
@@ -26,6 +26,10 @@ $this->menu=array(
 		'visible'=>ProjectHelper::ownerTask($model) || ProjectHelper::currentUserCreater($model->project),
 	),
 	//array('label'=>'Manage Task', 'url'=>array('admin')),
+	array(
+		'label'=>Yii::t('main','Notify new stage by Email'), 
+		'url'=>array('email', 'id'=>$model->id),
+	),
 );/**/
 ?>
 
@@ -53,7 +57,7 @@ $this->menu=array(
 		),	
 		array( 
 			'name'=>'parent_id',
-			'value'=>($model->parent_id > 0) ? CHtml::link(Yii::t('main', 'View parent'), array('view', 'id'=>$model->parent_id)) : Yii::t('main', 'No'),
+			'value'=>($model->parent_id > 0) ? CHtml::link($model->parent->getShortName(), array('view', 'id'=>$model->parent_id), array('title'=>Yii::t('main', 'View parent'),)) : Yii::t('main', 'No'),
 			'type'=>'raw',	
 		),	
 		array( 
@@ -109,27 +113,31 @@ $this->menu=array(
 
 <br/><br/>
 <h3><?php echo Yii::t('main', 'History of status changes');?></h3> 
-<table class="detail-view">
-	<thead>
-		<th><?php echo Yii::t('main', 'Date'); ?></th>
-		<th><?php echo Yii::t('main', 'Status'); ?></th>
-		<th><?php echo Yii::t('main', 'User'); ?></th>
-	</thead>
-	<tbody>
-<?php foreach($model->taskHistories as $n=>$history) { ?> 
-<tr class="<?php if($n % 2 == 0): ?>  odd <?php else :?> even<?php  endif?>">
-    <td><?php echo Yii::t('main', 'Time insert: {date}', array(
-        '{date}'=>date('d.m.Y H:i', $history->time_insert),
-    ));?>
-    </td><td>
-    <?php echo $history->newCategory->name; ?>
-    </td><td>    
-    <?php if(isset($history->user)) {?>  
-        <?php echo Yii::t('main', 'Changed'); ?> <?php echo $history->user->name; ?>
-    <?php }?>    
-    </td>
-</tr>	
-<?php } ?>
-	</tbody>
-</table>
+
+
+
+	 
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'task-history-grid',
+	'dataProvider'=>$model->searchHistories(), 
+	'columns'=>array(
+		array(
+			'name'=>'time_insert',
+			'header'=>Yii::t('main', 'Date'),
+			'value'=>'date("d.m.Y H:i", $data->time_insert)', 
+		), 	
+		array(
+			'name'=>'new_category_id',
+			'header'=>Yii::t('main', 'Status'),
+			'value'=>'$data->newCategory->name',
+		),
+		array(
+			'name'=>'user_id',
+			'header'=>Yii::t('main', 'User'),
+			'value'=>'$data->user->name',
+		),  
+	),
+)); ?>
+
+ 
 
