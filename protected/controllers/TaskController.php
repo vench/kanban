@@ -150,16 +150,15 @@ class TaskController extends Controller
 				'{site}'=>Yii::app()->name,
 			));
 			
-			  foreach($users as $user)	{
-				if(isset($_POST['notifyUsers'][$user->id])) {
-					$message->addTo($user->email);
+			  foreach($users as $u)	{
+				if(in_array($u->id, $_POST['notifyUsers']) && $u->email) {  
+					$message->addTo($u->email);
 				}
 			  } 
 			 
 		      $message->from = $user->email;
-		      if($message->to && sizeof($message->to) > 0) {
-				Yii::app()->mail->send($message);
-			  }
+		      Yii::app()->mail->send($message);
+			  
 			  $this->redirect(array('/project/view', 'id'=>$model->project_id));
 		}
 		  

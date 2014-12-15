@@ -116,7 +116,7 @@ return array(
     'Project'=>'Проект',
 	'Update TaskCategory'=>'Редактировать категорию',
 	'Notification of new job status {site}.'=>'Уведомление о новом статусе задания {site}.',
-	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'Задание {taskname} было установлено в статус: {status} {date} {username}.',
+	'Specifying {taskname} was established in status: {status} {date} {username}.'=>'Задание «{taskname}» было установлено в статус: {status} {date} {username}.',
     'Without Category'=>'Без категории',
     'User password'=>'Пароль',
     'Task color'=>'Цвет',
@@ -128,10 +128,10 @@ return array(
 	'Overall'=>'Общее',
 	'Notify of change'=>'Сообщить об изменениях',
 	'View task: {link}'=>'Просмотр задания: {link}',
-	'Create a new task {taskname} by user:  {username} {date}.'=>'Создана новая задача {taskname} пользователем:  {username} {date}.',
+	'Create a new task {taskname} by user:  {username} {date}.'=>'Создана новая задача «{taskname}» пользователем:  {username} {date}.',
 	'Notification of new task {site}.'=>'Уведомление о новой задаче {site}.',
 	'Notification of update task {site}.'=>'Уведомление об обновлении задачи {site}.',
-	'Update task {taskname} by user:  {username} {date}.'=>'Задание изменено {taskname} пользователем:  {username} {date}.',
+	'Update task {taskname} by user:  {username} {date}.'=>'Задание изменено «{taskname}» пользователем:  {username} {date}.',
     
     'You can not select this category. Now in her high notes.'=>'Нельзя выбрать эту категорию. Сейчас в ней максимум записей.',
     
