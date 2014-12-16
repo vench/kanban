@@ -251,7 +251,11 @@ div.search-form
     width:auto; margin-right: 190px;
 }
 
-.span-5.right {
+.m-span-10 {
+    width:auto; margin-right: 380px;
+}
+
+.span-5.right, .m-span-10.right {
     margin: 0px; float: right;
 }
 

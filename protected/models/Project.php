@@ -164,6 +164,19 @@ class Project extends CActiveRecord
 		}
 		return $size;
 	}	
+	
+	/**
+	* @return int
+	*/	
+	public function getSizeWichOutViewTable() {
+		$size = 0;
+		foreach($this->taskCategories as $cat){
+			if(!$cat->view_in_table) {
+				$size  ++;
+			}
+		}
+		return $size;
+	}
 
      /**
 	 * Returns the static model of the specified AR class.

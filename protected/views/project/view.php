@@ -62,7 +62,12 @@ $this->widget('zii.widgets.CMenu', array(
 ));
 $this->endWidget();
 	?>
-		
+			</div>
+ </div>
+ 
+ <?php if($model->getSizeWichOutViewTable() > 0) {?>
+<div class="span-5 right">	
+		<div class="sidebar">
 		<?php
 $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>Yii::t('main','Categories'),
@@ -85,7 +90,8 @@ $this->endWidget();
 	?>
 		</div>
  </div>
- <div class="m-span-5">
+ <?php } ?>
+ <div class="<?php if($model->getSizeWichOutViewTable() > 0) :?>m-span-10 <?php else:?> m-span-5 <?php endif;?>">
 	 <div class="content">
 
 <?php $this->widget('zii.widgets.CDetailView', array(
