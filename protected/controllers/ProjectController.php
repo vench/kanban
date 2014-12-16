@@ -36,7 +36,7 @@ class ProjectController extends Controller
 				'expression' => array($this,'allowProjectRulesEdit'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view', 'statistics',),
+				'actions'=>array('view', 'statistics', 'viewTree',),
 				'expression' => array($this,'allowProjectRulesView'),
 			),
 			 
@@ -61,8 +61,46 @@ class ProjectController extends Controller
             $projectID  = Yii::app()->request->getParam('id');
             return ProjectHelper::accessCreaterProject($projectID);
     }
+	
+	/**
+	* @param integer $id ID Project
+	*/
+	public function actionViewTree($id) {
+		$model=Project::model()->findByPk($id, array(
+			'with'=>array(
+				'taskCategories'=>array(),
+				'user'=>array(), 
+				//'tasks'=>array(),
+			), 
+		));
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.'); 
+	 
+		 
+		$tasks = Task::model()->findAll(array(
+			'condition'=>'project_id=:project_id AND is_ready = 0 AND task_category_id IS NOT NULL',
+			'params'=>array(
+				':project_id'=>$model->getPrimaryKey(),
+			),
+			'with'=>array(
+				'lastTaskHistory'=>array(
+					'with'=>array('user'=>array('select'=>'name',))
+				),
+				'project'=>array(
+				
+				),
+			),
+			'order'=>'t.priority DESC',
+			'select'=>'id,task_category_id,description,color_hex,project_id,user_id',
+		));	
+		
+		$this->render('viewTree',array(
+			'model'=>$model, 
+			'tasks'=>$tasks,
+		));
+	}
         
-        /**
+    /**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */

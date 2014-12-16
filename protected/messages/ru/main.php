@@ -46,6 +46,9 @@ return array(
 	'Create TaskCategory'=>'Создание категории',
 	'Tasks without category'=>'Задания без категории',
 	'Send'=>'Послать',
+	'Unload file'=>'Выгрузить в файл',
+	'View tree'=>'Просмотреть дерево',
+	'Show on the main page'=>'Показывать на главной странице',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',
@@ -57,6 +60,7 @@ return array(
     'Create Project'=>'Создать проект',
     'Manage Project'=>'Управление проектами',
     'Manage Projects'=>'Управление проектами',
+	'Categories'=>'Категории',
     
     'Update User'=>'Редактирование пользователя',
     'Change password'=>'Смена пароля',
@@ -157,6 +161,7 @@ return array(
 	'Last change {datetime}, {username}'=>'Последнее изменение {datetime}, {username}',
 	'Statistics'=>'Статистика',
 	'Create new task'=>'Создать новое задание',
+	'Tasks'=>'Задачи',
 	
 	
     

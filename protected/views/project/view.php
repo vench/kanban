@@ -40,6 +40,10 @@ $this->menu=array(
 		'label'=>Yii::t('main','Statistics'), 
 		'url'=>array('statistics', 'id'=>$model->id), 
 	),
+	array(
+		'label'=>Yii::t('main','View tree'), 
+		'url'=>array('viewTree', 'id'=>$model->id), 
+	),
 );
 ?>
 
@@ -59,6 +63,26 @@ $this->widget('zii.widgets.CMenu', array(
 $this->endWidget();
 	?>
 		
+		<?php
+$this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>Yii::t('main','Categories'),
+));
+$menu = array();
+foreach($model->taskCategories as $taskCategory) { 
+	if(!$taskCategory->view_in_table) {
+		$menu[] = array(
+			'label'=>$taskCategory->name, 
+			'url'=>array('/taskCategory/view', 'id'=>$taskCategory->id), 
+		); 
+	}
+}	
+
+$this->widget('zii.widgets.CMenu', array(
+			'items'=>$menu ,
+			'htmlOptions'=>array('class'=>'operations'),
+));
+$this->endWidget();
+	?>
 		</div>
  </div>
  <div class="m-span-5">
@@ -79,8 +103,12 @@ $this->endWidget();
     <thead>
     <tr>
 <?php 
-$size = (int)(100 / sizeof($model->taskCategories));
-foreach($model->taskCategories as $taskCategory) { ?>     
+$size = $model->getSizeViewTable() ? (int)(100 / $model->getSizeViewTable()) : 100;
+foreach($model->taskCategories as $taskCategory) { 
+	if(!$taskCategory->view_in_table) {
+		continue;
+	}
+	?>     
     <th style="width:<?php echo $size?>%;">
        <h4> <?php echo $taskCategory->name;?> </h4>
 	   
@@ -117,7 +145,11 @@ foreach($model->taskCategories as $taskCategory) { ?>
     </thead>
     <tbody>
            <tr>
-<?php foreach($model->taskCategories as $taskCategory) { ?>     
+<?php foreach($model->taskCategories as $taskCategory) { 
+		if(!$taskCategory->view_in_table) {
+			continue;
+		}
+		?>     
         <td class="droppable" data-pk="<?php echo $taskCategory->getPrimaryKey(); ?>"> 
            <?php foreach($tasks as $task) {  
 			  if($task->task_category_id == $taskCategory->getPrimaryKey()) {

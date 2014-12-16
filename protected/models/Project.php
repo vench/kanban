@@ -146,12 +146,26 @@ class Project extends CActiveRecord
                 $model->project_id=$this->getPrimaryKey();
                 $model->order_pos = 0;
                 $model->limit_task = 0;
+				$model->view_in_table = 1;
                 $model->name = $name;
                 $model->save();
             }
         }
+		
+	/**
+	* @return int
+	*/	
+	public function getSizeViewTable() {
+		$size = 0;
+		foreach($this->taskCategories as $cat){
+			if($cat->view_in_table) {
+				$size  ++;
+			}
+		}
+		return $size;
+	}	
 
-                /**
+     /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

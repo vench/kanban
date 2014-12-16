@@ -43,6 +43,12 @@
 		<?php echo $form->error($model,'limit_task'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'view_in_table'); ?>
+		<?php echo $form->checkBox($model,'view_in_table'); ?>
+		<?php echo $form->error($model,'view_in_table'); ?>
+	</div>
+	
 	
 
 	<div class="row buttons">

@@ -9,6 +9,7 @@
  * @property integer $user_id
  * @property integer $time_insert
  * @property string $comment
+ * 
  *
  * The followings are the available model relations:
  * @property User $user
@@ -35,6 +36,7 @@ class TaskComment extends CActiveRecord
 			array('comment', 'required'),
 			array('task_id, user_id, time_insert', 'numerical', 'integerOnly'=>true),
 			array('comment', 'length', 'max'=>1024),
+			
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, task_id, user_id, time_insert, comment', 'safe', 'on'=>'search'),
@@ -64,7 +66,7 @@ class TaskComment extends CActiveRecord
 			'task_id' => Yii::t('main','Task'),
 			'user_id' => Yii::t('main','User'),
 			'time_insert' => Yii::t('main','Time Insert'),
-			'comment' => Yii::t('main','Comment'),
+			'comment' => Yii::t('main','Comment'),			
 		);
 	}
 

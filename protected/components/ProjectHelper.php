@@ -103,5 +103,7 @@ class ProjectHelper {
 	public static function ownerTask(Task $model) {
 		return Yii::app()->user->getId() == $model->user_id;
 	}
+		
+ 
     
 }

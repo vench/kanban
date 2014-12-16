@@ -9,6 +9,7 @@
  * @property integer $order_pos
  * @property integer $limit_task
  * @property string $name
+ * @property boolean $view_in_table
  *
  * The followings are the available model relations:
  * @property Task[] $tasks
@@ -43,6 +44,7 @@ class TaskCategory extends CActiveRecord
 			array('limit_task, name', 'required'),
 			array('project_id, order_pos, limit_task', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
+			array('view_in_table', 'boolean',),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, project_id, order_pos, limit_task, name', 'safe', 'on'=>'search'),
@@ -87,6 +89,7 @@ class TaskCategory extends CActiveRecord
 			'order_pos' => Yii::t('main','Order Pos'),
 			'limit_task' => Yii::t('main','Limit Task'),
 			'name' => Yii::t('main','Name'),
+			'view_in_table'=> Yii::t('main','Show on the main page'), 
 		);
 	}
 
