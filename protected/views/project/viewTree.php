@@ -28,14 +28,14 @@ $this->menu=array(
 	<ul>
 		 <?php foreach($tasks as $task) { 
 			if($task->task_category_id == $taskCategory->getPrimaryKey()) { ?>
-			<li><?php echo $task->getShortName(); ?></li>
+			<li><?php echo $task->description; ?></li>
 			
 			<?php if(sizeof($task->taskComments) > 0) { ?> 
 				<br/>
 				<b><?php echo Yii::t('main', 'Comments to the task');?></b><br/>
 				<ul>
 					<?php foreach($task->taskComments as $comment) { ?> 
-						<?php echo $comment->comment; ?>
+						<li><?php echo $comment->comment; ?></li>
 					<?php }?>
 				</ul>
 			<?php }?>

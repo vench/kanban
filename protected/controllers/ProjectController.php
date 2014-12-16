@@ -118,7 +118,7 @@ class ProjectController extends Controller
 	 
 		 
 		$tasks = Task::model()->findAll(array(
-			'condition'=>'project_id=:project_id AND is_ready = 0 AND task_category_id IS NOT NULL',
+			'condition'=>'t.project_id=:project_id AND t.is_ready = 0 AND t.task_category_id IS NOT NULL AND taskCategory.view_in_table = 1',
 			'params'=>array(
 				':project_id'=>$model->getPrimaryKey(),
 			),
@@ -128,6 +128,9 @@ class ProjectController extends Controller
 				),
 				'project'=>array(
 				
+				),
+				'taskCategory'=>array(
+					'select'=>false,
 				),
 			),
 			'order'=>'t.priority DESC',
