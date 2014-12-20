@@ -116,7 +116,7 @@ foreach($model->taskCategories as $taskCategory) {
 	}
 	?>     
     <th style="width:<?php echo $size?>%;">
-       <h4> <?php echo $taskCategory->name;?> </h4>
+       <h4> <?php echo CHTml::link($taskCategory->name, array('/taskCategory/view', 'id'=>$taskCategory->id), array('title'=>Yii::t('main', 'View category')));?> </h4>
 	   
 	   <p>
 	   	<?php $this->widget('application.widgets.BoxButton', array(

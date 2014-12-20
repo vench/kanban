@@ -18,6 +18,9 @@
 		 
 		<?php echo $form->textArea($model,'comment', array('rosw'=>'10', 'cols'=>'70',)); ?>
 		<?php echo $form->error($model,'comment'); ?>
+             <p class="note"><?php echo Yii::t('main','Allowed HTML tags: {tags}', array(
+                    '{tags}'=>Utill::getAllowHTMLTagsStr(),
+                )); ?></p>
 	</div> 
 
 

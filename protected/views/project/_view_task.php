@@ -11,7 +11,7 @@
 	   <span class="comment-new" title="<?php echo Yii::t('main', 'New posts');?>"></span>
 	   <?php } ?>
 	   
-	   <?php echo  $model->description;?></h5>
+	   <?php echo  Utill::safetext($model->description);?></h5>
 	   
 		
 		<div>

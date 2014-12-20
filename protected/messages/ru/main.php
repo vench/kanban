@@ -163,14 +163,15 @@ return array(
 	'Create new task'=>'Создать новое задание',
 	'Tasks'=>'Задачи',
 	
-	
+    'View category'=>'Просмотр категории',
+    'Allowed HTML tags: {tags}'=>'Доступные HTML теги: {tags}',
     
     'Kanban project - is a free web application released under the license'=>'Канбан проект - является бесплатным веб приложением распространяемое по лицензии',
     'Kanban project - a convenient way to control the management of the project based on the ideology of <a href="https://ru.wikipedia.org/wiki/Канбан" target="_balnk">«Kanban»</a> soft control.'=>'Канбан проект - это удобное средство для контроля управления проектом основанное на идеологии <a href="https://ru.wikipedia.org/wiki/Канбан" target="_balnk">«Канбан»</a> мягкого управления.',
     'I hope this program will be helpful and useful.'=>'Надеюсь, эта программа будет вам полезна и удобна.',
     'This solution allows you to store all projects in one place and monitor tasks moves over them. Promotes self-organization and motivation of participants. Allows you to keep track of the actual time of the task on the basis of this make real predictions in the future. Visualize the process of project implementation.'=>
         'Данное решение позволяет хранить все проекты в одном месте и контролировать ходы выполнения задач над ними.<br/> Способствует самоорганизации и мотивированности участников.<br/> Позволяет отслеживать фактическое время выполнения задачь  исходя из этого делать реальные прогнозы в дальнейшем. <br/>Визуализировать процесс  выполнения проекта',
-    'For questions and suggestions you can send a letter to the address: <i>nowwrit(dog)mail.ru</i>'=>'Для вопросов и предложений вы можете отправлять письма на адрес: <i>nowwrit(dog)mail.ru</i>',
+    'For questions and suggestions you can send a letter to the address: <i>nowwrit(dog)mail.ru</i>'=>'Для вопросов и предложений вы можете отправлять письма на адрес: <i>nowwrit(собака)mail.ru</i>',
     
         
 );

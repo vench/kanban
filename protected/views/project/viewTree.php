@@ -9,7 +9,7 @@
 $this->breadcrumbs=array(
 	Yii::t('main','Projects')=>array('index'),
 	$model->name=>array('view', 'id'=>$model->id),
-	Yii::t('main','Unload file'),
+	Yii::t('main','View tree'),
 );
 
 $this->menu=array( 
@@ -20,7 +20,7 @@ $this->menu=array(
 );
 
 ?>
-<h1><?php echo Yii::t('main','Unload file');?></h1>
+<h1><?php echo Yii::t('main','View tree');?></h1>
 
 <?php foreach($model->taskCategories as $taskCategory) { ?>  
 	<div class="view">
@@ -28,7 +28,7 @@ $this->menu=array(
 	<ul>
 		 <?php foreach($tasks as $task) { 
 			if($task->task_category_id == $taskCategory->getPrimaryKey()) { ?>
-			<li><?php echo $task->description; ?></li>
+			<li><?php echo Utill::safetext($task->description); ?></li>
 			
 			<?php if(sizeof($task->taskComments) > 0) { ?> 
 				<br/>

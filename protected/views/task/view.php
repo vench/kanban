@@ -106,7 +106,7 @@ $this->menu=array(
 			</div>
 		</div>
 		<div class="portlet-content">
-			<?php echo $taskComment->comment;?>
+			<?php echo Utill::safetext($taskComment->comment);?>
 		</div>
 	</div>
 <?php } ?>

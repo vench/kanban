@@ -105,6 +105,7 @@ class TaskComment extends CActiveRecord
 			$this->time_insert = time();
 			$this->sendNotifications();
 		}
+                $this->comment = Utill::safetextsave($this->comment);
 		return parent::beforeSave();
 	}
 

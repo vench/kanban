@@ -217,8 +217,8 @@ class Task extends CActiveRecord
 		if($this->isNewRecord) {
 			$this->user_id = Yii::app()->user->getId(); 
 		}
-		$this->description = Utill::safetext($this->description);
-		$this->fulldescription = Utill::safetext($this->fulldescription);
+		$this->description = Utill::safetextsave($this->description);
+		$this->fulldescription = Utill::safetextsave($this->fulldescription);
 		return parent::beforeSave();
 	}
 

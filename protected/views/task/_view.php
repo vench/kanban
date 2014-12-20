@@ -5,7 +5,7 @@
 
 <div class="view">
 
-	<h4><?php echo CHtml::encode($data->description); ?></h4>
+	<h4><?php echo Utill::safetext($data->description); ?></h4>
  
 	<b><?php echo CHtml::encode($data->getAttributeLabel('is_ready')); ?>:</b>
 	<?php echo $data->is_ready == 1 ? Yii::t('main', 'Yes') : Yii::t('main', 'No'); ?>

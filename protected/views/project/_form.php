@@ -35,6 +35,9 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
+             <p class="note"><?php echo Yii::t('main','Allowed HTML tags: {tags}', array(
+                    '{tags}'=>Utill::getAllowHTMLTagsStr(),
+                )); ?></p>
 	</div>
 
 	<div class="row buttons">

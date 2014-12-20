@@ -177,6 +177,11 @@ class Project extends CActiveRecord
 		}
 		return $size;
 	}
+        
+        protected function beforeSave() {
+            $this->description = Utill::safetextsave($this->description);
+            return parent::beforeSave();
+        }
 
      /**
 	 * Returns the static model of the specified AR class.
