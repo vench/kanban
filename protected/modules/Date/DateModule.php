@@ -13,6 +13,14 @@ class DateModule extends KModule
 					'url'=>array('Test', 'id'=>1), 
 				); 
 		}
+		
+		if($constEvent == self::BEFORE_PROJECT_CONTENT) {
+			$dataContext['controller']->tabs['zii'] = array(
+				'title'=>'Test x',
+				'data'=>'xxx',
+				//'url'=>'http://ya.ru', 
+			);
+		}
 	}
 	
 	public function init()

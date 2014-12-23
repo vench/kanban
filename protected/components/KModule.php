@@ -6,14 +6,63 @@
 abstract class KModule extends CWebModule {
 	
 	/**
-	* before project menu main
+	* Before project menu main.
+	* In the context provided:
+	* array(
+	*  $menu array  menu
+	*  $controller ProjectController
+	* ),
 	*/
 	const BEFORE_PROJECT_MENU_MAIN = 1; 
 	
 	/**
-	* after project menu main
+	* After project menu main.
+	* In the context provided:
+	* array(
+	*  $menu array  menu
+	*  $controller ProjectController
+	* ),
 	*/
 	const AFTER_PROJECT_MENU_MAIN = 2; 
+	
+	/**
+	* Before project sidebar.
+	* In the context provided:
+	* array( 
+	*  $controller ProjectController
+	* ),
+	*/
+	const BEFORE_PROJECT_SIDEBAR = 3;
+	
+	/**
+	* After project sidebar.
+	* In the context provided:
+	* array( 
+	*  $controller ProjectController
+	* ),
+	*/
+	const AFTER_PROJECT_SIDEBAR = 4;
+	
+	/**
+	* Before project content.
+	* In the context provided:
+	* array( 
+	*  $controller ProjectController
+	* ),
+	*/
+	const BEFORE_PROJECT_CONTENT = 5;
+	
+	/**
+	* After project content.
+	* In the context provided:
+	* array( 
+	*  $controller ProjectController
+	* ),
+	*/
+	const AFTER_PROJECT_CONTENT = 6;
+	
+	
+	
 	 
 	/**
 	* Get human name modul

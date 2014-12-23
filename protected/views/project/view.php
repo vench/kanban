@@ -14,6 +14,7 @@ $this->breadcrumbs=array(
   
 KModule::fireEvents($model, KModule::BEFORE_PROJECT_MENU_MAIN, array(
 	'menu'=>$this->menu,
+	'controller'=>$this,
 ));  
 $this->menu=array(
 	//array('label'=>Yii::t('main','List Project'), 'url'=>array('index')),
@@ -62,6 +63,10 @@ KModule::fireEvents($model, KModule::AFTER_PROJECT_MENU_MAIN, array(
  <div class="span-5 right">
 		<div class="sidebar">
 <?php
+KModule::fireEvents($model, KModule::BEFORE_PROJECT_SIDEBAR, array(	 
+	'controller'=>$this,
+)); 
+
 $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>Yii::t('main','Operations'),
 ));
@@ -70,7 +75,11 @@ $this->widget('zii.widgets.CMenu', array(
 			'htmlOptions'=>array('class'=>'operations'),
 ));
 $this->endWidget();
-	?>
+
+KModule::fireEvents($model, KModule::AFTER_PROJECT_SIDEBAR, array(	 
+	'controller'=>$this,
+)); 
+?>
 			</div>
  </div>
  
@@ -90,7 +99,6 @@ foreach($model->taskCategories as $taskCategory) {
 		); 
 	}
 }	
-
 $this->widget('zii.widgets.CMenu', array(
 			'items'=>$menu ,
 			'htmlOptions'=>array('class'=>'operations'),
@@ -106,24 +114,21 @@ $this->endWidget();
  
 
 <?php
- $this->widget('CTabView', array(
-     'tabs'=>array(
-       /* 'tab1'=>array(
-             'title'=>'tab 1 title',
-             'view'=>'view1',
-             'data'=>array('model'=>$model),
-         ), 
-         'tab2'=>array(
-             'title'=>'tab 2 title',
-             'url'=>'http://www.yiiframework.com/',
-         ),*/
-		 '0'=>array(
-             'title'=>Yii::t('main', 'Overall'),
-             'view'=>'_overall',
-             'data'=>array('model'=>$model, 'showParent'=>$showParent,),
-         ),
-      ),
-  ));
+KModule::fireEvents($model, KModule::BEFORE_PROJECT_CONTENT, array(	 
+	'controller'=>$this,
+));
+array_unshift($this->tabs, array(
+    'title'=>Yii::t('main', 'Overall'),
+    'view'=>'_overall',
+    'data'=>array('model'=>$model, 'showParent'=>$showParent,),
+));
+ 
+$this->widget('CTabView', array(
+     'tabs'=>$this->tabs,
+));
+KModule::fireEvents($model, KModule::AFTER_PROJECT_CONTENT, array(	 
+	'controller'=>$this,
+)); 
 ?> 
 
 
