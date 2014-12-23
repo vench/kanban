@@ -91,7 +91,7 @@ class ProjectController extends Controller
 				),
 			),
 			'order'=>'t.priority DESC',
-			'select'=>'id,task_category_id,description,color_hex,project_id,user_id',
+			'select'=>'id,task_category_id,description,color_hex,project_id,user_id,fulldescription',
 		));	
 		
 		$this->render('viewTree',array(

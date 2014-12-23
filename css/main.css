@@ -276,3 +276,14 @@ div.search-form
 div.row.list-checked label {
 	display:inline-block;
 }
+
+ol>li{
+	display:block
+}
+ol>li:before{
+	content:counters(item,".") ". ";
+	counter-increment:item
+}
+ol{
+	counter-reset:item
+}

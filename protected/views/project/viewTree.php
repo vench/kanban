@@ -25,22 +25,24 @@ $this->menu=array(
 <?php foreach($model->taskCategories as $taskCategory) { ?>  
 	<div class="view">
 	<h3><?php echo $taskCategory->name;?></h3>
-	<ul>
+	<ol>
 		 <?php foreach($tasks as $task) { 
 			if($task->task_category_id == $taskCategory->getPrimaryKey()) { ?>
-			<li><?php echo Utill::safetext($task->description); ?></li>
+			<li><b><?php echo Utill::safetext($task->description); ?></b><br/>
+			<em><?php echo Utill::safetext($task->fulldescription); ?></em>
 			
 			<?php if(sizeof($task->taskComments) > 0) { ?> 
 				<br/>
 				<b><?php echo Yii::t('main', 'Comments to the task');?></b><br/>
-				<ul>
+				<ol>
 					<?php foreach($task->taskComments as $comment) { ?> 
 						<li><?php echo $comment->comment; ?></li>
 					<?php }?>
-				</ul>
+				</ol>
 			<?php }?>
+			</li>
 			
 		 <?php } } ?>
-	</ul>
+	</ol>
 	</div>
 <?php } ?>
