@@ -62,3 +62,12 @@ $users = Chtml::listData(User::model()->findAll(array(
                 ));?></li>
 <?php } ?>
 </ul>
+
+
+<?php if(sizeof($dataList = KModule::getListModules()) > 0) {  ?>
+<h3><?php echo Yii::t('main', 'Modules project');?></h3>
+<?php  echo CHtml::dropDownList('x',null, $dataList, array(
+	'size'=>'10',
+	'multiple'=>'multiple',
+));  
+ }   

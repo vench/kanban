@@ -2,6 +2,7 @@
 /* @var $this ProjectController */
 /* @var $model Project */
 /* @var $tasks Task[] */   
+/* @var $showParent boolean */  
  
 
 
@@ -93,14 +94,31 @@ $this->endWidget();
  <?php } ?>
  <div class="<?php if($model->getSizeWichOutViewTable() > 0) :?>m-span-10 <?php else:?> m-span-5 <?php endif;?>">
 	 <div class="content">
+	 
+ 
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(		 
-		array('name'=>'user_id', 'value'=>$model->user->name),		 
-		array('name'=>'description','type'=>'raw',), 
-	),
-)); ?>
+<?php
+ $this->widget('CTabView', array(
+     'tabs'=>array(
+       /* 'tab1'=>array(
+             'title'=>'tab 1 title',
+             'view'=>'view1',
+             'data'=>array('model'=>$model),
+         ), 
+         'tab2'=>array(
+             'title'=>'tab 2 title',
+             'url'=>'http://www.yiiframework.com/',
+         ),*/
+		 '0'=>array(
+             'title'=>Yii::t('main', 'Overall'),
+             'view'=>'_overall',
+             'data'=>array('model'=>$model, 'showParent'=>$showParent,),
+         ),
+      ),
+  ));
+?> 
+
+
 </div></div>
  
 </div>

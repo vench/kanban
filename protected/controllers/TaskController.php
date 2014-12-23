@@ -301,6 +301,7 @@ class TaskController extends Controller
 		}
 		
 		$taskFile = new TaskFile();
+		$taskFile->project_id = $model->project_id;
 		$taskFile->task_id = $model->getPrimaryKey();
 		if(isset($_POST['TaskFile'])) {
 			$taskFile->attributes=$_POST['TaskFile'];

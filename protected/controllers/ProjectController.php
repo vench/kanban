@@ -116,9 +116,10 @@ class ProjectController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.'); 
 	 
-		 
+		$showParent = Yii::app()->request->getParam('only-parent', 0); 
 		$tasks = Task::model()->findAll(array(
-			'condition'=>'t.project_id=:project_id AND t.is_ready = 0 AND t.task_category_id IS NOT NULL AND taskCategory.view_in_table = 1',
+			'condition'=>'t.project_id=:project_id AND t.is_ready = 0 AND t.task_category_id IS NOT NULL AND taskCategory.view_in_table = 1'
+			. ($showParent  ? ' AND (t.parent_id IS NULL OR t.parent_id = 0)' : ''),
 			'params'=>array(
 				':project_id'=>$model->getPrimaryKey(),
 			),
@@ -142,6 +143,7 @@ class ProjectController extends Controller
 		$this->render('view',array(
 			'model'=>$model, 
 			'tasks'=>$tasks,
+			'showParent'=>$showParent,
 		));
 	}
 
@@ -237,9 +239,17 @@ class ProjectController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Project');
+	public function actionIndex() {
+	
+		$criteria=new CDbCriteria();
+		$criteria->condition = '(t.user_id=:user_id OR t.id IN (select project_id FROM tbl_user_project WHERE user_id=:user_id1))'; 
+		$criteria->params = array(
+			':user_id'=>Yii::app()->user->getId(),
+			':user_id1'=>Yii::app()->user->getId(),
+		);
+		$dataProvider=new CActiveDataProvider('Project', array(
+			'criteria'=>$criteria,
+		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

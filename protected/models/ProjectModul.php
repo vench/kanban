@@ -1,60 +1,37 @@
 <?php
 
 /**
- * This is the model class for table "{{task_file}}".
+ * This is the model class for table "{{project_modul}}".
  *
- * The followings are the available columns in table '{{task_file}}':
+ * The followings are the available columns in table '{{project_modul}}':
  * @property integer $id
- * @property integer $task_id
- * @property string $patch
- * @property string $filename
- * @property integer $time_insert
+ * @property string $modul_name
  * @property integer $project_id
- *
- * The followings are the available model relations:
- * @property Task $task
  */
-class TaskFile extends CActiveRecord
+class ProjectModul extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{task_file}}';
-	}
-	
-	/**
-    *
-    * @return array 
-    */
-    public function behaviors() {
-        return array_merge(parent::behaviors(),array(
-            'fileUploadCActiveRecordBehavior'=>array(
-                'class'=>'FileUploadCActiveRecordBehavior',
-                'fileFields'=>array('patch'), 
-		'fileNameAs'=>array('patch'=>'filename',),
-		'extensions' => array( 'jpg', 'png', 'jpeg', 'gif', 'doc', 'docx', 'txt', 'pdf', 'xls', 'xlsx', ),
-            ),
-        ));
-    }
-
-	public function getFileNameStr() {
-		return !is_null($this->filename) ? $this->filename : basename($this->patch);
+		return '{{project_modul}}';
 	}
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
-	{ 
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
 		return array(
-			array('patch', 'required'),
-			array('task_id,time_insert,project_id', 'numerical', 'integerOnly'=>true),
-			array('patch,filename', 'length', 'max'=>255),
+			array('modul_name', 'required'),
+			array('project_id', 'numerical', 'integerOnly'=>true),
+			array('modul_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, task_id, patch,string', 'safe', 'on'=>'search'),
+			array('id, modul_name, project_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,7 +43,6 @@ class TaskFile extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'task' => array(self::BELONGS_TO, 'Task', 'task_id'),
 		);
 	}
 
@@ -77,11 +53,8 @@ class TaskFile extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'task_id' => 'Task',
-			'project_id'  => 'Project',
-			'patch' => 'Patch',
-			'filename'=> Yii::t('main', 'File name'),
-			'time_insert' => Yii::t('main', 'Time Insert'),
+			'modul_name' => Yii::t('main','Modul Name'),
+			'project_id' => 'Project',
 		);
 	}
 
@@ -104,26 +77,19 @@ class TaskFile extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('task_id',$this->task_id);
-		$criteria->compare('patch',$this->patch,true);
+		$criteria->compare('modul_name',$this->modul_name,true);
+		$criteria->compare('project_id',$this->project_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
-	protected function beforeSave() {
-		if($this->isNewRecord) {
-			$this->time_insert = time();
-		}
-		return parent::beforeSave();
-	}
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TaskFile the static model class
+	 * @return ProjectModul the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

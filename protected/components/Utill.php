@@ -42,7 +42,7 @@ class Utill {
          */
 	public static function safeText($string) { 
 	
-            $string = self::safeTextSave($string);
+            $string = nl2br(self::safeTextSave($string));
                
             return preg_replace_callback(
                '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/i',        
