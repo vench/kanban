@@ -17,7 +17,7 @@ class DateModule extends KModule
 		if($constEvent == self::BEFORE_PROJECT_CONTENT) {
 			$dataContext['controller']->tabs['zii'] = array(
 				'title'=>'Test x',
-				'data'=>'xxx',
+				'content'=>'xxx',
 				//'url'=>'http://ya.ru', 
 			);
 		}
