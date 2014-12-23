@@ -1,15 +1,35 @@
 <?php 
 
+/**
+* Class KModule base module for Project
+*/
 abstract class KModule extends CWebModule {
 	
+	/**
+	* before project menu main
+	*/
+	const BEFORE_PROJECT_MENU_MAIN = 1; 
+	
+	/**
+	* after project menu main
+	*/
+	const AFTER_PROJECT_MENU_MAIN = 2; 
 	 
 	/**
-	*	@return string
+	* Get human name modul
+	* @return string
 	*/ 
 	abstract public function getHumanName();
 	
+	/**
+	* The event handler in the project. Allows access to the display elements.
+	* @param string $constEvent Name initiator events
+	* @param mixed $dataContext
+	*/
+	abstract public function handlerEvent($constEvent, $dataContext = NULL);
 	
 	/**
+	* List of modules used.
 	*	@return array
 	*/
 	public static function getListModules() {
@@ -21,5 +41,23 @@ abstract class KModule extends CWebModule {
 			}
 		} 
 		return $list;
+	}
+	
+	/**
+	* @param Project $model
+	* @param string $constEvent Name initiator events
+	* @param mixed $dataContext
+	*/
+	public static function fireEvents(Project $model, $constEvent, $dataContext = NULL) {
+		if(!is_array($dataContext)){
+			$dataContext = array();
+		}
+		if(!isset($dataContext['project'])) {
+			$dataContext['project'] = $model;
+		}
+		foreach($model->modules as $modul){
+			$module = (Yii::app()->getModule($modul->modul_name));
+			$module->handlerEvent($constEvent, $dataContext);
+		}
 	}
 }

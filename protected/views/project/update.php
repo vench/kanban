@@ -52,7 +52,7 @@ $users = Chtml::listData(User::model()->findAll(array(
 	</div>
 
 <?php $this->endWidget(); ?>
-
+</div>
 <ul>
 <?php foreach($model->users as $user) { ?>
     <li><?php echo $user->name;?> 
@@ -66,8 +66,28 @@ $users = Chtml::listData(User::model()->findAll(array(
 
 <?php if(sizeof($dataList = KModule::getListModules()) > 0) {  ?>
 <h3><?php echo Yii::t('main', 'Modules project');?></h3>
-<?php  echo CHtml::dropDownList('x',null, $dataList, array(
-	'size'=>'10',
-	'multiple'=>'multiple',
-));  
- }   
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'module-project-form', 
+	'enableAjaxValidation'=>false,
+)); ?>
+<?php echo $form->hiddenField($projectModul,'project_id'); ?>
+
+    <div class="row">
+		<?php echo $form->labelEx($projectModul,'modul_name'); ?>
+	 
+	<?php  echo $form->dropDownList($projectModul, 'modul_name', $dataList, array(
+		'size'=>'10',
+		'multiple'=>'multiple',
+	));  
+	?>
+			<?php echo $form->error($projectModul,'modul_name'); ?>
+	</div>
+	<div class="row buttons">
+		<?php echo CHtml::submitButton( Yii::t('main','Save')); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+</div>
+ <?php }    ?>

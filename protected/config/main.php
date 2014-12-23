@@ -34,7 +34,9 @@ return array(
         'money'=>array( 
 		),
    
+		'date'=>array(
 		
+		),
 	),
 
 	// application components

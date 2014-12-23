@@ -175,33 +175,45 @@ class ProjectController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
+	public function actionUpdate($id) {
+		$model=$this->loadModel($id); 
 
-		 
-
-		if(isset($_POST['Project']))
-		{
+		if(isset($_POST['Project'])) {
 			$model->attributes=$_POST['Project'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
                 
-                $userProject = new UserProject();
-                $userProject->project_id = $model->getPrimaryKey();
+		$userProject = new UserProject();
+		$userProject->project_id = $model->getPrimaryKey();
                 
-                if(isset($_POST['UserProject']))
-		{
-                    $userProject->attributes=$_POST['UserProject'];
-                    if($userProject->save()) {
+		if(isset($_POST['UserProject'])) {
+			$userProject->attributes=$_POST['UserProject'];
+			if($userProject->save()) {
 				$this->refresh ();
-                    }
-                }
+			}
+		}
+		
+		$projectModul = new ProjectModul();
+		$projectModul->modul_name = CHtml::listData($model->modules, 'modul_name', 'modul_name');
+		if(isset($_POST['ProjectModul'])) {
+			$projectModul->attributes=$_POST['ProjectModul']; 
+			ProjectModul::model()->deleteAll('project_id=:project_id', array(
+				':project_id'=>$model->id,
+			));
+			foreach($projectModul->modul_name as $name) {
+				$newModul = new ProjectModul();
+				$newModul->project_id = $model->id;
+				$newModul->modul_name = $name;
+				$newModul->save();
+			}	
+			$this->refresh ();
+		}
 
 		$this->render('update',array(
 			'model'=>$model,
-                        'userProject'=>$userProject,
+			'userProject'=>$userProject,
+			'projectModul'=>$projectModul,
 		));
 	}
 

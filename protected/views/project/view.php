@@ -12,6 +12,9 @@ $this->breadcrumbs=array(
 	$model->name,
 );
   
+KModule::fireEvents($model, KModule::BEFORE_PROJECT_MENU_MAIN, array(
+	'menu'=>$this->menu,
+));  
 $this->menu=array(
 	//array('label'=>Yii::t('main','List Project'), 'url'=>array('index')),
 	//array('label'=>Yii::t('main','Create Project'), 'url'=>array('create')),
@@ -46,6 +49,11 @@ $this->menu=array(
 		'url'=>array('viewTree', 'id'=>$model->id), 
 	),
 );
+KModule::fireEvents($model, KModule::AFTER_PROJECT_MENU_MAIN, array(
+	'menu'=>$this->menu,
+	'controller'=>$this,
+)); 
+ 
 ?>
 
 <h1><?php echo Yii::t('main', 'View Project');?> #<?php echo $model->name; ?></h1>

@@ -1,16 +1,20 @@
 <?php
 
-class MoneyModule extends KModule
+class DateModule extends KModule
 {
-
 	public function getHumanName() {
-		return Yii::t('MoneyModule.main', 'Module name');
+		return __CLASS__;
 	}
 	
 	public function handlerEvent($constEvent, $dataContext = NULL) {
-		
+		if($constEvent == self::AFTER_PROJECT_MENU_MAIN) {
+			$dataContext['controller']->menu[] = 	array(
+					'label'=>'Test', 
+					'url'=>array('Test', 'id'=>1), 
+				); 
+		}
 	}
-
+	
 	public function init()
 	{
 		// this method is called when the module is being created
@@ -18,8 +22,8 @@ class MoneyModule extends KModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'money.models.*',
-			'money.components.*',
+			'date.models.*',
+			'date.components.*',
 		));
 	}
 

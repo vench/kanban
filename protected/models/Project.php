@@ -14,9 +14,9 @@
  * @property Task[] $tasks
  * @property Task[] $viewTasks
  * @property TaskCategory[] $taskCategories
+ * @property ProjectModul[] $modules
  */
-class Project extends CActiveRecord
-{
+class Project extends CActiveRecord  {
 	/**
 	 * @return string the associated database table name
 	 */
@@ -64,6 +64,7 @@ class Project extends CActiveRecord
 				'with'=>array('taskCommentUsers'=>array('select'=>'user_id',)),
 			),
 			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
+			'modules' => array(self::HAS_MANY, 'ProjectModul', 'project_id', ),
 		);
 	}
 
