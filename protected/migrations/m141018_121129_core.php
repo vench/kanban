@@ -88,7 +88,7 @@ class m141018_121129_core extends CDbMigration
 				'task_id' => 'int',
 				'user_id'=>'int',
 				'time_insert'=>'int',
-				'comment' => 'string NOT NULL', 
+				'comment' => 'varchar(1024) NOT NULL', 
 			));
 			$this->createIndex('tbl_task_comment_task_id', 'tbl_task_comment', 'task_id'); 
 			$this->createIndex('tbl_task_comment_user_id', 'tbl_task_comment', 'user_id'); 
