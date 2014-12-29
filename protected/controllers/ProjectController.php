@@ -205,7 +205,9 @@ class ProjectController extends Controller
 				$newModul = new ProjectModul();
 				$newModul->project_id = $model->id;
 				$newModul->modul_name = $name;
-				$newModul->save();
+				if($newModul->save()) {
+                                    Yii::app()->getModule($name)->install();
+                                }
 			}	
 			$this->refresh ();
 		}

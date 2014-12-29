@@ -1,5 +1,13 @@
 <?php
 
+
+class MoneyModuleHandler {
+    
+    public static function handler($constEvent, $dataContext = NULL) {
+        
+    }
+}
+
 class MoneyModule extends KModule
 {
 
@@ -8,30 +16,46 @@ class MoneyModule extends KModule
 	}
 	
 	public function handlerEvent($constEvent, $dataContext = NULL) {
-		
+		MoneyModuleHandler::handler($constEvent, $dataContext);
 	}
 
-	public function init()
-	{
-		// this method is called when the module is being created
-		// you may place code here to customize the module or the application
-
-		// import the module-level models and components
+	public function init() { 
 		$this->setImport(array(
 			'money.models.*',
 			'money.components.*',
 		));
 	}
 
-	public function beforeControllerAction($controller, $action)
-	{
-		if(parent::beforeControllerAction($controller, $action))
-		{
-			// this method is called before any module controller action is performed
-			// you may place customized code here
+	public function beforeControllerAction($controller, $action) {
+		if(parent::beforeControllerAction($controller, $action)) { 
 			return true;
 		}
-		else
-			return false;
+		
+		return false;
 	}
+        
+        public function install() {
+            $db = Yii::app()->db;
+            
+            try {
+                $db->createCommand()->select()->from('{{money}}')->select('id')->query(); 
+            } catch(Exception $e) {
+                $db->createCommand()->createTable('{{money}}',array(
+                            'id'=>'pk',
+                            'task_id'=>'integer',
+                            'money'=>'integer',
+                            'status'=>'boolean',
+                            'date_time'=>'integer',
+                            'comment'=>'string',
+                ));
+                $db->createCommand()->createIndex('money_task_id', '{{money}}', 'task_id');
+                if($db->driverName  !== 'sqlite') {
+                    $db->createCommand()->addForeignKey('FK_money_task_id', 
+                                        '{{money}}', 
+                                        'task_id', 
+                                        '{{task}}', 
+                                        'id', 'CASCADE', 'NO ACTION');
+                }
+           }
+        }
 }

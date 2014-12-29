@@ -61,6 +61,28 @@ abstract class KModule extends CWebModule {
 	*/
 	const AFTER_PROJECT_CONTENT = 6;
 	
+        /**
+         * Before project menu main.
+         * In the context provided:
+         * array( 
+	 *  $controller ProjectController,
+         *  $menu array,
+         *  $task Task
+	 * ),
+         */
+        const BEFORE_TASK_MENU_MAIN = 7;
+        
+        /**
+         * After project menu main.
+         * In the context provided:
+         * array( 
+	 *  $controller ProjectController,
+         *  $menu array,
+         *  $task Task
+	 * ),
+         */
+        const AFTER_TASK_MENU_MAIN = 8;
+        
 	
 	
 	 
@@ -76,6 +98,11 @@ abstract class KModule extends CWebModule {
 	* @param mixed $dataContext
 	*/
 	abstract public function handlerEvent($constEvent, $dataContext = NULL);
+        
+        /**
+         * Caused during the installation of the module in the project
+         */
+        abstract public function install();
 	
 	/**
 	* List of modules used.

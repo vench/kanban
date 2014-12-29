@@ -10,6 +10,11 @@ $this->breadcrumbs=array(
 	Yii::t('main', 'Detail task'),
 );
 
+KModule::fireEvents($model->project, KModule::BEFORE_TASK_MENU_MAIN, array(
+	'menu'=>$this->menu,
+	'controller'=>$this,
+        'task'=>$model,
+)); 
 $this->menu=array(
 //	array('label'=>'List Task', 'url'=>array('index')),
 	array(
@@ -31,44 +36,36 @@ $this->menu=array(
 		'url'=>array('email', 'id'=>$model->id),
 	),
 );/**/
+KModule::fireEvents($model->project, KModule::AFTER_TASK_MENU_MAIN, array(
+	'menu'=>$this->menu,
+	'controller'=>$this,
+        'task'=>$model,
+)); 
+
 ?>
 
 <h1><?php echo Yii::t('main', 'Detail task');?> #<?php echo $model->description; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(		 
-		array(
-                    'name'=>'project_id', 
-                    'type'=>'raw',
-                    'value'=>CHtml::link($model->project->name, array('/project/view', 'id'=>$model->project_id))
-                ),
-		array(
-                    'name'=>'task_category_id',
-                    'value'=>$model->taskCategory->name,
-                ),
-		array( 
-			'name'=>'is_ready',
-			'value'=>$model->is_ready == 1 ? Yii::t('main', 'Yes') : Yii::t('main', 'No'),	
-		),	
-		array( 
-			'name'=>'user_id',
-			'value'=>isset($model->user) ? $model->user->getViewName() : Yii::t('main', 'No'),	
-		),	
-		array( 
-			'name'=>'parent_id',
-			'value'=>($model->parent_id > 0) ? CHtml::link($model->parent->getShortName(), array('view', 'id'=>$model->parent_id), array('title'=>Yii::t('main', 'View parent'),)) : Yii::t('main', 'No'),
-			'type'=>'raw',	
-		),	
-		array( 
-			'name'=>'fulldescription', 
-			'type'=>'raw',
-		)
-	),
-)); ?>
-<br/><br/>
-<h3><?php echo Yii::t('main', 'Task files');?></h3> 
-<?php $this->renderPartial('_files',array('model'=>$model));  ?>
+<?php
+array_unshift($this->tabs, array(
+    'title'=>Yii::t('main', 'Task files'),
+    'view'=>'_files',
+    'data'=>array('model'=>$model, 'showParent'=>$showParent,),
+));
+array_unshift($this->tabs, array(
+    'title'=>Yii::t('main', 'Overall'),
+    'view'=>'_overall',
+    'data'=>array('model'=>$model, 'showParent'=>$showParent,),
+));
+
+ 
+$this->widget('CTabView', array(
+     'tabs'=>$this->tabs,
+));
+?>
+
+
+ 
 
 
 
