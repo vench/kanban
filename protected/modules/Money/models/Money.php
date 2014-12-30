@@ -32,6 +32,7 @@ class Money extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('money, task_id', 'required'),
 			array('task_id, money, status, date_time', 'numerical', 'integerOnly'=>true),
 			array('comment', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -51,6 +52,19 @@ class Money extends CActiveRecord
 			'task' => array(self::BELONGS_TO, 'Task', 'task_id'),
 		);
 	}
+        
+        /**
+         * 
+         * @return string
+         */
+        public function getHash() {            
+            return strtolower(get_class($this)).$this->task_id;
+        }
+        
+        public function getStatusStr() {
+            $data = self::getListStatus();
+            return isset($data[$this->status]) ? $data[$this->status] : Yii::t('main', 'No');
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -59,11 +73,11 @@ class Money extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'task_id' => Yii::t('money.main', 'Task'),
-			'money' => Yii::t('money.main', 'Money'),
-			'status' => Yii::t('money.main', 'Status'),
-			'date_time' => Yii::t('money.main', 'Date Time'),
-			'comment' => Yii::t('money.main', 'Comment'),
+			'task_id' => Yii::t('MoneyModule.main', 'Task'),
+			'money' => Yii::t('MoneyModule.main', 'Money'),
+			'status' => Yii::t('MoneyModule.main', 'Status'),
+			'date_time' => Yii::t('MoneyModule.main', 'Date Time'),
+			'comment' => Yii::t('MoneyModule.main', 'Comment'),
 		);
 	}
 
@@ -96,7 +110,29 @@ class Money extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        /**
+         * 
+         * @return boolean
+         */
+        protected function beforeSave() {
+            if($this->isNewRecord) {
+                $this->date_time = time();
+            }
+            return parent::beforeSave();
+        }
 
+        /**
+         * 
+         * @return array
+         */
+        public static function getListStatus() {
+            return array(
+                0=> Yii::t('MoneyModule.main', 'Expect to pay'),
+                1=> Yii::t('MoneyModule.main', 'Paid'),
+            );
+        }
+        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

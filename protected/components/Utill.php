@@ -51,4 +51,14 @@ class Utill {
             'return CHtml::link($matches[0], $matches[0], array("target"=>"_blank"));'),
             $string); 
 	}
+        
+    /**
+     * Выводит число в формате денег. Рекомендую использовать для вывода во всей программе.
+     * @param float $value
+     * @return string
+     */
+    public static function moneyFormat($value) {
+        $format = Yii::app()->numberFormatter->formatCurrency($value, "RUB");
+        return str_replace(',00', '', $format);
+    }
 }

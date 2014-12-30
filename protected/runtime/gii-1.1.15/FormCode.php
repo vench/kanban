@@ -1,5 +1,5 @@
 <?php
 return array (
   'template' => 'default',
-  'viewPath' => 'application.views.taskComment',
+  'viewPath' => 'money.default.views',
 );

@@ -1,15 +1,11 @@
 <?php
 
 
-class MoneyModuleHandler {
-    
-    public static function handler($constEvent, $dataContext = NULL) {
-        
-    }
-}
+
 
 class MoneyModule extends KModule
 {
+        public  $defaultController = 'DefaultController';
 
 	public function getHumanName() {
 		return Yii::t('MoneyModule.main', 'Module name');
@@ -30,7 +26,7 @@ class MoneyModule extends KModule
 		if(parent::beforeControllerAction($controller, $action)) { 
 			return true;
 		}
-		
+	 
 		return false;
 	}
         

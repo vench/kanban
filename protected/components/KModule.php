@@ -83,7 +83,25 @@ abstract class KModule extends CWebModule {
          */
         const AFTER_TASK_MENU_MAIN = 8;
         
-	
+         /**
+         * Before task content view.
+         * In the context provided:
+         * array( 
+	 *  $controller ProjectController, 
+         *  $task Task
+	 * ),
+         */
+	const BEFORE_TASK_CONTENT = 9;
+        
+         /**
+         * After task content view.
+         * In the context provided:
+         * array( 
+	 *  $controller ProjectController, 
+         *  $task Task
+	 * ),
+         */      
+        const AFTER_TASK_CONTENT = 10;
 	
 	 
 	/**

@@ -15,8 +15,7 @@ KModule::fireEvents($model->project, KModule::BEFORE_TASK_MENU_MAIN, array(
 	'controller'=>$this,
         'task'=>$model,
 )); 
-$this->menu=array(
-//	array('label'=>'List Task', 'url'=>array('index')),
+$this->menu=array( 
 	array(
 		'label'=>Yii::t('main','Create Task'), 
 		'url'=>array('create', 'categoryId'=>$model->task_category_id)),
@@ -47,6 +46,17 @@ KModule::fireEvents($model->project, KModule::AFTER_TASK_MENU_MAIN, array(
 <h1><?php echo Yii::t('main', 'Detail task');?> #<?php echo $model->description; ?></h1>
 
 <?php
+KModule::fireEvents($model->project, KModule::BEFORE_TASK_CONTENT, array(	 
+	'controller'=>$this,
+        'task'=>$model,
+));
+ 
+
+array_unshift($this->tabs, array(
+    'title'=>Yii::t('main', 'History of status changes'),
+    'view'=>'_history',
+    'data'=>array('model'=>$model, 'showParent'=>$showParent,),
+));
 array_unshift($this->tabs, array(
     'title'=>Yii::t('main', 'Task files'),
     'view'=>'_files',
@@ -61,6 +71,11 @@ array_unshift($this->tabs, array(
  
 $this->widget('CTabView', array(
      'tabs'=>$this->tabs,
+));
+
+KModule::fireEvents($model->project, KModule::AFTER_TASK_CONTENT, array(	 
+	'controller'=>$this,
+        'task'=>$model,
 ));
 ?>
 
@@ -108,33 +123,12 @@ $this->widget('CTabView', array(
 	</div>
 <?php } ?>
 
-<br/><br/>
-<h3><?php echo Yii::t('main', 'History of status changes');?></h3> 
+ 
 
 
 
 	 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'task-history-grid',
-	'dataProvider'=>$model->searchHistories(), 
-	'columns'=>array(
-		array(
-			'name'=>'time_insert',
-			'header'=>Yii::t('main', 'Date'),
-			'value'=>'date("d.m.Y H:i", $data->time_insert)', 
-		), 	
-		array(
-			'name'=>'new_category_id',
-			'header'=>Yii::t('main', 'Status'),
-			'value'=>'$data->newCategory->name',
-		),
-		array(
-			'name'=>'user_id',
-			'header'=>Yii::t('main', 'User'),
-			'value'=>'$data->user->name',
-		),  
-	),
-)); ?>
+ 
 
  
 
