@@ -49,7 +49,7 @@ return array(
 	'Unload file'=>'Выгрузить в файл',
 	'View tree'=>'Просмотреть дерево',
 	'Show on the main page'=>'Показывать на главной странице',
-	'Only the main tasks'=>'Только главные задачи',
+	 'Only the main tasks'=>'Только главные задачи',
     
     'Project user'=>'Автор проекта',
     'Project name'=>'Название проекта',
