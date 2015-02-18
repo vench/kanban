@@ -13,7 +13,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(
 			'name'=>'new_category_id',
 			'header'=>Yii::t('main', 'Status'),
-			'value'=>'$data->newCategory->name',
+			'value'=>'isset($data->newCategory) ? $data->newCategory->name : ""',
 		),
 		array(
 			'name'=>'user_id',
