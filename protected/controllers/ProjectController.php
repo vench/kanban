@@ -135,7 +135,7 @@ class ProjectController extends Controller
 				),
 			),
 			'order'=>'t.priority DESC',
-			'select'=>'id,task_category_id,description,color_hex,project_id,user_id',
+			'select'=>'id,task_category_id,description,color_hex,project_id,user_id,parent_id',
 		));	
 			
 		$this->layout = 'column1';
@@ -154,9 +154,7 @@ class ProjectController extends Controller
 	public function actionCreate()
 	{
 		$model=new Project;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$model->user_id = Yii::app()->user->getId(); 
 
 		if(isset($_POST['Project']))
 		{

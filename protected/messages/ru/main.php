@@ -176,6 +176,10 @@ return array(
     'This solution allows you to store all projects in one place and monitor tasks moves over them. Promotes self-organization and motivation of participants. Allows you to keep track of the actual time of the task on the basis of this make real predictions in the future. Visualize the process of project implementation.'=>
         'Данное решение позволяет хранить все проекты в одном месте и контролировать ходы выполнения задач над ними.<br/> Способствует самоорганизации и мотивированности участников.<br/> Позволяет отслеживать фактическое время выполнения задачь  исходя из этого делать реальные прогнозы в дальнейшем. <br/>Визуализировать процесс  выполнения проекта',
     'For questions and suggestions you can send a letter to the address: <i>nowwrit(dog)mail.ru</i>'=>'Для вопросов и предложений вы можете отправлять письма на адрес: <i>nowwrit(собака)mail.ru</i>',
+	
+	
+	'Time insert'=>'Время перевода',
+	'Parent'=>'Родитель',
     
         
 );

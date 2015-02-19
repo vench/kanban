@@ -10,6 +10,9 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('is_ready')); ?>:</b>
 	<?php echo $data->is_ready == 1 ? Yii::t('main', 'Yes') : Yii::t('main', 'No'); ?>
 	<br /><br />
+	 
+	
+	
 	<p>
 	 
  	<?php $this->widget('application.widgets.BoxButton', array(

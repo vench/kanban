@@ -39,7 +39,11 @@ class Task extends CActiveRecord
      * 
      * @return string
      */
-     public function getColor() { 
+     public function getColor() {   
+		if($this->color_hex == '#ffffff' && $this->parent_id > 0 && isset($this->parent)) {
+			$this->color_hex = $this->parent->getColor();
+		}
+	 
 		if(strpos($this->color_hex, '#') === false) {
 			$this->color_hex = '#'.dechex($this->color_hex );
 		}		

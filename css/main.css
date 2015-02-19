@@ -287,3 +287,8 @@ ol>li:before{
 ol{
 	counter-reset:item
 }
+
+.task-box-content > div.parent {
+	font-weight:700; margin:0 0 7px 0;
+}
+

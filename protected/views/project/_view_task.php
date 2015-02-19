@@ -1,18 +1,34 @@
 <?php
 /* @var $this ProjectController */
 /* @var $model Task */
+$styes = array();
+if($model->hasColor()) {
+	$styes[] = 'background:'.$model->getColor();
+}
+if($model->parent_id > 0 && !is_null($model->parent)) {
+	$styes[] = 'border:3px solid '.$model->parent->getColor();
+}
 
 ?>
-<div class="task-box drag" <?php if($model->hasColor()) :?> style="background:<?php echo $model->getColor();?> "<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
+<div class="task-box drag" <?php if(sizeof($styes) > 0) :?> style="<?php echo join(';', $styes);?>"<?php endif;?> data-pk="<?php echo $model->getPrimaryKey(); ?>">
 	
-	<div class="task-box-content">
+	<div class="task-box-content" >
+		   <?php  if($model->parent_id > 0 && !is_null($model->parent)) {  ?>
+		<div class="parent"  >
+		<?php echo CHtml::link(Yii::t('main', 'Task parent'), array(
+				'/task/view', 'id'=>$model->parent_id, 
+			), array( 
+			)); ?>
+		</div>
+	<?php }  ?>
 	   <h5>
 	   <?php if($model->hasNewComment()) {?> 
 	   <span class="comment-new" title="<?php echo Yii::t('main', 'New posts');?>"></span>
 	   <?php } ?>
 	   
 	   <?php echo  Utill::safetext($model->description);?></h5>
-	   
+	  
+
 		
 		<div>
 		<?php $this->widget('application.widgets.BoxButton', array(

@@ -28,7 +28,8 @@ $this->menu=array(
 	<ol>
 		 <?php foreach($tasks as $task) { 
 			if($task->task_category_id == $taskCategory->getPrimaryKey()) { ?>
-			<li><b><?php echo Utill::safetext($task->description); ?></b><br/>
+			<li><b><?php echo Utill::safetext($task->description); ?> </b>   
+				<small title="<?php echo Yii::t('main', 'Time insert');?>"><?php echo date('d.m.Y H:i', $task->lastTaskHistory->time_insert); ?></small> <br/>
 			<em><?php echo Utill::safetext($task->fulldescription); ?></em>
 			
 			<?php if(sizeof($task->taskComments) > 0) { ?> 
