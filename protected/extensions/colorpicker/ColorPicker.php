@@ -54,7 +54,10 @@ class ColorPicker extends CInputWidget {
         foreach ($registerCss as $file) {
             $cs->registerCssFile("$baseUrl/$file");
         }
+	//at me
+	$script[] = "if(navigator.appName == 'Netscape' && ~navigator.appVersion.indexOf('WOW64') !== 0) { $('input[type=\"submit\"]').click(function(){this.form.submit();}); }";
 
+                
         if (Yii::app()->request->isAjaxRequest) {
             $cs->registerScript($id, implode('', $script), CClientScript::POS_END);
         } else {

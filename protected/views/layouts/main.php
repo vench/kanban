@@ -27,15 +27,22 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
+		<?php                 
+                $this->mainMenu = array(
 				array('label'=>Yii::t('main','Home'), 'url'=>array('/site/index')),
-                                array('label'=>Yii::t('main','Projects'), 'url'=>array('/project/index')),
-				//array('label'=>Yii::t('main','About'), 'url'=>array('/site/page', 'view'=>'about')),
+                                array('label'=>Yii::t('main','Projects'), 'url'=>array('/project/index')), 
 				array('label'=>Yii::t('main','Users'), 'url'=>array('/user'), 'visible'=>ProjectHelper::currentUserIsAdmin()),
 				array('label'=>Yii::t('main','Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>Yii::t('main','Logout ({name})', array( '{name}'=>Yii::app()->user->name)), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
+		);
+                
+                GModule::fireEvents(GModule::BEFORE_RENDER_MAIN_MENU, array(
+                    'menu'=>$this->mainMenu,
+                    'controller'=>$this,
+                ));                
+                 
+                $this->widget('zii.widgets.CMenu',array(
+			'items'=>$this->mainMenu,
 		)); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
@@ -44,11 +51,30 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+                
+        <?php
+        GModule::fireEvents(GModule::BEFORE_RENDER_MAIN_CONTENT, array( 
+                    'controller'=>$this,
+                )); 
+        ?>        
+                
 	<?php echo $content; ?>
+                
+        <?php
+        GModule::fireEvents(GModule::AFTER_RENDER_MAIN_CONTENT, array( 
+                    'controller'=>$this,
+                )); 
+        ?> 
 
 	<div class="clear"></div>
 
 	<div id="footer">
+                <?php
+                GModule::fireEvents(GModule::BEFORE_RENDER_FOOTER, array( 
+                            'controller'=>$this,
+                        )); 
+                ?> 
+            
 		<?php echo Yii::t('main', 'Copyright &copy; {date} by My Company.', array(
                     '{date}'=>date('Y'),
                 )); ?>  <br/>

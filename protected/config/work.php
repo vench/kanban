@@ -12,6 +12,7 @@
         'modules'=>array( 
              'money'=>array( 
 		),
+              'userSettings'=>array(), 
              'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'111',
@@ -20,6 +21,7 @@
 		),
         ),
         'components'=>array(
+           
             'user'=>array(
                 'allowAutoLogin'=>true,
             ),

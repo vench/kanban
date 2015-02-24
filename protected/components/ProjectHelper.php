@@ -17,6 +17,14 @@ class ProjectHelper {
 		return self::ownerTask($task) || self::currentUserCreater($task->project);
 	}
 	
+        /**
+         * 
+         * @param TaskCategory $task
+         * @return boolean
+         */
+        public static function accessEditTaskCategory(TaskCategory $task) {
+		return self::currentUserCreater($task->project);
+	}
 	
 	/**
 	* Возможность просматривать задание
@@ -104,6 +112,6 @@ class ProjectHelper {
 		return Yii::app()->user->getId() == $model->user_id;
 	}
 		
- 
+        
     
 }

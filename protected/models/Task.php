@@ -254,4 +254,11 @@ class Task extends CActiveRecord
            $taskHistory->user_id = Yii::app()->user->getId();
            $taskHistory->save();
     }
+    
+    protected function beforeDelete() {
+        TaskCommentUser::model()->deleteAll('task_id=:task_id', array(
+            ':task_id'=>$this->getPrimaryKey(),
+        ));
+        return parent::beforeDelete();
+    }
 }

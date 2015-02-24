@@ -23,35 +23,39 @@ class TaskCategoryController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	public function accessRules()
-	{
+	public function accessRules() {
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+			array('allow', 
+				'actions'=>array(  'view',  'create', 'delete', 'update', ),
+				'expression' => array($this,'allowTaskViewByProject'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
+		
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}
+        
+        /**
+        * @return boolean
+       */	
+	public function allowTaskViewByProject() { 
+		return true;
+	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
+	 
+        /**
+         * Displays a particular model.
+         * @param integer $id the ID of the model to be displayed
+         * @throws CHttpException
+         */
+	public function actionView($id) {
+                $model = $this->loadModel($id);                
+                if(!ProjectHelper::accessUserInProject($model->project_id)) {
+                    throw new CHttpException(403, "You do not have permission for this action.");
+                }
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -59,16 +63,17 @@ class TaskCategoryController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($projectId)
-	{
+	public function actionCreate($projectId) {
                 $project = $this->loadProject($projectId);
+                if(!ProjectHelper::currentUserCreater($project)) {
+                    throw new CHttpException(403, "You do not have permission for this action.");
+                }
+                
 		$model= new TaskCategory;
                 $model->project_id = $project->getPrimaryKey();
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 
 
-		if(isset($_POST['TaskCategory']))
-		{
+		if(isset($_POST['TaskCategory'])) {
 			$model->attributes=$_POST['TaskCategory'];
 			if($model->save())
 				$this->redirect(array('/project/view','id'=>$project->getPrimaryKey()));
@@ -84,15 +89,14 @@ class TaskCategoryController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
+	public function actionUpdate($id) {
 		$model=$this->loadModel($id);
+                if(!ProjectHelper::currentUserCreater($model->project)) {
+                    throw new CHttpException(403, "You do not have permission for this action.");
+                }
+ 
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['TaskCategory']))
-		{
+		if(isset($_POST['TaskCategory'])) {
 			$model->attributes=$_POST['TaskCategory'];
 			if($model->save())
 				$this->redirect(array('/project/view','id'=>$model->project_id));
@@ -108,12 +112,13 @@ class TaskCategoryController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
-	{
+	public function actionDelete($id) {
 		$model = $this->loadModel($id);
-                $model->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+                if(!ProjectHelper::currentUserCreater($model->project)) {
+                    throw new CHttpException(403, "You do not have permission for this action.");
+                }
+                $model->delete(); 
+		 
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/project/view', 'id'=>$model->project_id));
 	}

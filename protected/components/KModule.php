@@ -13,7 +13,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const BEFORE_PROJECT_MENU_MAIN = 1; 
+	const BEFORE_PROJECT_MENU_MAIN = 1001; 
 	
 	/**
 	* After project menu main.
@@ -23,7 +23,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const AFTER_PROJECT_MENU_MAIN = 2; 
+	const AFTER_PROJECT_MENU_MAIN = 1002; 
 	
 	/**
 	* Before project sidebar.
@@ -32,7 +32,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const BEFORE_PROJECT_SIDEBAR = 3;
+	const BEFORE_PROJECT_SIDEBAR = 1003;
 	
 	/**
 	* After project sidebar.
@@ -41,7 +41,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const AFTER_PROJECT_SIDEBAR = 4;
+	const AFTER_PROJECT_SIDEBAR = 1004;
 	
 	/**
 	* Before project content.
@@ -50,7 +50,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const BEFORE_PROJECT_CONTENT = 5;
+	const BEFORE_PROJECT_CONTENT = 1005;
 	
 	/**
 	* After project content.
@@ -59,7 +59,7 @@ abstract class KModule extends CWebModule {
 	*  $controller ProjectController
 	* ),
 	*/
-	const AFTER_PROJECT_CONTENT = 6;
+	const AFTER_PROJECT_CONTENT = 1006;
 	
         /**
          * Before project menu main.
@@ -70,7 +70,7 @@ abstract class KModule extends CWebModule {
          *  $task Task
 	 * ),
          */
-        const BEFORE_TASK_MENU_MAIN = 7;
+        const BEFORE_TASK_MENU_MAIN = 1007;
         
         /**
          * After project menu main.
@@ -81,7 +81,7 @@ abstract class KModule extends CWebModule {
          *  $task Task
 	 * ),
          */
-        const AFTER_TASK_MENU_MAIN = 8;
+        const AFTER_TASK_MENU_MAIN = 1008;
         
          /**
          * Before task content view.
@@ -91,7 +91,7 @@ abstract class KModule extends CWebModule {
          *  $task Task
 	 * ),
          */
-	const BEFORE_TASK_CONTENT = 9;
+	const BEFORE_TASK_CONTENT = 1009;
         
          /**
          * After task content view.
@@ -101,7 +101,7 @@ abstract class KModule extends CWebModule {
          *  $task Task
 	 * ),
          */      
-        const AFTER_TASK_CONTENT = 10;
+        const AFTER_TASK_CONTENT = 1010;
 	
 	 
 	/**
@@ -124,7 +124,7 @@ abstract class KModule extends CWebModule {
 	
 	/**
 	* List of modules used.
-	*	@return array
+	* @return array
 	*/
 	public static function getListModules() {
 		$list = array();
@@ -153,5 +153,7 @@ abstract class KModule extends CWebModule {
 			$module = (Yii::app()->getModule($modul->modul_name));
 			$module->handlerEvent($constEvent, $dataContext);
 		}
+                
+                GModule::fireEvents($constEvent, $dataContext);
 	}
 }
