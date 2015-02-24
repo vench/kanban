@@ -62,11 +62,17 @@ abstract class GModule   extends CWebModule {
 		if(!is_array($dataContext)){
 			$dataContext = array();
 		} 
-		foreach(Yii::app()->modules as $name=>$data){
+                
+                $modules = Yii::app()->getModules();
+               
+		foreach($modules as $name=>$data){ 
+                        if($data == 'gii') {
+                            continue;
+                        }
 			$module = (Yii::app()->getModule($name));
 			if($module instanceof GModule) {
                             $module->handlerEvent($constEvent, $dataContext);
                         }
-		}
+		} 
 	}
 }

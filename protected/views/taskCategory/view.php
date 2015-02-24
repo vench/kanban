@@ -3,7 +3,7 @@
 /* @var $model TaskCategory */
 
 $this->breadcrumbs=array(
-	Yii::t('main','Projects')=>array('index'),
+	Yii::t('main','Projects')=>array('/project'),
 	$model->project->name=>array('/project/view', 'id'=>$model->project_id),
 	$model->name,
 );

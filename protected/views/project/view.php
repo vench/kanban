@@ -12,6 +12,7 @@ $this->breadcrumbs=array(
 	$model->name,
 );
   
+
 KModule::fireEvents($model, KModule::BEFORE_PROJECT_MENU_MAIN, array(
 	'menu'=>$this->menu,
 	'controller'=>$this,

@@ -142,7 +142,7 @@ abstract class KModule extends CWebModule {
 	* @param string $constEvent Name initiator events
 	* @param mixed $dataContext
 	*/
-	public static function fireEvents(Project $model, $constEvent, $dataContext = NULL) {
+	public static function fireEvents(Project $model, $constEvent, $dataContext = NULL) { 
 		if(!is_array($dataContext)){
 			$dataContext = array();
 		}
@@ -153,7 +153,7 @@ abstract class KModule extends CWebModule {
 			$module = (Yii::app()->getModule($modul->modul_name));
 			$module->handlerEvent($constEvent, $dataContext);
 		}
-                
+               
                 GModule::fireEvents($constEvent, $dataContext);
 	}
 }
