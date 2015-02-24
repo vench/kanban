@@ -66,7 +66,7 @@ abstract class GModule   extends CWebModule {
                 $modules = Yii::app()->getModules();
                
 		foreach($modules as $name=>$data){ 
-                        if($data == 'gii') {
+                        if($name == 'gii') {
                             continue;
                         }
 			$module = (Yii::app()->getModule($name));
