@@ -181,5 +181,9 @@ return array(
 	'Time insert'=>'Время перевода',
 	'Parent'=>'Родитель',
     
+    
+    'Search'=>'Найти',
+    'Filter'=>'Фильтр',
+    
         
 );

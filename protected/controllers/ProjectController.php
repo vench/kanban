@@ -252,19 +252,12 @@ class ProjectController extends Controller
 	 * Lists all models.
 	 */
 	public function actionIndex() {	
-		$criteria=new CDbCriteria();
-                if(!ProjectHelper::currentUserIsAdmin()) {
-                    $criteria->condition = '(t.user_id=:user_id OR t.id IN (select project_id FROM tbl_user_project WHERE user_id=:user_id1))'; 
-                    $criteria->params = array(
-                            ':user_id'=>Yii::app()->user->getId(),
-                            ':user_id1'=>Yii::app()->user->getId(),
-                    );
-                }		
-		$dataProvider=new CActiveDataProvider('Project', array(
-			'criteria'=>$criteria,
-		));
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+                $model=new ProjectSearchForm(); 
+		if(isset($_GET['ProjectSearchForm']))
+			$model->attributes=$_GET['ProjectSearchForm']; 
+		
+		$this->render('index',array( 
+                        'model'=>$model,
 		));
 	}
 

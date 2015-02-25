@@ -1,6 +1,6 @@
 <?php
 /* @var $this ProjectController */
-/* @var $model Project */
+/* @var $model ProjectSearchForm */
 /* @var $form CActiveForm */
 ?>
 
@@ -11,28 +11,22 @@
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
+	 
 
 	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->label($model,'user_id'); ?> 
+		<?php echo $form->dropDownList($model,'user_id', CHtml::listData(User::model()->findAll(array('select'=>'id,name')), 'id', 'name'), array(
+                    'empty'=>'--- --- ---',
+                )); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
+	</div> 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton(Yii::t('main', 'Search')); ?> 
 	</div>
 
 <?php $this->endWidget(); ?>
