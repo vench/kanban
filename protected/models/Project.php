@@ -15,6 +15,7 @@
  * @property Task[] $viewTasks
  * @property TaskCategory[] $taskCategories
  * @property ProjectModul[] $modules
+ * @property TaskFile[] $taskFiles
  */
 class Project extends CActiveRecord  {
 	/**
@@ -65,6 +66,8 @@ class Project extends CActiveRecord  {
 			),
 			'taskCategories' => array(self::HAS_MANY, 'TaskCategory', 'project_id', 'order'=>'order_pos'),
 			'modules' => array(self::HAS_MANY, 'ProjectModul', 'project_id', ),
+                    
+                        'taskFiles' => array(self::HAS_MANY, 'TaskFile', 'project_id', 'order'=>'time_insert DESC'),
 		);
 	}
 

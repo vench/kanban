@@ -118,12 +118,19 @@ $this->endWidget();
 KModule::fireEvents($model, KModule::BEFORE_PROJECT_CONTENT, array(	 
 	'controller'=>$this,
 ));
+
+array_unshift($this->tabs, array(
+    'title'=>Yii::t('main', 'Files task'),
+    'view'=>'_files',
+    'data'=>array('model'=>$model, ),
+)); 
 array_unshift($this->tabs, array(
     'title'=>Yii::t('main', 'Overall'),
     'view'=>'_overall',
     'data'=>array('model'=>$model, 'showParent'=>$showParent,),
 ));
- 
+
+
 $this->widget('CTabView', array(
      'tabs'=>$this->tabs,
 ));

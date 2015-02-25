@@ -44,6 +44,7 @@
                 $this->widget('zii.widgets.CMenu',array(
 			'items'=>$this->mainMenu,
 		)); ?>
+        
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

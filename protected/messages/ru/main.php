@@ -184,6 +184,7 @@ return array(
     
     'Search'=>'Найти',
     'Filter'=>'Фильтр',
-    
-        
+    'Files task'=>'Файлы заданий',
+    'Show task'=>'Просмотр задания',
+    'Show file: {filename}'=>'Просмотр файла: {filename}',    
 );
