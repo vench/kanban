@@ -2,14 +2,23 @@
 
 class UserSettingsModule extends GModule
 {
-	public function init()
-	{ 
-
-		// import the module-level models and components
-		/*$this->setImport(array(
-			'UserSettings.models.*',
-			'UserSettings.components.*',
-		));*/
+        /**
+         *  Allow edit password
+         * @var booleal 
+         */
+        public $changePassword = true;
+        
+        /**
+         *
+         * @var CHandlerEvent 
+         */
+        protected $handler;
+    
+	public function init() {                 
+		$this->setImport(array(
+			'userSettings.models.*',
+			'userSettings.components.*',
+		));
 	}
 
 	public function beforeControllerAction($controller, $action)
@@ -24,17 +33,27 @@ class UserSettingsModule extends GModule
 			return false;
 	}
         
-       public function handlerEvent($constEvent, $dataContext = NULL) { 
-            switch($constEvent){
-                case self::BEFORE_RENDER_MAIN_MENU: 
-                    call_user_func_array(array($this, 'beforeRenderMainMenu'), $dataContext); 
-                    break; 
-            }
+        /**
+         * 
+         * @param type $constEvent
+         * @param type $dataContext
+         */
+       public function handlerEvent($constEvent, $dataContext = NULL) {             
+            $this->getHandlerEvent()->handlerEvent($constEvent, $dataContext);
         }
         
-       protected function beforeRenderMainMenu($menu, $controller) {
-            if(!Yii::app()->user->isGuest) {
-                $controller->mainMenu[] = array('label'=>Yii::t('UserSettingsModule.main','User settings'), 'url'=>array('/userSettings')); 
-            }
+
+        
+        /**
+         * 
+         * @return CHandlerEvent
+         */
+       public function getHandlerEvent() {
+           if(is_null($this->handler)) {
+               $this->handler = new CHandlerEvent(); 
+           }
+           return $this->handler;
        }
+        
+                
 }

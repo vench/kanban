@@ -1,17 +1,13 @@
 <?php
 /* @var $this ChangeUserPasswordController */
 /* @var $model ChangeUserPassword */
-/* @var $form CActiveForm */  
+/* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'change-user-password-_form_pass-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// See class documentation of CActiveForm for details on this,
-	// you need to use the performAjaxValidation()-method described there.
+	'id'=>'change-user-password-_form_pass-form', 
 	'enableAjaxValidation'=>false,
 )); ?>
 

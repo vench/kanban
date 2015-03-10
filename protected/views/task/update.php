@@ -5,7 +5,7 @@
  
 
 $this->breadcrumbs=array(
-    Yii::t('main', 'Projects')=>array('/projects'),
+    Yii::t('main', 'Projects')=>array('/project'),
 	Yii::t('main', 'Project')=>array('/project/view', 'id'=>$model->project_id),
 	Yii::t('main', 'Update task'),
 );

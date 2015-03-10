@@ -5,7 +5,7 @@
  
 
 $this->breadcrumbs=array(
-        Yii::t('main', 'Projects')=>array('/projects'),
+        Yii::t('main', 'Projects')=>array('/project'),
 	Yii::t('main', 'Project').': '.$model->project->name=>array('/project/view', 'id'=>$model->project_id),
 	Yii::t('main', 'Notify new stage by Email'),
 );

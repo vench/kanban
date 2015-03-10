@@ -12,7 +12,10 @@
         'modules'=>array( 
              'money'=>array( 
 		),
-              'userSettings'=>array(), 
+              'userSettings'=>array(
+                  
+                  'changePassword'=>FALSE,
+              ), 
              'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'111',
@@ -29,7 +32,7 @@
                     'class'=>'application.extensions.yii-mail.YiiMail'
              ),
             'db'=>     array(
-    'connectionString'=>'mysql:host=localhost;dbname=test2',
+    'connectionString'=>'mysql:host=localhost;dbname=test',
     'emulatePrepare' => true,
     'username' => 'root',
     'password' => '',

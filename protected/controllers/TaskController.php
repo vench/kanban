@@ -158,6 +158,10 @@ class TaskController extends Controller
 			 
 		      $message->from = $user->email;
 		      Yii::app()->mail->send($message);
+                      KModule::fireEvents($model->project, KModule::AFTER_TASK_SEND_EMAIL, array(
+                          'users'=>$users,
+                          'task'=>$model,
+                      ));
 			  
 			  $this->redirect(array('/project/view', 'id'=>$model->project_id));
 		}
@@ -168,24 +172,22 @@ class TaskController extends Controller
 			'users'=>$users,
 		));
 	}
-
  
 
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
+	public function actionView($id) {
 		$model = $this->loadModel($id);
 		
 		$taskComment = new TaskComment();
 		$taskComment->task_id = $model->getPrimaryKey();
 		if(isset($_POST['TaskComment'])) {
 			$taskComment->attributes=$_POST['TaskComment'];
-			if($taskComment->save()) {
+			if($taskComment->save()) {                                
 				$this->refresh();
-            }
+                        }
 		}
 		
 		TaskCommentUser::model()->deleteAll('task_id=:task_id AND user_id=:user_id', array(
@@ -261,10 +263,7 @@ class TaskController extends Controller
 		if(!ProjectHelper::accessUserInProject($model->project_id)) {
 			throw new CHttpException(404,'The requested page does not exist.');
 		}
-		
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 
 
 		if(isset($_POST['Task'])) {
 			$model->attributes=$_POST['Task'];

@@ -14,6 +14,7 @@
  * The followings are the available model relations:
  * @property User $user
  * @property Task $task
+ * @property TaskCommentUser[] $commentUsers
  */
 class TaskComment extends CActiveRecord
 {
@@ -53,6 +54,7 @@ class TaskComment extends CActiveRecord
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'task' => array(self::BELONGS_TO, 'Task', 'task_id'),
+                        'commentUsers' => array(self::HAS_MANY, 'TaskCommentUser', 'task_id'), 
 		);
 	}
 
@@ -123,6 +125,11 @@ class TaskComment extends CActiveRecord
 	
 	protected function sendNotification($user_id) {
 		TaskCommentUser::create($user_id, $this->task_id);
+                 KModule::fireEvents($this->task->project, KModule::AFTER_TASK_ADD_COMMENT, array(
+                                    'taskComment'=>$this,
+                                    'task'=>$this->task,
+                                    'user_id'=>$user_id,
+                  ));
 	}
 	
 	/**

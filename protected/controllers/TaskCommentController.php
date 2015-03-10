@@ -97,7 +97,7 @@ class TaskCommentController extends Controller
          * @throws CHttpException
          */
         public function testAccess(TaskComment $model) {
-            if($model->user_id != Yii::app()->user->getID() || !ProjectHelper::currentUserCreater($model->task->project)) {
+            if($model->user_id != Yii::app()->user->getID()  && !ProjectHelper::currentUserCreater($model->task->project)) {
 			throw new CHttpException(404,'The requested page does not exist.');
             }
         }

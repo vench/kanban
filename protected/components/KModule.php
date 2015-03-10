@@ -102,6 +102,27 @@ abstract class KModule extends CWebModule {
 	 * ),
          */      
         const AFTER_TASK_CONTENT = 1010;
+        
+        /**
+         * After send email from task.
+         * In the context provided:
+         * array( 
+	 *  $users User[], 
+         *  $task Task
+	 * ),
+         */
+        const AFTER_TASK_SEND_EMAIL = 1011;
+        
+        /**
+         * After add new comment to task.
+         * In the context provided:
+         * array( 
+	 *  $taskComment TaskComment, 
+         *  $task Task
+         *  $user_id int PK User 
+	 * ),
+         */
+        const AFTER_TASK_ADD_COMMENT = 1012;
 	
 	 
 	/**
@@ -150,8 +171,9 @@ abstract class KModule extends CWebModule {
 			$dataContext['project'] = $model;
 		}
 		foreach($model->modules as $modul){
-			$module = (Yii::app()->getModule($modul->modul_name));
-			$module->handlerEvent($constEvent, $dataContext);
+			$module = (Yii::app()->getModule($modul->modul_name)); 
+			if(!is_null($module)) 
+                            $module->handlerEvent($constEvent, $dataContext);
 		}
                
                 GModule::fireEvents($constEvent, $dataContext);

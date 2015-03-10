@@ -2,7 +2,7 @@
 
 class m141223_111058_stuff extends CDbMigration
 {
-	public function up() {
+	public function up() { //return;
 	    $this->createTable('tbl_project_modul', array(
 				'id' => 'pk',
 				'modul_name' => 'string NOT NULL',
