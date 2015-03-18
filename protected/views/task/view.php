@@ -3,6 +3,7 @@
 /* @var $model Task */
 /* @var $taskComment TaskComment */
  
+$showParent = isset($showParent) ? $showParent : FALSE;
 
 $this->breadcrumbs=array(
         Yii::t('main', 'Projects')=>array('/project'),
