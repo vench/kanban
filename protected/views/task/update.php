@@ -16,6 +16,9 @@ $this->menu=array(
 	array('label'=>Yii::t('main','View Task'), 'url'=>array('view', 'id'=>$model->id)),
 	//array('label'=>'Manage Task', 'url'=>array('admin')),
 );
+
+
+ 
 ?>
 
 <h1><?php echo Yii::t('main', 'Update task');?> <?php echo $model->description; ?></h1>

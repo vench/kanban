@@ -36,7 +36,7 @@ class ProjectController extends Controller
 				'expression' => array($this,'allowProjectRulesEdit'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view', 'statistics', 'viewTree',),
+				'actions'=>array('view', 'statistics', 'viewTree', 'addFile'),
 				'expression' => array($this,'allowProjectRulesView'),
 			),
 			 
@@ -61,11 +61,34 @@ class ProjectController extends Controller
             $projectID  = Yii::app()->request->getParam('id');
             return ProjectHelper::accessCreaterProject($projectID);
     }
+    
+    
+    /**
+     * 
+     * @param type $id ID Project
+     */
+    public function actionAddFile($id) {
+        $model=Project::model()->findByPk($id);
+        $file = new TaskFile();
+        $file->project_id = $model->id;
+        $file->task_id = 0;
+        if(isset($_POST['TaskFile'])) {
+		$file->attributes=$_POST['TaskFile'];
+		if($file->save(true)) {
+				$this->redirect(array('view', 'id'=>$model->id));
+		}
+	}
+        
+        $this->render('addFile',array(
+		'model'=>$model, 
+		'file'=>$file, 
+	));
+    }
 	
 	/**
 	* @param integer $id ID Project
 	*/
-	public function actionViewTree($id) {
+    public function actionViewTree($id) {
 		$model=Project::model()->findByPk($id, array(
 			'with'=>array(
 				'taskCategories'=>array(),

@@ -29,7 +29,7 @@
 	<div id="mainmenu">
 		<?php                 
                 $this->mainMenu = array(
-				array('label'=>Yii::t('main','Home'), 'url'=>array('/site/index')),
+				array('label'=>Yii::t('main','Home'), 'url'=>array('/site/index'),), 
                                 array('label'=>Yii::t('main','Projects'), 'url'=>array('/project/index')), 
 				array('label'=>Yii::t('main','Users'), 'url'=>array('/user'), 'visible'=>ProjectHelper::currentUserIsAdmin()),
 				array('label'=>Yii::t('main','Login'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

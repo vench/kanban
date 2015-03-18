@@ -34,7 +34,7 @@ class TaskFile extends CActiveRecord
                 'class'=>'FileUploadCActiveRecordBehavior',
                 'fileFields'=>array('patch'), 
 		'fileNameAs'=>array('patch'=>'filename',),
-		'extensions' => array( 'jpg', 'png', 'jpeg', 'gif', 'doc', 'docx', 'txt', 'pdf', 'xls', 'xlsx', ),
+		'extensions' => array( 'zip','rar','7zip','jpg', 'png', 'jpeg', 'gif', 'doc', 'docx', 'txt', 'pdf', 'xls', 'xlsx', ),
             ),
         ));
     }

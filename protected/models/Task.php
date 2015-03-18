@@ -42,20 +42,42 @@ class Task extends CActiveRecord
      public function getColor() {   
 		if($this->color_hex == '#ffffff' && $this->parent_id > 0 && isset($this->parent)) {
 			$this->color_hex = $this->parent->getColor();
-		}
-	 
+		}	 
 		if(strpos($this->color_hex, '#') === false) {
-			$this->color_hex = '#'.dechex($this->color_hex );
+			/*$this->color_hex = '#'.dechex($this->color_hex );*/
+                        $r = dechex($this->color_hex >> 16 & 0xff);
+                        $g = dechex($this->color_hex >> 8 & 0x00ff);
+                        $b = dechex($this->color_hex & 0x0000ff);
+                        if(!$r) {
+                            $r = '00';
+                        } 
+                        if(!$g) {
+                            $g = '00';
+                        } 
+                        if(!$b) {
+                            $b = '00';
+                        } 
+                        $this->color_hex = '#'.$r.$g.$b; 
 		}		
 		return  $this->color_hex;
      }
      
-	 /**
-	 * @return boolean
-	 */
-	 public function hasColor() { 	
+    /**
+    * @return boolean
+    */
+    public function hasColor() { 	
 		return  !is_null($this->color_hex);
-	 }
+    }
+    
+    /**
+     * @return string
+     */
+    public function getNameForNotif() {
+        if(!is_null($this->project)) {
+            return $this->project->name.': '.$this->description;
+        }
+        return $this->description;
+    }
 
     /**
      * 

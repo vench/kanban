@@ -134,7 +134,7 @@ class TaskController extends Controller
 		      $url = Yii::app()->createAbsoluteUrl('site/index'); 
 		      Yii::import('application.extensions.yii-mail.*');
 		      $msg= '<p>'.Yii::t('main','Specifying {taskname} was established in status: {status} {date} {username}.', array(
-				'{taskname}'=>$model->description,
+				'{taskname}'=>$model->getNameForNotif(),
 				'{status}'=>$model->lastTaskHistory->newCategory->name,
 				'{date}'=>date('d-m-Y H:i',$model->lastTaskHistory->time_insert),
 				'{username}'=>$model->lastTaskHistory->user->name,
@@ -462,13 +462,13 @@ class TaskController extends Controller
 		//new
 		if($isNew) {
 			$msg= '<p>'.Yii::t('main','Create a new task {taskname} by user:  {username} {date}.', array(
-					'{taskname}'=>$task->description, 
+					'{taskname}'=>$task->getNameForNotif(), 
 					'{date}'=>date('d-m-Y H:i',$task->lastTaskHistory->time_insert),
 					'{username}'=>$task->lastTaskHistory->user->name,
 				)).'</p>'; 
 		} else {
 			$msg= '<p>'.Yii::t('main','Update task {taskname} by user:  {username} {date}.', array(
-					'{taskname}'=>$task->description, 
+					'{taskname}'=>$task->getNameForNotif(), 
 					'{date}'=>date('d-m-Y H:i',$task->lastTaskHistory->time_insert),
 					'{username}'=>$task->lastTaskHistory->user->name,
 				)).'</p>'; 
