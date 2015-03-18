@@ -205,7 +205,7 @@ class TaskController extends Controller
 	*  @param integer $id ID Project
 	*/
 	public function actionCompleted($id) {
-		$model=Task::model()->findByPk($id);
+		$model=Project::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		$models = Task::model()->findAll(array(
